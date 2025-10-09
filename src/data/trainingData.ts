@@ -92,7 +92,16 @@ export const trainingData = {
       "eval.overall": "Overall Evaluation",
       "eval.comments": "Final Comments",
       "lesson.notice.empty": "This lesson has no content. Please contact your admin.",
-      "lesson.notice.draft": "Draft — content under review"
+      "lesson.notice.draft": "Draft — content under review",
+      "aptitude.title": "Aptitude Test",
+      "aptitude.subtitle": "Complete this assessment to demonstrate your skills and abilities",
+      "aptitude.instructions": "You have 60 minutes to complete 32 questions covering cognitive abilities, critical thinking, technical skills, communication, and situational judgment.",
+      "aptitude.begin": "Begin Assessment",
+      "aptitude.time_remaining": "Time Remaining",
+      "aptitude.evaluating": "Evaluating your responses...",
+      "aptitude.results": "Your Results",
+      "aptitude.score": "Overall Score",
+      "aptitude.recommendation": "Recommendation"
     },
     fr: {
       "app.title": "Gateway — Intégration & Formation",
@@ -185,7 +194,16 @@ export const trainingData = {
       "eval.overall": "Évaluation globale",
       "eval.comments": "Commentaires finaux",
       "lesson.notice.empty": "Cette leçon n'a pas de contenu. Veuillez contacter votre administrateur.",
-      "lesson.notice.draft": "Brouillon — contenu en révision"
+      "lesson.notice.draft": "Brouillon — contenu en révision",
+      "aptitude.title": "Test d'aptitude",
+      "aptitude.subtitle": "Complétez cette évaluation pour démontrer vos compétences et capacités",
+      "aptitude.instructions": "Vous avez 60 minutes pour compléter 32 questions couvrant les capacités cognitives, la pensée critique, les compétences techniques, la communication et le jugement situationnel.",
+      "aptitude.begin": "Commencer l'évaluation",
+      "aptitude.time_remaining": "Temps restant",
+      "aptitude.evaluating": "Évaluation de vos réponses...",
+      "aptitude.results": "Vos résultats",
+      "aptitude.score": "Score global",
+      "aptitude.recommendation": "Recommandation"
     }
   },
   settings: {
@@ -606,6 +624,14 @@ export const trainingData = {
   ],
   quizzes: [
     {
+      id: "aptitude_test_general",
+      course_id: null,
+      title_en: "General Aptitude Assessment",
+      title_fr: "Évaluation générale d'aptitude",
+      timeLimitSec: 3600,
+      passingScore: 60
+    },
+    {
       id: "ori_qz_main",
       course_id: "orientation_common",
       title_en: "Orientation Knowledge Check",
@@ -655,6 +681,360 @@ export const trainingData = {
     }
   ],
   questions: [
+    // ========== APTITUDE TEST QUESTIONS (32 total) ==========
+    // Cognitive Abilities - Pattern Recognition & Memory (5 MCQ)
+    {
+      id: "apt_q1",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "Complete the sequence: 2, 4, 8, 16, ___",
+      prompt_fr: "Complétez la séquence : 2, 4, 8, 16, ___",
+      options_en: ["20", "24", "32", "64"],
+      options_fr: ["20", "24", "32", "64"],
+      answer_index: 2
+    },
+    {
+      id: "apt_q2",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "Which word does NOT belong? Apple, Banana, Carrot, Orange",
+      prompt_fr: "Quel mot ne convient pas ? Pomme, Banane, Carotte, Orange",
+      options_en: ["Apple", "Banana", "Carrot", "Orange"],
+      options_fr: ["Pomme", "Banane", "Carotte", "Orange"],
+      answer_index: 2
+    },
+    {
+      id: "apt_q3",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "If 'MOBILE' is coded as 'OQFKNG', what is 'CLINIC' coded as?",
+      prompt_fr: "Si 'MOBILE' est codé 'OQFKNG', comment est codé 'CLINIC' ?",
+      options_en: ["ENKPKE", "FNKPKE", "ENKOKG", "DNKOKE"],
+      options_fr: ["ENKPKE", "FNKPKE", "ENKOKG", "DNKOKE"],
+      answer_index: 1
+    },
+    {
+      id: "apt_q4",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "A patient list has 5 names. After adding 3 and removing 2, how many remain?",
+      prompt_fr: "Une liste de patients a 5 noms. Après en ajouter 3 et en retirer 2, combien reste-t-il ?",
+      options_en: ["4", "5", "6", "8"],
+      options_fr: ["4", "5", "6", "8"],
+      answer_index: 2
+    },
+    {
+      id: "apt_q5",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "Read this once: 'Patient X needs medication at 8 AM, 2 PM, 8 PM daily.' When is the second dose?",
+      prompt_fr: "Lisez une fois : 'Patient X a besoin de médicaments à 8h, 14h, 20h par jour.' Quand est la deuxième dose ?",
+      options_en: ["8 AM", "2 PM", "8 PM", "Next day 8 AM"],
+      options_fr: ["8h", "14h", "20h", "8h le lendemain"],
+      answer_index: 1
+    },
+
+    // Critical Thinking - Problem Analysis & Logic (5 MCQ + 2 T/F + 1 Short)
+    {
+      id: "apt_q6",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "Two clinics serve 200 patients total. Clinic A serves 60 more than Clinic B. How many does B serve?",
+      prompt_fr: "Deux cliniques servent 200 patients au total. Clinique A sert 60 de plus que B. Combien B sert-elle ?",
+      options_en: ["60", "70", "80", "140"],
+      options_fr: ["60", "70", "80", "140"],
+      answer_index: 1
+    },
+    {
+      id: "apt_q7",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "If all doctors are trained and some trained people are nurses, which MUST be true?",
+      prompt_fr: "Si tous les médecins sont formés et certaines personnes formées sont infirmières, lequel est VRAI ?",
+      options_en: ["All nurses are doctors", "Some nurses are doctors", "All trained people are doctors", "Some doctors might not be trained"],
+      options_fr: ["Tous les infirmiers sont médecins", "Certains infirmiers sont médecins", "Toutes les personnes formées sont médecins", "Certains médecins peuvent ne pas être formés"],
+      answer_index: 1
+    },
+    {
+      id: "apt_q8",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "You have 3 urgent tasks: restocking (15 min), patient call (5 min), report due in 10 min. Best order?",
+      prompt_fr: "3 tâches urgentes : réapprovisionnement (15 min), appel patient (5 min), rapport dû dans 10 min. Meilleur ordre ?",
+      options_en: ["Restock → Call → Report", "Call → Report → Restock", "Report → Restock → Call", "Call → Restock → Report"],
+      options_fr: ["Réappro → Appel → Rapport", "Appel → Rapport → Réappro", "Rapport → Réappro → Appel", "Appel → Réappro → Rapport"],
+      answer_index: 1
+    },
+    {
+      id: "apt_q9",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "When facing multiple emergencies, always address the loudest person first.",
+      prompt_fr: "Face à plusieurs urgences, toujours traiter d'abord la personne la plus bruyante.",
+      answer: false
+    },
+    {
+      id: "apt_q10",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "Good decision-making requires considering both immediate and long-term consequences.",
+      prompt_fr: "Une bonne prise de décision nécessite de considérer les conséquences immédiates et à long terme.",
+      answer: true
+    },
+    {
+      id: "apt_q11",
+      quiz_id: "aptitude_test_general",
+      type: "short",
+      prompt_en: "A mobile clinic has limited vaccine doses. Describe how you would prioritize distribution among different age groups.",
+      prompt_fr: "Une clinique mobile a des doses limitées de vaccin. Décrivez comment vous prioriseriez la distribution entre différents groupes d'âge."
+    },
+
+    // Technical Skills - Healthcare & Safety (3 MCQ + 3 T/F + 1 Short)
+    {
+      id: "apt_q12",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "What is the correct order for handwashing in a clinical setting?",
+      prompt_fr: "Quel est l'ordre correct pour le lavage des mains en milieu clinique ?",
+      options_en: [
+        "Wet → Soap → Rinse → Dry",
+        "Soap → Wet → Rinse → Dry",
+        "Wet → Soap → Scrub 20 sec → Rinse → Dry",
+        "Dry → Wet → Soap → Rinse"
+      ],
+      options_fr: [
+        "Mouiller → Savon → Rincer → Sécher",
+        "Savon → Mouiller → Rincer → Sécher",
+        "Mouiller → Savon → Frotter 20 sec → Rincer → Sécher",
+        "Sécher → Mouiller → Savon → Rincer"
+      ],
+      answer_index: 2
+    },
+    {
+      id: "apt_q13",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "A patient shows signs of severe dehydration. What is the FIRST priority?",
+      prompt_fr: "Un patient montre des signes de déshydratation sévère. Quelle est la PREMIÈRE priorité ?",
+      options_en: ["Document in chart", "Start oral rehydration", "Assess vital signs and consciousness", "Call family"],
+      options_fr: ["Documenter dans le dossier", "Commencer réhydratation orale", "Évaluer constantes et conscience", "Appeler la famille"],
+      answer_index: 2
+    },
+    {
+      id: "apt_q14",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "What does PPE stand for in healthcare?",
+      prompt_fr: "Que signifie EPI dans le domaine de la santé ?",
+      options_en: ["Personal Protection Equipment", "Patient Privacy Enforcement", "Prescribed Pharmaceutical Entry", "Public Protection Environment"],
+      options_fr: ["Équipement de Protection Individuelle", "Protection de la vie privée du patient", "Entrée pharmaceutique prescrite", "Environnement de protection publique"],
+      answer_index: 0
+    },
+    {
+      id: "apt_q15",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "Patient confidentiality must be maintained even when discussing cases with colleagues.",
+      prompt_fr: "La confidentialité du patient doit être maintenue même lors de discussions avec des collègues.",
+      answer: true
+    },
+    {
+      id: "apt_q16",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "It's acceptable to skip safety protocols when time is limited.",
+      prompt_fr: "Il est acceptable de sauter les protocoles de sécurité quand le temps est limité.",
+      answer: false
+    },
+    {
+      id: "apt_q17",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "All medical waste should be disposed of in regular trash bins.",
+      prompt_fr: "Tous les déchets médicaux doivent être jetés dans les poubelles ordinaires.",
+      answer: false
+    },
+    {
+      id: "apt_q18",
+      quiz_id: "aptitude_test_general",
+      type: "short",
+      prompt_en: "List three essential items that should be checked before starting a mobile clinic day.",
+      prompt_fr: "Énumérez trois éléments essentiels qui doivent être vérifiés avant de commencer une journée de clinique mobile."
+    },
+
+    // Communication & Professionalism (2 MCQ + 2 T/F + 2 Short)
+    {
+      id: "apt_q19",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "A patient is upset about wait times. Best response?",
+      prompt_fr: "Un patient est contrarié par les temps d'attente. Meilleure réponse ?",
+      options_en: [
+        "Ignore them",
+        "Tell them to wait like everyone else",
+        "Acknowledge concern, explain process, provide timeline",
+        "Send them away"
+      ],
+      options_fr: [
+        "Les ignorer",
+        "Leur dire d'attendre comme tout le monde",
+        "Reconnaître leur préoccupation, expliquer le processus, donner un délai",
+        "Les renvoyer"
+      ],
+      answer_index: 2
+    },
+    {
+      id: "apt_q20",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "When communicating with a team member who made an error, you should:",
+      prompt_fr: "Lors de la communication avec un membre de l'équipe qui a fait une erreur, vous devez :",
+      options_en: [
+        "Call them out publicly",
+        "Discuss privately and constructively",
+        "Report to management immediately",
+        "Ignore the error"
+      ],
+      options_fr: [
+        "Le dénoncer publiquement",
+        "Discuter en privé et de manière constructive",
+        "Signaler à la direction immédiatement",
+        "Ignorer l'erreur"
+      ],
+      answer_index: 1
+    },
+    {
+      id: "apt_q21",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "Professional communication includes active listening and confirming understanding.",
+      prompt_fr: "La communication professionnelle inclut l'écoute active et la confirmation de la compréhension.",
+      answer: true
+    },
+    {
+      id: "apt_q22",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "It's appropriate to use social media to discuss interesting patient cases.",
+      prompt_fr: "Il est approprié d'utiliser les réseaux sociaux pour discuter de cas de patients intéressants.",
+      answer: false
+    },
+    {
+      id: "apt_q23",
+      quiz_id: "aptitude_test_general",
+      type: "short",
+      prompt_en: "Explain how you would communicate bad news to a patient's family member.",
+      prompt_fr: "Expliquez comment vous communiqueriez une mauvaise nouvelle à un membre de la famille d'un patient."
+    },
+    {
+      id: "apt_q24",
+      quiz_id: "aptitude_test_general",
+      type: "short",
+      prompt_en: "Describe a professional way to disagree with a supervisor's decision.",
+      prompt_fr: "Décrivez une manière professionnelle de ne pas être d'accord avec la décision d'un superviseur."
+    },
+
+    // Situational Judgment - Ethics & Teamwork (3 MCQ + 3 T/F + 2 Essay)
+    {
+      id: "apt_q25",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "You witness a colleague violating patient confidentiality. What do you do?",
+      prompt_fr: "Vous voyez un collègue violer la confidentialité d'un patient. Que faites-vous ?",
+      options_en: [
+        "Ignore it; not my problem",
+        "Report to supervisor immediately",
+        "Confront the colleague privately first, then report if continues",
+        "Discuss with other staff first"
+      ],
+      options_fr: [
+        "L'ignorer ; ce n'est pas mon problème",
+        "Signaler au superviseur immédiatement",
+        "Confronter le collègue en privé d'abord, puis signaler si cela continue",
+        "En discuter d'abord avec d'autres membres du personnel"
+      ],
+      answer_index: 2
+    },
+    {
+      id: "apt_q26",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "Two team members are in conflict affecting patient care. As a peer, you should:",
+      prompt_fr: "Deux membres de l'équipe sont en conflit, affectant les soins aux patients. En tant que pair, vous devez :",
+      options_en: [
+        "Take sides",
+        "Facilitate discussion or escalate to supervisor",
+        "Ignore it",
+        "Spread gossip"
+      ],
+      options_fr: [
+        "Prendre parti",
+        "Faciliter la discussion ou escalader au superviseur",
+        "L'ignorer",
+        "Propager des ragots"
+      ],
+      answer_index: 1
+    },
+    {
+      id: "apt_q27",
+      quiz_id: "aptitude_test_general",
+      type: "mcq",
+      prompt_en: "You're offered a gift by a patient's family. The ethical response is:",
+      prompt_fr: "La famille d'un patient vous offre un cadeau. La réponse éthique est :",
+      options_en: [
+        "Always accept to be polite",
+        "Refuse all gifts",
+        "Follow organization policy; politely decline if inappropriate",
+        "Accept and hide it"
+      ],
+      options_fr: [
+        "Toujours accepter pour être poli",
+        "Refuser tous les cadeaux",
+        "Suivre la politique de l'organisation ; refuser poliment si inapproprié",
+        "Accepter et le cacher"
+      ],
+      answer_index: 2
+    },
+    {
+      id: "apt_q28",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "Teamwork requires putting organizational goals above personal preferences.",
+      prompt_fr: "Le travail d'équipe nécessite de mettre les objectifs organisationnels au-dessus des préférences personnelles.",
+      answer: true
+    },
+    {
+      id: "apt_q29",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "It's acceptable to cover up a minor mistake to avoid conflict.",
+      prompt_fr: "Il est acceptable de cacher une petite erreur pour éviter un conflit.",
+      answer: false
+    },
+    {
+      id: "apt_q30",
+      quiz_id: "aptitude_test_general",
+      type: "truefalse",
+      prompt_en: "Professional integrity means doing the right thing even when no one is watching.",
+      prompt_fr: "L'intégrité professionnelle signifie faire ce qui est juste même quand personne ne regarde.",
+      answer: true
+    },
+    {
+      id: "apt_q31",
+      quiz_id: "aptitude_test_general",
+      type: "essay",
+      prompt_en: "Describe a challenging situation you faced (work, school, or personal life) and explain how you resolved it. What did you learn? (500-700 words)",
+      prompt_fr: "Décrivez une situation difficile que vous avez rencontrée (travail, école ou vie personnelle) et expliquez comment vous l'avez résolue. Qu'avez-vous appris ? (500-700 mots)"
+    },
+    {
+      id: "apt_q32",
+      quiz_id: "aptitude_test_general",
+      type: "essay",
+      prompt_en: "Why do you want to work in mobile healthcare in Haiti? What skills and values would you bring to the team? (500-700 words)",
+      prompt_fr: "Pourquoi souhaitez-vous travailler dans les soins de santé mobiles en Haïti ? Quelles compétences et valeurs apporteriez-vous à l'équipe ? (500-700 mots)"
+    },
+
+    // ========== ORIGINAL COURSE QUESTIONS ==========
     // Orientation questions
     {
       id: "ori_q1",

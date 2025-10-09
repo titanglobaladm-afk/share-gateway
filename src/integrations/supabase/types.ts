@@ -14,6 +14,172 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_evaluations: {
+        Row: {
+          ai_comments: string | null
+          attempt_id: string | null
+          cognitive_score: number | null
+          communication_score: number | null
+          created_at: string | null
+          critical_thinking_score: number | null
+          evaluation_type: string
+          id: string
+          overall_score: number | null
+          raw_ai_response: Json | null
+          recommendation: string | null
+          situational_score: number | null
+          technical_score: number | null
+          user_id: string
+        }
+        Insert: {
+          ai_comments?: string | null
+          attempt_id?: string | null
+          cognitive_score?: number | null
+          communication_score?: number | null
+          created_at?: string | null
+          critical_thinking_score?: number | null
+          evaluation_type: string
+          id?: string
+          overall_score?: number | null
+          raw_ai_response?: Json | null
+          recommendation?: string | null
+          situational_score?: number | null
+          technical_score?: number | null
+          user_id: string
+        }
+        Update: {
+          ai_comments?: string | null
+          attempt_id?: string | null
+          cognitive_score?: number | null
+          communication_score?: number | null
+          created_at?: string | null
+          critical_thinking_score?: number | null
+          evaluation_type?: string
+          id?: string
+          overall_score?: number | null
+          raw_ai_response?: Json | null
+          recommendation?: string | null
+          situational_score?: number | null
+          technical_score?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_evaluations_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "aptitude_test_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      aptitude_test_answers: {
+        Row: {
+          answer: string
+          attempt_id: string | null
+          created_at: string | null
+          id: string
+          is_correct: boolean | null
+          question_id: string
+        }
+        Insert: {
+          answer: string
+          attempt_id?: string | null
+          created_at?: string | null
+          id?: string
+          is_correct?: boolean | null
+          question_id: string
+        }
+        Update: {
+          answer?: string
+          attempt_id?: string | null
+          created_at?: string | null
+          id?: string
+          is_correct?: boolean | null
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "aptitude_test_answers_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "aptitude_test_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      aptitude_test_attempts: {
+        Row: {
+          completed_at: string | null
+          created_at: string | null
+          id: string
+          passed: boolean | null
+          score: number | null
+          started_at: string | null
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          passed?: boolean | null
+          score?: number | null
+          started_at?: string | null
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          passed?: boolean | null
+          score?: number | null
+          started_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      document_templates: {
+        Row: {
+          active: boolean | null
+          content_en: string
+          content_fr: string
+          created_at: string | null
+          document_type: string
+          id: string
+          requires_signature: boolean | null
+          title_en: string
+          title_fr: string
+          updated_at: string | null
+          version: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          content_en: string
+          content_fr: string
+          created_at?: string | null
+          document_type: string
+          id?: string
+          requires_signature?: boolean | null
+          title_en: string
+          title_fr: string
+          updated_at?: string | null
+          version?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          content_en?: string
+          content_fr?: string
+          created_at?: string | null
+          document_type?: string
+          id?: string
+          requires_signature?: boolean | null
+          title_en?: string
+          title_fr?: string
+          updated_at?: string | null
+          version?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string | null
@@ -47,12 +213,66 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_attempts: {
+        Row: {
+          ai_evaluation_id: string | null
+          answers: Json | null
+          course_id: string
+          created_at: string | null
+          id: string
+          passed: boolean | null
+          quiz_id: string
+          score: number | null
+          started_at: string | null
+          submitted_at: string | null
+          user_id: string
+        }
+        Insert: {
+          ai_evaluation_id?: string | null
+          answers?: Json | null
+          course_id: string
+          created_at?: string | null
+          id?: string
+          passed?: boolean | null
+          quiz_id: string
+          score?: number | null
+          started_at?: string | null
+          submitted_at?: string | null
+          user_id: string
+        }
+        Update: {
+          ai_evaluation_id?: string | null
+          answers?: Json | null
+          course_id?: string
+          created_at?: string | null
+          id?: string
+          passed?: boolean | null
+          quiz_id?: string
+          score?: number | null
+          started_at?: string | null
+          submitted_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_ai_evaluation_id_fkey"
+            columns: ["ai_evaluation_id"]
+            isOneToOne: false
+            referencedRelation: "ai_evaluations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_courses: {
         Row: {
           assigned_at: string | null
           completed_at: string | null
           course_id: string
           id: string
+          last_accessed_at: string | null
+          lessons_completed: Json | null
+          progress_percentage: number | null
+          quizzes_completed: Json | null
           user_id: string
         }
         Insert: {
@@ -60,6 +280,10 @@ export type Database = {
           completed_at?: string | null
           course_id: string
           id?: string
+          last_accessed_at?: string | null
+          lessons_completed?: Json | null
+          progress_percentage?: number | null
+          quizzes_completed?: Json | null
           user_id: string
         }
         Update: {
@@ -67,9 +291,48 @@ export type Database = {
           completed_at?: string | null
           course_id?: string
           id?: string
+          last_accessed_at?: string | null
+          lessons_completed?: Json | null
+          progress_percentage?: number | null
+          quizzes_completed?: Json | null
           user_id?: string
         }
         Relationships: []
+      }
+      user_document_signatures: {
+        Row: {
+          document_template_id: string
+          id: string
+          ip_address: string | null
+          signature_data: Json | null
+          signed_at: string | null
+          user_id: string
+        }
+        Insert: {
+          document_template_id: string
+          id?: string
+          ip_address?: string | null
+          signature_data?: Json | null
+          signed_at?: string | null
+          user_id: string
+        }
+        Update: {
+          document_template_id?: string
+          id?: string
+          ip_address?: string | null
+          signature_data?: Json | null
+          signed_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_document_signatures_document_template_id_fkey"
+            columns: ["document_template_id"]
+            isOneToOne: false
+            referencedRelation: "document_templates"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
