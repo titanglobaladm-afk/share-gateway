@@ -1,17 +1,30 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { GraduationCap, Languages } from 'lucide-react';
+import { GraduationCap, Languages, LogOut } from 'lucide-react';
 
 export const Navigation = () => {
   const { t, language, setLanguage } = useLanguage();
+  const { user, signOut } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'fr' : 'en');
   };
 
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/signin');
+  };
+
   const isActive = (path: string) => location.pathname === path;
+
+  // Don't show navigation on public pages
+  if (location.pathname === '/signin' || location.pathname === '/onboarding') {
+    return null;
+  }
 
   return (
     <nav className="border-b border-border bg-card shadow-sm">
@@ -49,15 +62,28 @@ export const Navigation = () => {
               </Link>
             </div>
           </div>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={toggleLanguage}
-            className="flex items-center gap-2"
-          >
-            <Languages className="h-4 w-4" />
-            {t('lang.toggle')}
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={toggleLanguage}
+              className="flex items-center gap-2"
+            >
+              <Languages className="h-4 w-4" />
+              {t('lang.toggle')}
+            </Button>
+            {user && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={handleSignOut}
+                className="flex items-center gap-2"
+              >
+                <LogOut className="h-4 w-4" />
+                <span className="hidden sm:inline">{t('nav.sign_out')}</span>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </nav>
