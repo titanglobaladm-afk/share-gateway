@@ -1,16 +1,25 @@
 export const trainingData = {
-  meta: { bundle: "SMOKE_SEED", version: "1.0", languages: ["en", "fr"] },
+  meta: { bundle: "GATEWAY_LMS_BILINGUAL_FULL_SEED", version: "1.0", languages: ["en", "fr"] },
   i18n: {
     en: {
       "app.title": "Gateway — Onboarding & Training",
       "nav.dashboard": "Dashboard",
       "nav.courses": "Courses",
       "nav.my_courses": "My Courses",
+      "nav.onboarding": "Onboarding",
+      "nav.documents": "Documents",
+      "nav.agreements": "Agreements",
+      "nav.admin": "Admin",
+      "auth.sign_in": "Sign in",
+      "auth.sign_out": "Sign out",
+      "lang.toggle": "Français",
       "quiz.start": "Start quiz",
       "quiz.submit": "Submit",
       "quiz.passed": "Passed",
       "quiz.failed": "Failed",
-      "lang.toggle": "Français",
+      "evaluation.final": "Final Evaluation",
+      "certificate.download": "Download Certificate",
+      "notice.fr_fallback": "Content currently available in English.",
       "dashboard.subtitle": "Track your learning progress and continue your training",
       "dashboard.active_courses": "Active Courses",
       "dashboard.in_progress": "In progress",
@@ -72,11 +81,20 @@ export const trainingData = {
       "nav.dashboard": "Tableau de bord",
       "nav.courses": "Cours",
       "nav.my_courses": "Mes cours",
+      "nav.onboarding": "Parcours d'intégration",
+      "nav.documents": "Documents",
+      "nav.agreements": "Accords",
+      "nav.admin": "Administration",
+      "auth.sign_in": "Se connecter",
+      "auth.sign_out": "Se déconnecter",
+      "lang.toggle": "English",
       "quiz.start": "Commencer le quiz",
       "quiz.submit": "Soumettre",
       "quiz.passed": "Réussi",
       "quiz.failed": "Échoué",
-      "lang.toggle": "English",
+      "evaluation.final": "Évaluation finale",
+      "certificate.download": "Télécharger le certificat",
+      "notice.fr_fallback": "Contenu disponible actuellement en anglais.",
       "dashboard.subtitle": "Suivez votre progression et continuez votre formation",
       "dashboard.active_courses": "Cours actifs",
       "dashboard.in_progress": "En cours",
@@ -136,6 +154,13 @@ export const trainingData = {
   },
   courses: [
     {
+      id: "orientation_common",
+      title_en: "SHARE Orientation: Mission, Model, Governance",
+      title_fr: "Orientation SHARE : Mission, Modèle, Gouvernance",
+      role_required: "all",
+      version: "1.0"
+    },
+    {
       id: "doctor_track",
       title_en: "Clinical Excellence — Physicians",
       title_fr: "Excellence clinique — Médecins",
@@ -172,41 +197,64 @@ export const trainingData = {
     }
   ],
   lessons: [
+    // Orientation (bilingual)
+    {
+      id: "ori_l1_en",
+      course_id: "orientation_common",
+      locale: "en",
+      order: 1,
+      title: "Mission, Vision, Values",
+      content: "<p>SHARE's mission, vision, values, and community commitments.</p>"
+    },
+    {
+      id: "ori_l1_fr",
+      course_id: "orientation_common",
+      locale: "fr",
+      order: 1,
+      title: "Mission, vision, valeurs",
+      content: "<p>Mission, vision, valeurs de SHARE et engagements communautaires.</p>"
+    },
+    {
+      id: "ori_l2_en",
+      course_id: "orientation_common",
+      locale: "en",
+      order: 2,
+      title: "Mobile Clinic Model in Haiti",
+      content: "<p>Service model, outreach flow, care pathways, and referrals.</p>"
+    },
+    {
+      id: "ori_l2_fr",
+      course_id: "orientation_common",
+      locale: "fr",
+      order: 2,
+      title: "Modèle de clinique mobile en Haïti",
+      content: "<p>Modèle de service, parcours de soins et orientations.</p>"
+    },
+    {
+      id: "ori_l3_en",
+      course_id: "orientation_common",
+      locale: "en",
+      order: 3,
+      title: "Governance & MSPP Alignment",
+      content: "<p>Governance, licensing, reporting to MSPP, ethics.</p>"
+    },
+    {
+      id: "ori_l3_fr",
+      course_id: "orientation_common",
+      locale: "fr",
+      order: 3,
+      title: "Gouvernance & alignement MSPP",
+      content: "<p>Gouvernance, licences, rapports au MSPP, éthique.</p>"
+    },
+
+    // Doctors (bilingual)
     {
       id: "doc_l1_en",
       course_id: "doctor_track",
       locale: "en",
       order: 1,
       title: "Diagnostic Reasoning in Mobile Clinics",
-      meta_source: "From: Role Pack — Training Materials for Doctors",
-      content: "<h2>Diagnosing in Low-Resource Mobile Settings</h2><p>In mobile clinics you often work with incomplete histories and limited tools. Start with a focused interview and vitals, use basic diagnostics (e.g., RDTs, glucose, urine ketones) to narrow differentials, and prioritize stabilization. Document clearly and communicate findings to the team and patient in plain language.</p><ul><li>Challenges: limited history, time pressure, fewer devices.</li><li>Approach: ABCs first, focused exam, selective tests, clear next steps.</li><li>Communication: set expectations; use teach-back for understanding.</li></ul>"
-    },
-    {
-      id: "doc_l2_en",
-      course_id: "doctor_track",
-      locale: "en",
-      order: 2,
-      title: "Chronic Disease (HTN/DM/HIV)",
-      meta_source: "From: Comprehensive Guide + Role Pack — Training Materials for Doctors",
-      content: "<h2>Chronic Care in the Field</h2><p>Standardize hypertension and diabetes workflows: confirm diagnosis, assess complications, and ensure reliable follow-up. For HIV, reinforce counseling, confidentiality, and linkage to care. When first-line meds are unavailable, select rational substitutes and document reasons. Build adherence plans that account for travel and supply interruptions.</p><ul><li>HTN/DM: risk stratification, meds, self-care coaching.</li><li>HIV: consent, stigma-aware counseling, testing pathways.</li><li>Continuity: schedule, contact methods, refill plans.</li></ul>"
-    },
-    {
-      id: "doc_l3_en",
-      course_id: "doctor_track",
-      locale: "en",
-      order: 3,
-      title: "BLS & Trauma Triage",
-      meta_source: "From: Comprehensive Guide",
-      content: "<h2>Immediate Stabilization & Triage</h2><p>Follow ABC priorities: open airway (jaw-thrust if trauma), support breathing, restore circulation. Use a simple triage model for multi-casualty events (e.g., START). Stabilize for transport and document vitals, interventions, time stamps, and handoffs.</p><ul><li>Airway first in trauma; consider OPA/NPA.</li><li>Use FAST ultrasound when available for abdominal trauma.</li><li>Record actions for audit and continuity.</li></ul>"
-    },
-    {
-      id: "doc_l4_en",
-      course_id: "doctor_track",
-      locale: "en",
-      order: 4,
-      title: "Legal/Ethical Duties",
-      meta_source: "From: Comprehensive Guide",
-      content: "<h2>Consent, Confidentiality, Duty of Care</h2><p>Obtain informed consent; verbal consent may be acceptable if properly documented. Protect patient data in line with policy and law. Follow reporting rules for public health conditions while minimizing identifiability.</p><ul><li>Consent types and documentation.</li><li>Privacy boundaries and exceptions (public health).</li><li>Professional conduct in resource-limited settings.</li></ul>"
+      content: "<p>Differential diagnosis with limited tools; RDT prioritization.</p>"
     },
     {
       id: "doc_l1_fr",
@@ -214,16 +262,73 @@ export const trainingData = {
       locale: "fr",
       order: 1,
       title: "Raisonnement diagnostique en clinique mobile",
-      content: "<p>Démarche diagnostique, TDR, différentiels.</p>"
+      content: "<p>Diagnostic différentiel avec ressources limitées; priorisation des TDR.</p>"
     },
+    {
+      id: "doc_l2_en",
+      course_id: "doctor_track",
+      locale: "en",
+      order: 2,
+      title: "Chronic Disease (HTN/DM/HIV)",
+      content: "<p>Protocols, monitoring, adherence strategies, referral rules.</p>"
+    },
+    {
+      id: "doc_l2_fr",
+      course_id: "doctor_track",
+      locale: "fr",
+      order: 2,
+      title: "Maladies chroniques (HTA/Diabète/VIH)",
+      content: "<p>Protocoles, suivi, observance, critères d'orientation.</p>"
+    },
+    {
+      id: "doc_l3_en",
+      course_id: "doctor_track",
+      locale: "en",
+      order: 3,
+      title: "BLS & Trauma Triage",
+      content: "<p>Primary survey, stabilization, transport readiness.</p>"
+    },
+    {
+      id: "doc_l3_fr",
+      course_id: "doctor_track",
+      locale: "fr",
+      order: 3,
+      title: "RCR de base & triage traumatologique",
+      content: "<p>Examen primaire, stabilisation, préparation au transport.</p>"
+    },
+    {
+      id: "doc_l4_en",
+      course_id: "doctor_track",
+      locale: "en",
+      order: 4,
+      title: "Legal/Ethical Duties",
+      content: "<p>Consent, confidentiality, reporting obligations.</p>"
+    },
+    {
+      id: "doc_l4_fr",
+      course_id: "doctor_track",
+      locale: "fr",
+      order: 4,
+      title: "Devoirs juridiques/éthiques",
+      content: "<p>Consentement, confidentialité, obligations de signalement.</p>"
+    },
+
+    // Nurses (bilingual)
     {
       id: "nrs_l1_en",
       course_id: "nurse_track",
       locale: "en",
       order: 1,
       title: "Clinical Skills in Resource-Limited Settings",
-      meta_source: "From: Role Pack — Training Materials for Nurses",
-      content: "<h2>Core Nursing Skills</h2><p>Prioritize care by severity and resources. Master safe medication administration, monitoring, and documentation. Use simple tools effectively and escalate early when red flags appear.</p><ul><li>Vitals and monitoring sequences.</li><li>IV/IM basics and safety checks (e.g., allergies).</li><li>Triage logic under time/resource constraints.</li></ul>"
+      content: "<p>Vitals, injections, wound care, triage and escalation.</p>"
+    },
+    {
+      id: "nrs_l1_fr",
+      course_id: "nurse_track",
+      locale: "fr",
+      order: 1,
+      title: "Compétences cliniques en milieux à faibles ressources",
+      content: "<p>Signes vitaux, injections, soins des plaies, triage et escalade.</p>"
     },
     {
       id: "nrs_l2_en",
@@ -231,8 +336,15 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Infection Control & Patient Safety",
-      meta_source: "From: Comprehensive Guide + Role Pack — Training Materials for Nurses",
-      content: "<h2>Infection Prevention in Mobile Clinics</h2><p>Apply hand hygiene before/after each contact, use PPE in the correct donning/doffing order, and maintain clean zones. When water is limited, use alcohol rubs and targeted disinfection. Educate patients and model behaviors consistently.</p><ul><li>PPE sequence and sharps safety.</li><li>Surface disinfection in low-water settings.</li><li>Cold chain basics and documentation.</li></ul>"
+      content: "<p>PPE, sterilization, sharps, isolation practices.</p>"
+    },
+    {
+      id: "nrs_l2_fr",
+      course_id: "nurse_track",
+      locale: "fr",
+      order: 2,
+      title: "Prévention des infections & sécurité des patients",
+      content: "<p>EPI, stérilisation, objets piquants, isolement.</p>"
     },
     {
       id: "nrs_l3_en",
@@ -240,24 +352,33 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "Maternal/Child & Home Visits",
-      content: "<p>Red flags, home follow-up, escalation.</p>"
+      content: "<p>Red flags, home follow-up, escalation pathways.</p>"
     },
     {
-      id: "nrs_l1_fr",
+      id: "nrs_l3_fr",
       course_id: "nurse_track",
       locale: "fr",
-      order: 1,
-      title: "Compétences cliniques — milieux à faibles ressources",
-      content: "<p>Signes vitaux, injections, plaies, triage.</p>"
+      order: 3,
+      title: "Santé maternelle/infantile & visites à domicile",
+      content: "<p>Signaux d'alerte, suivi à domicile, voies d'escalade.</p>"
     },
+
+    // Drivers (bilingual)
     {
       id: "drv_l1_en",
       course_id: "driver_track",
       locale: "en",
       order: 1,
       title: "Safe Navigation & Route Planning",
-      meta_source: "From: Role Pack — Training Materials for Drivers",
-      content: "<h2>Planning & Driving for Clinical Missions</h2><p>Plan routes with terrain, weather, and alternates. Conduct thorough pre-trip checks and secure cargo to protect equipment and passengers. Maintain predictable, defensive driving—especially when escorting medical teams.</p><ul><li>Pre-trip checklist: tires, fluids, lights, comms.</li><li>Cargo securement: straps + padding; weight low/forward.</li><li>Night convoy: spacing, comms, roles.</li></ul>"
+      content: "<p>Pre-trip checks, route planning, communications.</p>"
+    },
+    {
+      id: "drv_l1_fr",
+      course_id: "driver_track",
+      locale: "fr",
+      order: 1,
+      title: "Navigation sûre & planification d'itinéraires",
+      content: "<p>Contrôles avant départ, planification, communications.</p>"
     },
     {
       id: "drv_l2_en",
@@ -265,8 +386,15 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Emergency Response on the Road",
-      meta_source: "From: Role Pack — Training Materials for Drivers",
-      content: "<h2>Handling On-Road Incidents</h2><p>If a passenger shows distress, pull over safely and assess; notify the clinic. For breakdowns, secure the scene, protect passengers, and follow comms fallback (radio/satphone). Log incidents with times and actions for review.</p><ul><li>Distress protocol: stop, assess, inform.</li><li>Breakdown response in remote areas.</li><li>Documentation: near-miss and incident logs.</li></ul>"
+      content: "<p>Breakdowns, floods, detours, medical transport.</p>"
+    },
+    {
+      id: "drv_l2_fr",
+      course_id: "driver_track",
+      locale: "fr",
+      order: 2,
+      title: "Réponse d'urgence sur la route",
+      content: "<p>Pannes, inondations, détours, transport médical.</p>"
     },
     {
       id: "drv_l3_en",
@@ -277,21 +405,30 @@ export const trainingData = {
       content: "<p>Protocols, de-escalation, documentation.</p>"
     },
     {
-      id: "drv_l1_fr",
+      id: "drv_l3_fr",
       course_id: "driver_track",
       locale: "fr",
-      order: 1,
-      title: "Navigation sûre & planification d'itinéraires",
-      content: "<p>Contrôles, planification, communications.</p>"
+      order: 3,
+      title: "Communications & prise en charge des passagers",
+      content: "<p>Protocoles, désescalade, documentation.</p>"
     },
+
+    // Managers (bilingual)
     {
       id: "mgr_l1_en",
       course_id: "manager_track",
       locale: "en",
       order: 1,
       title: "Leadership & Team Management",
-      meta_source: "From: Role Pack — Training Materials for Clinic Managers + Comprehensive Guide",
-      content: "<h2>Leading Field Teams</h2><p>Use clear roles, fair rotations, and routine check-ins. Track KPIs tied to donor reporting and audit trails. Maintain dual-supplier strategies for critical items and escalate when budget variance threatens delivery.</p><ul><li>Scheduling & morale (feedback + quick wins).</li><li>KPI dashboards for donors and operations.</li><li>Controls: petty cash, receipts, surprise counts.</li></ul>"
+      content: "<p>Supervision, conflict resolution, coaching.</p>"
+    },
+    {
+      id: "mgr_l1_fr",
+      course_id: "manager_track",
+      locale: "fr",
+      order: 1,
+      title: "Leadership & gestion d'équipe",
+      content: "<p>Supervision, résolution de conflits, accompagnement.</p>"
     },
     {
       id: "mgr_l2_en",
@@ -302,6 +439,14 @@ export const trainingData = {
       content: "<p>Inventory, logistics, scheduling.</p>"
     },
     {
+      id: "mgr_l2_fr",
+      course_id: "manager_track",
+      locale: "fr",
+      order: 2,
+      title: "Opérations & allocation des ressources",
+      content: "<p>Inventaire, logistique, planification.</p>"
+    },
+    {
       id: "mgr_l3_en",
       course_id: "manager_track",
       locale: "en",
@@ -310,21 +455,30 @@ export const trainingData = {
       content: "<p>Dashboards, donor packets, audits.</p>"
     },
     {
-      id: "mgr_l1_fr",
+      id: "mgr_l3_fr",
       course_id: "manager_track",
       locale: "fr",
-      order: 1,
-      title: "Leadership & gestion d'équipe",
-      content: "<p>Supervision, résolution de conflits.</p>"
+      order: 3,
+      title: "Gouvernance, ICP & rapports",
+      content: "<p>Tableaux de bord, dossiers donateurs, audits.</p>"
     },
+
+    // Security (bilingual)
     {
       id: "sec_l1_en",
       course_id: "security_track",
       locale: "en",
       order: 1,
       title: "Security Protocols in Mobile Clinics",
-      meta_source: "From: Role Pack — Training Materials for Security Personnel + Comprehensive Guide",
-      content: "<h2>Access Control, Posture & Incident Response</h2><p>Log visitors, issue badges, and enforce access points. Use posture levels to scale response to credible indicators. In emergencies, priority is protection of staff and patients; coordinate with the medical lead and communicate via brevity codes.</p><ul><li>Risk assessment drills and lockdown basics.</li><li>Radio etiquette and confirmations.</li><li>Weekly incident review and lessons learned.</li></ul>"
+      content: "<p>Access control, incident reporting, posture.</p>"
+    },
+    {
+      id: "sec_l1_fr",
+      course_id: "security_track",
+      locale: "fr",
+      order: 1,
+      title: "Protocoles de sécurité en clinique mobile",
+      content: "<p>Contrôle d'accès, signalement d'incidents, posture.</p>"
     },
     {
       id: "sec_l2_en",
@@ -335,30 +489,46 @@ export const trainingData = {
       content: "<p>Breaches, drills, coordination.</p>"
     },
     {
+      id: "sec_l2_fr",
+      course_id: "security_track",
+      locale: "fr",
+      order: 2,
+      title: "Réponse d'urgence & désescalade",
+      content: "<p>Brèches, exercices, coordination.</p>"
+    },
+    {
       id: "sec_l3_en",
       course_id: "security_track",
       locale: "en",
       order: 3,
       title: "Access Control & Site Hardening",
-      content: "<p>Perimeter, chokepoints, visitor mgmt.</p>"
+      content: "<p>Perimeter, chokepoints, visitor management.</p>"
     },
     {
-      id: "sec_l1_fr",
+      id: "sec_l3_fr",
       course_id: "security_track",
       locale: "fr",
-      order: 1,
-      title: "Protocoles de sécurité en clinique mobile",
-      content: "<p>Contrôle d'accès, incidents, posture.</p>"
+      order: 3,
+      title: "Contrôle d'accès & durcissement du site",
+      content: "<p>Périmètre, points de contrôle, gestion des visiteurs.</p>"
     }
   ],
   quizzes: [
     {
-      id: "nurse_qz_smoke",
-      course_id: "nurse_track",
-      title_en: "Nursing Quick Check",
-      title_fr: "Vérification rapide — Infirmiers/ères",
-      timeLimitSec: 300,
-      passingScore: 50
+      id: "ori_qz_main",
+      course_id: "orientation_common",
+      title_en: "Orientation Knowledge Check",
+      title_fr: "Vérification des connaissances — Orientation",
+      timeLimitSec: 900,
+      passingScore: 70
+    },
+    {
+      id: "doctor_qz_main",
+      course_id: "doctor_track",
+      title_en: "Physician Aptitude & Scenarios",
+      title_fr: "Aptitude & scénarios — Médecins",
+      timeLimitSec: 3000,
+      passingScore: 70
     },
     {
       id: "nurse_qz_main",
@@ -369,35 +539,11 @@ export const trainingData = {
       passingScore: 70
     },
     {
-      id: "nurse_qz_bank_v2",
-      course_id: "nurse_track",
-      title_en: "Nursing Master Bank — Skills & Scenarios",
-      title_fr: "Banque maîtresse — Compétences & scénarios (Infirmiers/ères)",
-      timeLimitSec: 3000,
-      passingScore: 70
-    },
-    {
       id: "driver_qz_main",
       course_id: "driver_track",
       title_en: "Driver Knowledge & Safety",
       title_fr: "Connaissances & sécurité — Chauffeurs",
       timeLimitSec: 2400,
-      passingScore: 70
-    },
-    {
-      id: "driver_qz_bank_v2",
-      course_id: "driver_track",
-      title_en: "Driver Master Bank — Logistics & Safety",
-      title_fr: "Banque maîtresse — Logistique & sécurité (Chauffeurs)",
-      timeLimitSec: 2400,
-      passingScore: 70
-    },
-    {
-      id: "doctor_qz_main",
-      course_id: "doctor_track",
-      title_en: "Physician Aptitude & Scenarios",
-      title_fr: "Aptitude & scénarios — Médecins",
-      timeLimitSec: 3000,
       passingScore: 70
     },
     {
@@ -415,33 +561,251 @@ export const trainingData = {
       title_fr: "Protocoles de sécurité & jugement",
       timeLimitSec: 2400,
       passingScore: 70
-    },
-    {
-      id: "doctor_qz_bank_v2",
-      course_id: "doctor_track",
-      title_en: "Physician Master Bank — Clinical & Scenarios",
-      title_fr: "Banque maîtresse — Clinique & scénarios (Médecins)",
-      timeLimitSec: 3600,
-      passingScore: 70
-    },
-    {
-      id: "manager_qz_bank_v2",
-      course_id: "manager_track",
-      title_en: "Manager Master Bank — Leadership, Finance, Ops",
-      title_fr: "Banque maîtresse — Leadership, finances, opérations (Managers)",
-      timeLimitSec: 3600,
-      passingScore: 70
-    },
-    {
-      id: "security_qz_bank_v2",
-      course_id: "security_track",
-      title_en: "Security Master Bank — Protocols & Situational Judgment",
-      title_fr: "Banque maîtresse — Protocoles & jugement (Sécurité)",
-      timeLimitSec: 2400,
-      passingScore: 70
     }
   ],
   questions: [
+    // Orientation questions
+    {
+      id: "ori_q1",
+      quiz_id: "ori_qz_main",
+      type: "mcq",
+      prompt_en: "Which ministry oversees licensing/reporting in Haiti?",
+      prompt_fr: "Quel ministère supervise les licences/rapports en Haïti ?",
+      options_en: ["MSPP", "MENFP", "MAST", "MARNDR"],
+      options_fr: ["MSPP", "MENFP", "MAST", "MARNDR"],
+      answer_index: 0
+    },
+    {
+      id: "ori_q2",
+      quiz_id: "ori_qz_main",
+      type: "truefalse",
+      prompt_en: "Patient consent can be verbal if appropriately documented.",
+      prompt_fr: "Le consentement du patient peut être verbal s'il est correctement consigné.",
+      answer: true
+    },
+
+    // Doctor questions
+    {
+      id: "doc_q1",
+      quiz_id: "doctor_qz_main",
+      type: "mcq",
+      prompt_en: "First-line antihypertensive in a diabetic adult (no CKD/pregnancy)?",
+      prompt_fr: "Antihypertenseur de 1re intention chez un adulte diabétique (sans MRC/grossesse) ?",
+      options_en: ["Thiazide", "ACE inhibitor", "Non-selective beta-blocker", "Alpha-agonist"],
+      options_fr: ["Thiazidique", "IECA", "Bêta-bloquant non sélectif", "Alpha-agoniste"],
+      answer_index: 1
+    },
+    {
+      id: "doc_q2",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Fever + rash in a child; unknown immunization. Immediate steps?",
+      prompt_fr: "Fièvre + éruption chez un enfant; vaccination inconnue. Étapes immédiates ?"
+    },
+    {
+      id: "doc_q3",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Suspected TB non-adherence. Plan to ensure treatment completion.",
+      prompt_fr: "Suspicion de non-observance TB. Plan pour assurer l'achèvement du traitement."
+    },
+    {
+      id: "doc_q4",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Limited budget: prioritize dengue vs leptospirosis tests — justify.",
+      prompt_fr: "Budget limité : prioriser test dengue vs leptospirose — justifiez."
+    },
+    {
+      id: "doc_q5",
+      quiz_id: "doctor_qz_main",
+      type: "truefalse",
+      prompt_en: "Give antibiotics immediately to all febrile patients.",
+      prompt_fr: "Administrer immédiatement des antibiotiques à tous les patients fébriles.",
+      answer: false
+    },
+    {
+      id: "doc_q6",
+      quiz_id: "doctor_qz_main",
+      type: "mcq",
+      prompt_en: "Most useful initial lab in suspected DKA (field)?",
+      prompt_fr: "Examen initial le plus utile en suspicion d'ACD (terrain) ?",
+      options_en: ["Serum lactate", "Urine ketones", "D-dimer", "Troponin"],
+      options_fr: ["Lactate", "Cétones urinaires", "D-dimères", "Troponine"],
+      answer_index: 1
+    },
+
+    // Nurse questions
+    {
+      id: "nrs_q1",
+      quiz_id: "nurse_qz_main",
+      type: "mcq",
+      prompt_en: "Normal adult blood pressure is closest to:",
+      prompt_fr: "La pression artérielle normale chez l'adulte est proche de :",
+      options_en: ["<90/60", "~120/80", ">160/100", "No standard range"],
+      options_fr: ["<90/60", "~120/80", ">160/100", "Pas de plage standard"],
+      answer_index: 1
+    },
+    {
+      id: "nrs_q2",
+      quiz_id: "nurse_qz_main",
+      type: "truefalse",
+      prompt_en: "Always check allergies before medications.",
+      prompt_fr: "Toujours vérifier les allergies avant les médicaments.",
+      answer: true
+    },
+    {
+      id: "nrs_q3",
+      quiz_id: "nurse_qz_main",
+      type: "short",
+      prompt_en: "Key steps for IM injection during mass immunization.",
+      prompt_fr: "Étapes clés pour l'injection IM en campagne de vaccination."
+    },
+    {
+      id: "nrs_q4",
+      quiz_id: "nurse_qz_main",
+      type: "short",
+      prompt_en: "Non-responsive patient — immediate actions.",
+      prompt_fr: "Patient non réactif — actions immédiates."
+    },
+    {
+      id: "nrs_q5",
+      quiz_id: "nurse_qz_main",
+      type: "short",
+      prompt_en: "Prioritize: bleeding wound vs severe abdominal pain — justify.",
+      prompt_fr: "Prioriser : plaie hémorragique vs douleur abdominale sévère — justifiez."
+    },
+
+    // Driver questions
+    {
+      id: "drv_q1",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Pre-trip: which is NOT required?",
+      prompt_fr: "Avant départ : lequel n'est PAS requis ?",
+      options_en: ["Tire pressure check", "Brake lights check", "Clean windshield", "Engine oil change"],
+      options_fr: ["Pression des pneus", "Feux de freinage", "Pare-brise propre", "Vidange moteur"],
+      answer_index: 3
+    },
+    {
+      id: "drv_q2",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Flooded bridge on route. First action?",
+      prompt_fr: "Pont inondé sur l'itinéraire. Première action ?",
+      options_en: ["Attempt crossing slowly", "Wait for water to recede", "Find alternative route and inform ops", "Turn back silently"],
+      options_fr: ["Traverser lentement", "Attendre la décrue", "Trouver un détour et informer l'équipe", "Revenir sans prévenir"],
+      answer_index: 2
+    },
+    {
+      id: "drv_q3",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Passenger shows distress. You should:",
+      prompt_fr: "Passager en détresse. Vous devez :",
+      options_en: ["Keep driving", "Pull over and assess", "Call clinic first", "Give meds immediately"],
+      options_fr: ["Continuer à conduire", "Se ranger et évaluer", "Appeler la clinique d'abord", "Administrer immédiatement des médicaments"],
+      answer_index: 1
+    },
+    {
+      id: "drv_q4",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Rough terrain prep includes:",
+      prompt_fr: "Préparation terrain difficile :",
+      options_en: ["Lower tire pressure moderately", "Increase speed", "Disable seatbelts", "Ignore cargo straps"],
+      options_fr: ["Baisser modérément la pression", "Augmenter la vitesse", "Désactiver les ceintures", "Ignorer les sangles"],
+      answer_index: 0
+    },
+    {
+      id: "drv_q5",
+      quiz_id: "driver_qz_main",
+      type: "truefalse",
+      prompt_en: "Secure equipment with straps and padding.",
+      prompt_fr: "Sécuriser le matériel avec sangles et rembourrage.",
+      answer: true
+    },
+    {
+      id: "drv_q6",
+      quiz_id: "driver_qz_main",
+      type: "short",
+      prompt_en: "List core pre-trip checks before remote travel.",
+      prompt_fr: "Énumérez les vérifications clés avant un trajet en zone isolée."
+    },
+    {
+      id: "drv_q7",
+      quiz_id: "driver_qz_main",
+      type: "short",
+      prompt_en: "Radio outage in a canyon. Outline comms fallback.",
+      prompt_fr: "Panne radio dans un canyon. Décrivez le repli de communication."
+    },
+
+    // Manager questions
+    {
+      id: "mgr_q1",
+      quiz_id: "manager_qz_main",
+      type: "essay",
+      prompt_en: "Plan a mobile clinic deployment in a region with limited resources (500–700 words).",
+      prompt_fr: "Planifiez le déploiement d'une clinique mobile en zone à faibles ressources (500–700 mots)."
+    },
+    {
+      id: "mgr_q2",
+      quiz_id: "manager_qz_main",
+      type: "mcq",
+      prompt_en: "Budget: $15k total; $5k supplies, $3k staffing. Remaining for ops:",
+      prompt_fr: "Budget : 15 000 $ ; 5 000 $ fournitures, 3 000 $ personnel. Reste pour opérations :",
+      options_en: ["$6,000", "$7,000", "$8,000", "$9,000"],
+      options_fr: ["6 000 $", "7 000 $", "8 000 $", "9 000 $"],
+      answer_index: 2
+    },
+    {
+      id: "mgr_q3",
+      quiz_id: "manager_qz_main",
+      type: "short",
+      prompt_en: "Clinics run out of essentials each trip — fix the supply chain.",
+      prompt_fr: "Ruptures récurrentes d'essentiels — corrigez la chaîne d'approvisionnement."
+    },
+    {
+      id: "mgr_q4",
+      quiz_id: "manager_qz_main",
+      type: "short",
+      prompt_en: "Cut ops costs by 10% from $12,000/month. New budget & where to cut.",
+      prompt_fr: "Réduire de 10 % les coûts (12 000 $/mois). Nouveau budget et postes à réduire."
+    },
+
+    // Security questions
+    {
+      id: "sec_q1",
+      quiz_id: "security_qz_main",
+      type: "mcq",
+      prompt_en: "Top priority in a security breach?",
+      prompt_fr: "Priorité absolue lors d'une brèche de sécurité ?",
+      options_en: ["Call police", "Protect staff & patients", "Chase intruder", "Lock all doors"],
+      options_fr: ["Appeler la police", "Protéger le personnel et les patients", "Poursuivre l'intrus", "Tout verrouiller"],
+      answer_index: 1
+    },
+    {
+      id: "sec_q2",
+      quiz_id: "security_qz_main",
+      type: "short",
+      prompt_en: "Protest forms near clinic site. Describe lockdown posture & comms.",
+      prompt_fr: "Manifestation près du site. Décrivez la posture de confinement et les communications."
+    },
+    {
+      id: "sec_q3",
+      quiz_id: "security_qz_main",
+      type: "short",
+      prompt_en: "Access control standards for visitors & badges (busy clinic).",
+      prompt_fr: "Normes de contrôle d'accès pour visiteurs et badges (clinique fréquentée)."
+    },
+    {
+      id: "sec_q4",
+      quiz_id: "security_qz_main",
+      type: "truefalse",
+      prompt_en: "Log and review access incidents weekly.",
+      prompt_fr: "Consigner et revoir les incidents d'accès chaque semaine.",
+      answer: true
+    },
     {
       id: "nq1",
       quiz_id: "nurse_qz_smoke",
