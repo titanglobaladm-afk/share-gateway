@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { BookOpen, FileText, ArrowLeft } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { BookOpen, FileText, ArrowLeft, AlertCircle } from 'lucide-react';
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -20,6 +21,12 @@ const CourseDetail = () => {
   ).sort((a, b) => a.order - b.order);
   
   const quizzes = trainingData.quizzes.filter(q => q.course_id === course.id);
+  const minContentChars = trainingData.settings?.lessonMinContentChars || 200;
+
+  const hasInsufficientContent = (content: string) => {
+    const strippedContent = content.replace(/<[^>]*>/g, '').trim();
+    return !strippedContent || strippedContent.length < minContentChars;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -52,23 +59,36 @@ const CourseDetail = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {lessons.map((lesson, index) => (
-                <div key={lesson.id}>
-                  <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors">
-                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
-                      {index + 1}
+              {lessons.map((lesson, index) => {
+                const isInsufficient = hasInsufficientContent(lesson.content);
+                
+                return (
+                  <div key={lesson.id}>
+                    <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors">
+                      <div className="flex-shrink-0 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                        {index + 1}
+                      </div>
+                      <div className="flex-1 space-y-2">
+                        <h3 className="font-semibold mb-1">{lesson.title}</h3>
+                        {isInsufficient ? (
+                          <Alert variant="destructive" className="py-2">
+                            <AlertCircle className="h-4 w-4" />
+                            <AlertDescription className="text-sm">
+                              {t('lesson.notice.empty')}
+                            </AlertDescription>
+                          </Alert>
+                        ) : (
+                          <div 
+                            className="text-sm text-muted-foreground"
+                            dangerouslySetInnerHTML={{ __html: lesson.content }}
+                          />
+                        )}
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-1">{lesson.title}</h3>
-                      <div 
-                        className="text-sm text-muted-foreground"
-                        dangerouslySetInnerHTML={{ __html: lesson.content }}
-                      />
-                    </div>
+                    {index < lessons.length - 1 && <Separator className="my-2" />}
                   </div>
-                  {index < lessons.length - 1 && <Separator className="my-2" />}
-                </div>
-              ))}
+                );
+              })}
             </CardContent>
           </Card>
 

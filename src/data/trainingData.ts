@@ -74,7 +74,9 @@ export const trainingData = {
       "eval.aptitude": "Aptitude Test Results",
       "eval.interview": "Interview Performance",
       "eval.overall": "Overall Evaluation",
-      "eval.comments": "Final Comments"
+      "eval.comments": "Final Comments",
+      "lesson.notice.empty": "This lesson has no content. Please contact your admin.",
+      "lesson.notice.draft": "Draft — content under review"
     },
     fr: {
       "app.title": "Gateway — Intégration & Formation",
@@ -149,8 +151,13 @@ export const trainingData = {
       "eval.aptitude": "Résultats du test d'aptitude",
       "eval.interview": "Performance à l'entretien",
       "eval.overall": "Évaluation globale",
-      "eval.comments": "Commentaires finaux"
+      "eval.comments": "Commentaires finaux",
+      "lesson.notice.empty": "Cette leçon n'a pas de contenu. Veuillez contacter votre administrateur.",
+      "lesson.notice.draft": "Brouillon — contenu en révision"
     }
+  },
+  settings: {
+    lessonMinContentChars: 200
   },
   courses: [
     {
