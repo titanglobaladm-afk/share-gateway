@@ -359,6 +359,14 @@ export const trainingData = {
       passingScore: 70
     },
     {
+      id: "nurse_qz_bank_v2",
+      course_id: "nurse_track",
+      title_en: "Nursing Master Bank — Skills & Scenarios",
+      title_fr: "Banque maîtresse — Compétences & scénarios (Infirmiers/ères)",
+      timeLimitSec: 3000,
+      passingScore: 70
+    },
+    {
       id: "driver_qz_main",
       course_id: "driver_track",
       title_en: "Driver Knowledge & Safety",
@@ -922,6 +930,255 @@ export const trainingData = {
       prompt_fr: "Imagerie de première intention pour traumatisme abdominal (terrain).",
       options_en: ["X-ray", "FAST ultrasound", "CT", "MRI"],
       options_fr: ["Radiographie", "Écho FAST", "TDM", "IRM"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q01",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Normal adult BP is closest to:",
+      prompt_fr: "TA normale adulte :",
+      options_en: ["<90/60", "~120/80", ">160/100", "No range"],
+      options_fr: ["<90/60", "~120/80", ">160/100", "Aucune plage"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q02",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Always check allergies before medication administration.",
+      prompt_fr: "Toujours vérifier les allergies avant l'administration des médicaments.",
+      answer: true
+    },
+    {
+      id: "nrs2_q03",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "List key steps for IM injection during mass immunization.",
+      prompt_fr: "Énumérez les étapes clés d'une injection IM en campagne de vaccination."
+    },
+    {
+      id: "nrs2_q04",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Non-responsive patient—immediate actions (ABCs).",
+      prompt_fr: "Patient non réactif — actions immédiates (ABC)."
+    },
+    {
+      id: "nrs2_q05",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Capillary blood glucose: when to recalibrate glucometer?",
+      prompt_fr: "Glycémie capillaire : quand recalibrer le glucomètre ?",
+      options_en: ["Never", "Per manufacturer schedule", "Only after error", "Only with new patient"],
+      options_fr: ["Jamais", "Selon calendrier fabricant", "Après erreur uniquement", "Avec nouveau patient seulement"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q06",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Sharps disposal protocol in a mobile setting.",
+      prompt_fr: "Protocole d'élimination des objets piquants/coupants en mobilité."
+    },
+    {
+      id: "nrs2_q07",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Teach-back confirms patient understanding.",
+      prompt_fr: "Le teach-back confirme la compréhension du patient.",
+      answer: true
+    },
+    {
+      id: "nrs2_q08",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Prioritize: bleeding wound vs severe abdominal pain—justify.",
+      prompt_fr: "Prioriser : plaie hémorragique vs douleur abdominale sévère — justifiez."
+    },
+    {
+      id: "nrs2_q09",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Cold chain broken. Immediate action:",
+      prompt_fr: "Rupture de la chaîne du froid. Action immédiate :",
+      options_en: ["Use anyway if <4h", "Quarantine and report", "Warm and retry", "Mix with good stock"],
+      options_fr: ["Utiliser si <4h", "Mettre en quarantaine et signaler", "Réchauffer et réessayer", "Mélanger avec stock sain"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q10",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Postnatal danger signs to teach caregivers.",
+      prompt_fr: "Signes de danger postnataux à enseigner aux aidants."
+    },
+    {
+      id: "nrs2_q11",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Best PPE sequence for donning.",
+      prompt_fr: "Meilleur ordre pour l'enfilage des EPI.",
+      options_en: ["Gown→Gloves→Mask→Goggles", "Gown→Mask→Goggles→Gloves", "Mask→Gown→Gloves→Goggles", "Gloves→Mask→Gown→Goggles"],
+      options_fr: ["Blouse→Gants→Masque→Lunettes", "Blouse→Masque→Lunettes→Gants", "Masque→Blouse→Gants→Lunettes", "Gants→Masque→Blouse→Lunettes"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q12",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Hand hygiene before and after every patient contact.",
+      prompt_fr: "Hygiène des mains avant et après tout contact patient.",
+      answer: true
+    },
+    {
+      id: "nrs2_q13",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Triage approach in mass clinic with limited staff.",
+      prompt_fr: "Approche de triage en clinique de masse avec personnel limité."
+    },
+    {
+      id: "nrs2_q14",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Correct needle size for adult IM deltoid.",
+      prompt_fr: "Taille d'aiguille IM deltoïde adulte.",
+      options_en: ["18G 1.5\"", "21–23G 1–1.5\"", "25G 5/8\"", "30G 1/2\""],
+      options_fr: ["18G 1,5\"", "21–23G 1–1,5\"", "25G 5/8\"", "30G 1/2\""],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q15",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Patient refuses injection due to fear; de-escalation script.",
+      prompt_fr: "Patient refuse l'injection par peur ; script de désescalade."
+    },
+    {
+      id: "nrs2_q16",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Which is NOT biomedical waste?",
+      prompt_fr: "Lequel n'est PAS un déchet biomédical ?",
+      options_en: ["Used syringe", "Blood-soaked gauze", "Unopened saline bag", "Body tissue"],
+      options_fr: ["Seringue usagée", "Gaze imbibée de sang", "Poche de sérum non ouverte", "Tissu organique"],
+      answer_index: 2
+    },
+    {
+      id: "nrs2_q17",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Explain isolation precautions to a patient's family.",
+      prompt_fr: "Expliquer les précautions d'isolement à la famille d'un patient."
+    },
+    {
+      id: "nrs2_q18",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Vital signs should be rechecked after any intervention.",
+      prompt_fr: "Les signes vitaux doivent être revérifiés après toute intervention.",
+      answer: true
+    },
+    {
+      id: "nrs2_q19",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Home visit checklist essentials for a CHW.",
+      prompt_fr: "Éléments essentiels d'une visite à domicile pour un ASC."
+    },
+    {
+      id: "nrs2_q20",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Indication to stop an IM injection immediately.",
+      prompt_fr: "Indication d'arrêter immédiatement une injection IM.",
+      options_en: ["Mild pain", "Patient anxiety", "Sudden resistance/blood aspiration", "Cough"],
+      options_fr: ["Douleur légère", "Anxiété", "Résistance brutale/aspiration de sang", "Toux"],
+      answer_index: 2
+    },
+    {
+      id: "nrs2_q21",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Counsel caregiver on ORS preparation and use.",
+      prompt_fr: "Conseiller un aidant sur la préparation et l'utilisation de la SRO."
+    },
+    {
+      id: "nrs2_q22",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Best first aid for deep laceration in field.",
+      prompt_fr: "Premier secours pour lacération profonde sur le terrain.",
+      options_en: ["Remove embedded object", "Apply direct pressure and dress", "Apply tourniquet immediately", "Irrigate with river water"],
+      options_fr: ["Retirer l'objet", "Pression directe et pansement", "Garrot immédiat", "Irrigation à l'eau de rivière"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q23",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Cold chain temperature logs are optional.",
+      prompt_fr: "Les relevés de température de la chaîne du froid sont facultatifs.",
+      answer: false
+    },
+    {
+      id: "nrs2_q24",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Escalation pathway when home-visit red flags are identified.",
+      prompt_fr: "Voie d'escalade lorsque des signes d'alerte sont identifiés en visite à domicile."
+    },
+    {
+      id: "nrs2_q25",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Which step comes first in wound care?",
+      prompt_fr: "Quelle étape vient en premier dans le soin des plaies ?",
+      options_en: ["Dress wound", "Assess & control bleeding", "Apply antibiotic", "Close wound"],
+      options_fr: ["Pansement", "Évaluer & contrôler saignement", "Antibiotique", "Suture"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q26",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Documenting adverse events—minimum fields.",
+      prompt_fr: "Déclarer un effet indésirable — champs minimaux."
+    },
+    {
+      id: "nrs2_q27",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Teach-back is unnecessary if the patient nods yes.",
+      prompt_fr: "Le teach-back est inutile si le patient hoche la tête.",
+      answer: false
+    },
+    {
+      id: "nrs2_q28",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "When is N95 preferred over surgical mask?",
+      prompt_fr: "Quand préférer le N95 au masque chirurgical ?",
+      options_en: ["Any cough", "Aerosol-generating procedures", "Outdoor triage", "Short consults"],
+      options_fr: ["Toute toux", "Procédures générant des aérosols", "Triage extérieur", "Consultations courtes"],
+      answer_index: 1
+    },
+    {
+      id: "nrs2_q29",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "short",
+      prompt_en: "Create a quick teaching script for medication adherence.",
+      prompt_fr: "Créer un script d'éducation pour l'observance médicamenteuse."
+    },
+    {
+      id: "nrs2_q30",
+      quiz_id: "nurse_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Which is a postnatal emergency?",
+      prompt_fr: "Quel est une urgence postnatale ?",
+      options_en: ["Mild lochia", "Severe headache with vision changes", "Breast engorgement", "Mild perineal pain"],
+      options_fr: ["Lochies légères", "Céphalée sévère avec troubles visuels", "Engorgement mammaire", "Douleur périnéale légère"],
       answer_index: 1
     }
   ]
