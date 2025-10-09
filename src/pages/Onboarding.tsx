@@ -186,20 +186,33 @@ const Onboarding = () => {
         .from('user_roles')
         .insert({ user_id: user.id, role });
 
-      if (roleError) throw roleError;
+      if (roleError) {
+        console.error('Role insert error:', roleError);
+        throw roleError;
+      }
 
       // Assign courses based on role
       const courses = roleToCoursesMap[role];
+      console.log('Assigning courses:', courses, 'for role:', role);
+      
       const courseInserts = courses.map((courseId) => ({
         user_id: user.id,
         course_id: courseId,
       }));
 
-      const { error: coursesError } = await supabase
-        .from('user_courses')
-        .insert(courseInserts);
+      console.log('Course inserts:', courseInserts);
 
-      if (coursesError) throw coursesError;
+      const { data: insertedCourses, error: coursesError } = await supabase
+        .from('user_courses')
+        .insert(courseInserts)
+        .select();
+
+      if (coursesError) {
+        console.error('Courses insert error:', coursesError);
+        throw coursesError;
+      }
+      
+      console.log('Successfully inserted courses:', insertedCourses);
 
       // Mark onboarding as completed
       const { error: profileError } = await supabase

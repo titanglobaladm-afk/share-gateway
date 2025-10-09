@@ -18,10 +18,14 @@ const MyCourses = () => {
     const fetchAssignedCourses = async () => {
       if (!user) return;
       
-      const { data } = await supabase
+      console.log('Fetching courses for user:', user.id);
+      
+      const { data, error } = await supabase
         .from('user_courses')
         .select('course_id')
         .eq('user_id', user.id);
+
+      console.log('User courses data:', data, 'error:', error);
 
       if (data) {
         setAssignedCourseIds(data.map(c => c.course_id));
@@ -54,8 +58,13 @@ const MyCourses = () => {
 
         {assignedCourses.length === 0 ? (
           <Card>
-            <CardContent className="pt-6">
-              <p className="text-center text-muted-foreground">No courses assigned yet.</p>
+            <CardContent className="pt-6 space-y-4">
+              <p className="text-center text-muted-foreground">
+                {t('my_courses.no_courses')}
+              </p>
+              <p className="text-center text-sm text-muted-foreground">
+                Complete onboarding to get your courses assigned based on your role.
+              </p>
             </CardContent>
           </Card>
         ) : (
