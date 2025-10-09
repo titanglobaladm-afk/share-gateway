@@ -157,7 +157,9 @@ export const trainingData = {
     }
   },
   settings: {
-    lessonMinContentChars: 200
+    lessonMinContentChars: 40,
+    hideEmptyLessons: true,
+    preferLessonSuffix: "_v2"
   },
   courses: [
     {

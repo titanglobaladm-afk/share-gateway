@@ -16,17 +16,23 @@ const CourseDetail = () => {
   if (!course) return <div>{t('course.not_found')}</div>;
 
   const title = language === 'en' ? course.title_en : course.title_fr;
-  const lessons = trainingData.lessons.filter(
-    l => l.course_id === course.id && l.locale === language
-  ).sort((a, b) => a.order - b.order);
-  
-  const quizzes = trainingData.quizzes.filter(q => q.course_id === course.id);
-  const minContentChars = trainingData.settings?.lessonMinContentChars || 200;
+  const minContentChars = trainingData.settings?.lessonMinContentChars || 40;
+  const hideEmptyLessons = trainingData.settings?.hideEmptyLessons || false;
 
   const hasInsufficientContent = (content: string) => {
     const strippedContent = content.replace(/<[^>]*>/g, '').trim();
     return !strippedContent || strippedContent.length < minContentChars;
   };
+
+  let lessons = trainingData.lessons.filter(
+    l => l.course_id === course.id && l.locale === language
+  ).sort((a, b) => a.order - b.order);
+
+  if (hideEmptyLessons) {
+    lessons = lessons.filter(lesson => !hasInsufficientContent(lesson.content));
+  }
+  
+  const quizzes = trainingData.quizzes.filter(q => q.course_id === course.id);
 
   return (
     <div className="min-h-screen bg-background">
