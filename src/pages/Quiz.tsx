@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Clock, CheckCircle2, XCircle } from 'lucide-react';
@@ -20,7 +21,7 @@ const Quiz = () => {
   const questions = trainingData.questions.filter(q => q.quiz_id === quizId);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, number | boolean>>({});
+  const [answers, setAnswers] = useState<Record<string, number | boolean | string>>({});
   const [timeRemaining, setTimeRemaining] = useState(quiz?.timeLimitSec || 300);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
@@ -48,7 +49,7 @@ const Quiz = () => {
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
-  const handleAnswer = (value: number | boolean) => {
+  const handleAnswer = (value: number | boolean | string) => {
     setAnswers({ ...answers, [currentQuestion.id]: value });
   };
 
@@ -71,6 +72,9 @@ const Quiz = () => {
       if (q.type === 'mcq' && userAnswer === q.answer_index) {
         correct++;
       } else if (q.type === 'truefalse' && userAnswer === q.answer) {
+        correct++;
+      } else if (q.type === 'short' && userAnswer && typeof userAnswer === 'string' && userAnswer.trim().length > 0) {
+        // For short answers, give credit if they provided any answer
         correct++;
       }
     });
@@ -116,7 +120,9 @@ const Quiz = () => {
                 {questions.filter(q => {
                   const userAnswer = answers[q.id];
                   if (q.type === 'mcq') return userAnswer === q.answer_index;
-                  return userAnswer === q.answer;
+                  if (q.type === 'truefalse') return userAnswer === q.answer;
+                  if (q.type === 'short') return userAnswer && typeof userAnswer === 'string' && userAnswer.trim().length > 0;
+                  return false;
                 }).length} / {questions.length} {t('quiz.correct')}
               </p>
             </div>
@@ -190,6 +196,21 @@ const Quiz = () => {
                   </Label>
                 </div>
               </RadioGroup>
+            )}
+
+            {currentQuestion.type === 'short' && (
+              <div className="space-y-3">
+                <Label htmlFor="short-answer" className="text-sm font-medium">
+                  {t('quiz.short_answer')}
+                </Label>
+                <Textarea
+                  id="short-answer"
+                  placeholder={t('quiz.type_answer')}
+                  value={(answers[currentQuestion.id] as string) || ''}
+                  onChange={(e) => handleAnswer(e.target.value)}
+                  className="min-h-[120px] resize-none"
+                />
+              </div>
             )}
 
             <div className="flex gap-3 pt-4">

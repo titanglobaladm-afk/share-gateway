@@ -42,6 +42,8 @@ export const trainingData = {
       "quiz.true": "True",
       "quiz.false": "False",
       "quiz.correct": "correct",
+      "quiz.short_answer": "Your answer:",
+      "quiz.type_answer": "Type your answer here...",
       "my_courses.subtitle": "Track your enrolled courses and progress",
       "my_courses.role": "Role",
       "my_courses.version": "Version",
@@ -88,6 +90,8 @@ export const trainingData = {
       "quiz.true": "Vrai",
       "quiz.false": "Faux",
       "quiz.correct": "correct",
+      "quiz.short_answer": "Votre réponse :",
+      "quiz.type_answer": "Tapez votre réponse ici...",
       "my_courses.subtitle": "Suivez vos cours inscrits et votre progression",
       "my_courses.role": "Rôle",
       "my_courses.version": "Version",
@@ -309,6 +313,14 @@ export const trainingData = {
       title_fr: "Vérification rapide — Infirmiers/ères",
       timeLimitSec: 300,
       passingScore: 50
+    },
+    {
+      id: "driver_qz_main",
+      course_id: "driver_track",
+      title_en: "Driver Knowledge & Safety",
+      title_fr: "Connaissances & sécurité — Chauffeurs",
+      timeLimitSec: 2400,
+      passingScore: 70
     }
   ],
   questions: [
@@ -329,6 +341,96 @@ export const trainingData = {
       prompt_en: "Always check allergies before meds.",
       prompt_fr: "Toujours vérifier les allergies avant d'administrer des médicaments.",
       answer: true
+    },
+    {
+      id: "drv_q1",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Pre-trip: which is NOT required?",
+      prompt_fr: "Avant départ : lequel n'est PAS requis ?",
+      options_en: ["Tire pressure check", "Brake lights check", "Clean windshield", "Engine oil change"],
+      options_fr: ["Pression des pneus", "Feux de freinage", "Pare-brise propre", "Vidange moteur"],
+      answer_index: 3
+    },
+    {
+      id: "drv_q2",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Flooded bridge on route. First action?",
+      prompt_fr: "Pont inondé sur l'itinéraire. Première action ?",
+      options_en: ["Attempt crossing slowly", "Wait for water to recede", "Find alternative route and inform ops", "Turn back silently"],
+      options_fr: ["Traverser lentement", "Attendre la décrue", "Trouver un détour et informer l'équipe", "Revenir sans prévenir"],
+      answer_index: 2
+    },
+    {
+      id: "drv_q3",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Passenger shows distress. You should:",
+      prompt_fr: "Passager en détresse. Vous devez :",
+      options_en: ["Keep driving", "Pull over and assess", "Call clinic first", "Give meds immediately"],
+      options_fr: ["Continuer", "Se ranger et évaluer", "Appeler la clinique d'abord", "Donner des médicaments"],
+      answer_index: 1
+    },
+    {
+      id: "drv_q4",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Rough terrain prep includes:",
+      prompt_fr: "Préparation terrain difficile :",
+      options_en: ["Lower tire pressure moderately", "Increase speed", "Disable seatbelts", "Ignore cargo straps"],
+      options_fr: ["Baisser modérément la pression", "Augmenter la vitesse", "Désactiver ceintures", "Ignorer les sangles"],
+      answer_index: 0
+    },
+    {
+      id: "drv_q5",
+      quiz_id: "driver_qz_main",
+      type: "truefalse",
+      prompt_en: "Secure equipment with straps and padding.",
+      prompt_fr: "Sécuriser le matériel avec sangles et rembourrage.",
+      answer: true
+    },
+    {
+      id: "drv_q6",
+      quiz_id: "driver_qz_main",
+      type: "short",
+      prompt_en: "List the core pre-trip checks before remote travel.",
+      prompt_fr: "Énumérez les vérifications avant départ en zone isolée."
+    },
+    {
+      id: "drv_q7",
+      quiz_id: "driver_qz_main",
+      type: "short",
+      prompt_en: "Radio outage in a canyon. Outline your comms fallback.",
+      prompt_fr: "Panne radio dans un canyon. Décrivez le repli communication."
+    },
+    {
+      id: "drv_q8",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "When escorting medical staff, priority is:",
+      prompt_fr: "En escortant le personnel médical, la priorité est :",
+      options_en: ["Speed", "Comfort", "Safety and predictable driving", "Shortest route"],
+      options_fr: ["Vitesse", "Confort", "Sécurité et conduite prévisible", "Itinéraire le plus court"],
+      answer_index: 2
+    },
+    {
+      id: "drv_q9",
+      quiz_id: "driver_qz_main",
+      type: "truefalse",
+      prompt_en: "Document near-miss incidents in the daily log.",
+      prompt_fr: "Consigner les quasi-accidents dans le journal quotidien.",
+      answer: true
+    },
+    {
+      id: "drv_q10",
+      quiz_id: "driver_qz_main",
+      type: "mcq",
+      prompt_en: "Heat management for vehicle:",
+      prompt_fr: "Gestion de la chaleur du véhicule :",
+      options_en: ["Overfill coolant", "Check coolant level & belts", "Block radiator for speed", "Ignore temp light"],
+      options_fr: ["Surremplir liquide", "Vérifier liquide et courroies", "Bloquer radiateur", "Ignorer témoin"],
+      answer_index: 1
     }
   ]
 };
