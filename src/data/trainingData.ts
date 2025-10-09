@@ -413,6 +413,14 @@ export const trainingData = {
       title_fr: "Banque maîtresse — Clinique & scénarios (Médecins)",
       timeLimitSec: 3600,
       passingScore: 70
+    },
+    {
+      id: "manager_qz_bank_v2",
+      course_id: "manager_track",
+      title_en: "Manager Master Bank — Leadership, Finance, Ops",
+      title_fr: "Banque maîtresse — Leadership, finances, opérations (Managers)",
+      timeLimitSec: 3600,
+      passingScore: 70
     }
   ],
   questions: [
@@ -656,6 +664,132 @@ export const trainingData = {
       type: "short",
       prompt_en: "Cut ops costs by 10% from $12,000/month. New budget & where to cut.",
       prompt_fr: "Réduire de 10 % des coûts (12 000 $/mois). Nouveau budget et postes à réduire."
+    },
+    {
+      id: "mgr2_q01",
+      quiz_id: "manager_qz_bank_v2",
+      type: "essay",
+      prompt_en: "Plan a mobile clinic rollout for 3 communes (500–700 words).",
+      prompt_fr: "Planifiez un déploiement de cliniques mobiles pour 3 communes (500–700 mots)."
+    },
+    {
+      id: "mgr2_q02",
+      quiz_id: "manager_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Budget: $20k total; $6k supplies, $5k transport. Remaining for staffing & ops:",
+      prompt_fr: "Budget : 20 000 $ ; 6 000 $ fournitures, 5 000 $ transport. Reste pour personnel & opérations :",
+      options_en: ["$7,000", "$8,000", "$9,000", "$10,000"],
+      options_fr: ["7 000 $", "8 000 $", "9 000 $", "10 000 $"],
+      answer_index: 2
+    },
+    {
+      id: "mgr2_q03",
+      quiz_id: "manager_qz_bank_v2",
+      type: "short",
+      prompt_en: "Fix recurring stockouts with basic M&E cycle.",
+      prompt_fr: "Corriger les ruptures récurrentes avec un cycle S&E de base."
+    },
+    {
+      id: "mgr2_q04",
+      quiz_id: "manager_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Best KPI trio for maternal/child program:",
+      prompt_fr: "Meilleur trio d'ICP pour programme maternel/infantile :",
+      options_en: ["#Visitors, #Staff, #Vehicles", "ANC coverage, PNC follow-up, Immunization rate", "Fuel cost, tire wear, travel time", "Email opens, likes, shares"],
+      options_fr: ["#Visiteurs, #Personnel, #Véhicules", "Couverture CPN, suivi postnatal, taux de vaccination", "Coût carburant, usure pneus, temps trajet", "Ouvertures email, likes, partages"],
+      answer_index: 1
+    },
+    {
+      id: "mgr2_q05",
+      quiz_id: "manager_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Donor reports should tie directly to KPIs and audit trails.",
+      prompt_fr: "Les rapports aux donateurs doivent se relier aux ICP et pistes d'audit.",
+      answer: true
+    },
+    {
+      id: "mgr2_q06",
+      quiz_id: "manager_qz_bank_v2",
+      type: "short",
+      prompt_en: "Incident reporting workflow for staff safety.",
+      prompt_fr: "Flux de signalement d'incident pour la sécurité du personnel."
+    },
+    {
+      id: "mgr2_q07",
+      quiz_id: "manager_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "When to escalate to executive board?",
+      prompt_fr: "Quand escalader au conseil exécutif ?",
+      options_en: ["Any complaint", "Budget variance >10% with risk to delivery", "One late truck", "Minor conflict"],
+      options_fr: ["Toute plainte", "Écart budgétaire >10% avec risque pour la mission", "Un camion en retard", "Conflit mineur"],
+      answer_index: 1
+    },
+    {
+      id: "mgr2_q08",
+      quiz_id: "manager_qz_bank_v2",
+      type: "short",
+      prompt_en: "Create a fair staff scheduling policy for remote rotations.",
+      prompt_fr: "Créer une politique équitable de planning pour rotations éloignées."
+    },
+    {
+      id: "mgr2_q09",
+      quiz_id: "manager_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Keep at least two pre-vetted suppliers for critical items.",
+      prompt_fr: "Garder au moins deux fournisseurs pré-validés pour les articles critiques.",
+      answer: true
+    },
+    {
+      id: "mgr2_q10",
+      quiz_id: "manager_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Best way to lift team morale quickly:",
+      prompt_fr: "Meilleure façon de remonter rapidement le moral :",
+      options_en: ["Mandatory party", "Anonymous feedback + 1:1s + quick wins", "Ignore the issue", "Replace staff"],
+      options_fr: ["Fête obligatoire", "Retours anonymes + entretiens + quick wins", "Ignorer le problème", "Remplacer le personnel"],
+      answer_index: 1
+    },
+    {
+      id: "mgr2_q11",
+      quiz_id: "manager_qz_bank_v2",
+      type: "short",
+      prompt_en: "Design a monthly dashboard structure (3–5 widgets).",
+      prompt_fr: "Concevoir un tableau de bord mensuel (3–5 widgets)."
+    },
+    {
+      id: "mgr2_q12",
+      quiz_id: "manager_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Choose a valid internal control for petty cash:",
+      prompt_fr: "Choisir un contrôle interne valide pour la petite caisse :",
+      options_en: ["Single custodian + no logs", "Dual sign-off + receipts + surprise counts", "No receipts", "Self-approval"],
+      options_fr: ["Un seul dépositaire + pas de journaux", "Double signature + reçus + contrôles surprises", "Pas de reçus", "Auto-approbation"],
+      answer_index: 1
+    },
+    {
+      id: "mgr2_q13",
+      quiz_id: "manager_qz_bank_v2",
+      type: "short",
+      prompt_en: "Escalation matrix for data breach (roles & timing).",
+      prompt_fr: "Matrice d'escalade pour violation de données (rôles & délais)."
+    },
+    {
+      id: "mgr2_q14",
+      quiz_id: "manager_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Operational audits should include random field spot-checks.",
+      prompt_fr: "Les audits opérationnels devraient inclure des contrôles aléatoires sur le terrain.",
+      answer: true
+    },
+    {
+      id: "mgr2_q15",
+      quiz_id: "manager_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Which belongs in a donor packet?",
+      prompt_fr: "Que doit contenir un dossier donateur ?",
+      options_en: ["Meme campaign", "Quarterly KPIs, spend report, impact stories", "Raw staff chats", "Private HR cases"],
+      options_fr: ["Mèmes", "ICP trimestriels, rapport de dépenses, récits d'impact", "Discussions brutes du personnel", "Dossiers RH privés"],
+      answer_index: 1
     },
     {
       id: "sec_q1",
