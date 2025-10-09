@@ -188,6 +188,8 @@ const Onboarding = () => {
       const courseInserts = courses.map((courseId) => ({
         user_id: user.id,
         course_id: courseId,
+        // Only orientation_common is unlocked by default, role-specific courses require test
+        role_test_passed: courseId === 'orientation_common'
       }));
 
       console.log('Course inserts:', courseInserts);
@@ -213,6 +215,15 @@ const Onboarding = () => {
       if (profileError) throw profileError;
 
       toast.success(t('onb.done'));
+      
+      // If role needs a test (not investor), show message about completing role test
+      const roleNeedsTest = role !== 'investor';
+      if (roleNeedsTest) {
+        toast.info(`Complete your ${role} aptitude test to unlock ${role} training courses`, {
+          duration: 5000
+        });
+      }
+      
       navigate('/');
     } catch (error: any) {
       console.error('Final submit error:', error);

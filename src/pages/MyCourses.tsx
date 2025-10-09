@@ -1,39 +1,47 @@
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useAuth } from '@/hooks/useAuth';
-import { trainingData } from '@/data/trainingData';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Link } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { trainingData } from '@/data/trainingData';
+import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
+import { Loader2, Lock, CheckCircle } from 'lucide-react';
+import { roleToCoursesMap, roleToAptitudeTestMap, type AppRole } from '@/data/roleCoursesMap';
 import { toast } from 'sonner';
-import { roleToCoursesMap } from '@/data/roleCoursesMap';
-import { Loader2 } from 'lucide-react';
 
 const MyCourses = () => {
   const { t, language } = useLanguage();
+  const navigate = useNavigate();
   const { user } = useAuth();
-  const [assignedCourseIds, setAssignedCourseIds] = useState<string[]>([]);
+  const [assignedCourses, setAssignedCourses] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [enrolling, setEnrolling] = useState(false);
+  const [userRole, setUserRole] = useState<AppRole | null>(null);
 
   useEffect(() => {
     const fetchAssignedCourses = async () => {
       if (!user) return;
-      
-      console.log('Fetching courses for user:', user.id);
-      
-      const { data, error } = await supabase
+
+      // Fetch user role
+      const { data: roles } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', user.id)
+        .limit(1);
+
+      if (roles && roles.length > 0) {
+        setUserRole(roles[0].role as AppRole);
+      }
+
+      const { data } = await supabase
         .from('user_courses')
-        .select('course_id')
+        .select('*')
         .eq('user_id', user.id);
 
-      console.log('User courses data:', data, 'error:', error);
-
-      if (data) {
-        setAssignedCourseIds(data.map(c => c.course_id));
-      }
+      setAssignedCourses(data || []);
       setLoading(false);
     };
 
@@ -49,27 +57,19 @@ const MyCourses = () => {
       .on(
         'postgres_changes',
         {
-          event: 'INSERT',
+          event: '*',
           schema: 'public',
           table: 'user_courses',
           filter: `user_id=eq.${user.id}`
         },
-        (payload: any) => {
-          console.log('Course inserted:', payload);
-          setAssignedCourseIds(prev => [...new Set([...prev, payload.new.course_id])]);
-        }
-      )
-      .on(
-        'postgres_changes',
-        {
-          event: 'DELETE',
-          schema: 'public',
-          table: 'user_courses',
-          filter: `user_id=eq.${user.id}`
-        },
-        (payload: any) => {
-          console.log('Course deleted:', payload);
-          setAssignedCourseIds(prev => prev.filter(id => id !== payload.old.course_id));
+        async () => {
+          // Refetch courses on any change
+          const { data } = await supabase
+            .from('user_courses')
+            .select('*')
+            .eq('user_id', user.id);
+          
+          setAssignedCourses(data || []);
         }
       )
       .subscribe();
@@ -102,7 +102,8 @@ const MyCourses = () => {
       }
 
       // Filter out already assigned courses
-      const newCourses = courses.filter(courseId => !assignedCourseIds.includes(courseId));
+      const assignedIds = assignedCourses.map(c => c.course_id);
+      const newCourses = courses.filter(courseId => !assignedIds.includes(courseId));
 
       if (newCourses.length === 0) {
         toast.info('You are already enrolled in all your courses');
@@ -113,6 +114,7 @@ const MyCourses = () => {
       const inserts = newCourses.map(courseId => ({
         user_id: user.id,
         course_id: courseId,
+        role_test_passed: courseId === 'orientation_common'
       }));
 
       const { error: insertError } = await supabase
@@ -131,31 +133,25 @@ const MyCourses = () => {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="text-muted-foreground">Loading...</p>
-      </div>
-    );
+    return <div className="min-h-screen bg-background flex items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>;
   }
 
-  const assignedCourses = trainingData.courses.filter(course => 
-    assignedCourseIds.includes(course.id)
-  );
+  // Split courses into unlocked and locked
+  const unlockedCourses = assignedCourses.filter(uc => uc.role_test_passed);
+  const lockedCourses = assignedCourses.filter(uc => !uc.role_test_passed);
 
-  return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">{t('nav.my_courses')}</h1>
-          <p className="text-muted-foreground">{t('my_courses.subtitle')}</p>
-        </div>
-
-        {assignedCourses.length === 0 ? (
+  // If no courses, show enroll options
+  if (assignedCourses.length === 0) {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="container py-8">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold mb-2">{t('nav.my_courses')}</h1>
+            <p className="text-muted-foreground">{t('my_courses.subtitle')}</p>
+          </div>
           <Card>
             <CardContent className="pt-6 space-y-4">
-              <p className="text-center text-muted-foreground">
-                {t('my_courses.no_courses')}
-              </p>
+              <p className="text-center text-muted-foreground">{t('my_courses.no_courses')}</p>
               <p className="text-center text-sm text-muted-foreground">
                 Get started by enrolling in your default courses or browse all available courses.
               </p>
@@ -174,56 +170,134 @@ const MyCourses = () => {
                     'Enroll My Default Courses'
                   )}
                 </Button>
-                <Link to="/courses">
-                  <Button variant="secondary" className="w-full sm:w-auto">
-                    {t('nav.courses')}
-                  </Button>
-                </Link>
+                <Button variant="secondary" onClick={() => navigate('/courses')}>
+                  {t('nav.courses')}
+                </Button>
               </div>
             </CardContent>
           </Card>
-        ) : (
-          <div className="grid gap-6">
-            {assignedCourses.map((course) => {
-            const title = language === 'en' ? course.title_en : course.title_fr;
-            
-            return (
-              <Card key={course.id} className="transition-all hover:shadow-lg">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <CardTitle className="mb-2">{title}</CardTitle>
-                      <p className="text-sm text-muted-foreground mb-4">
-                        {t('my_courses.role')}: {course.role_required} • {t('my_courses.version')} {course.version}
-                      </p>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">{t('my_courses.progress')}</span>
-                          <span className="font-semibold">0%</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container py-8">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold mb-2">{t('nav.my_courses')}</h1>
+          <p className="text-muted-foreground">{t('my_courses.subtitle')}</p>
+        </div>
+
+        {/* Available Courses */}
+        {unlockedCourses.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <CheckCircle className="h-6 w-6 text-green-500" />
+              {t('role_test.available_courses')}
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {unlockedCourses.map((uc) => {
+                const course = trainingData.courses.find(c => c.id === uc.course_id);
+                if (!course) return null;
+
+                const title = language === 'fr' ? course.title_fr : course.title_en;
+
+                return (
+                  <Card key={uc.id} className="hover:shadow-lg transition-shadow border-green-200">
+                    <CardHeader>
+                      <CardTitle className="flex items-center justify-between">
+                        {title}
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                      </CardTitle>
+                      <CardDescription>
+                        <div className="flex flex-col gap-2 mt-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span>{t('my_courses.role')}</span>
+                            <Badge variant="outline">{course.role_required}</Badge>
+                          </div>
+                          <div className="flex items-center justify-between text-sm">
+                            <span>{t('my_courses.version')}</span>
+                            <Badge variant="secondary">{course.version}</Badge>
+                          </div>
                         </div>
-                        <Progress value={0} />
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div>
+                          <div className="flex justify-between text-sm mb-2">
+                            <span>{t('my_courses.progress')}</span>
+                            <span>{uc.progress_percentage || 0}%</span>
+                          </div>
+                          <Progress value={uc.progress_percentage || 0} />
+                        </div>
+                        <Button 
+                          onClick={() => navigate(`/courses/${course.id}`)}
+                          className="w-full"
+                        >
+                          {t('dashboard.continue')}
+                        </Button>
                       </div>
-                    </div>
-                    <Link to={`/courses/${course.id}`}>
-                      <Button>{t('dashboard.continue')}</Button>
-                    </Link>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex gap-4 text-sm">
-                    <div>
-                      <span className="text-muted-foreground">{t('course.lessons')}:</span>{' '}
-                      <span className="font-semibold">0/1</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">{t('courses.quizzes')}:</span>{' '}
-                      <span className="font-semibold">0/1</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-            })}
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Locked Courses */}
+        {lockedCourses.length > 0 && (
+          <div>
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Lock className="h-6 w-6 text-orange-500" />
+              {t('role_test.locked_courses')}
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {lockedCourses.map((uc) => {
+                const course = trainingData.courses.find(c => c.id === uc.course_id);
+                if (!course) return null;
+
+                const title = language === 'fr' ? course.title_fr : course.title_en;
+
+                return (
+                  <Card key={uc.id} className="hover:shadow-lg transition-shadow border-orange-200 opacity-90">
+                    <CardHeader>
+                      <CardTitle className="flex items-center justify-between">
+                        {title}
+                        <Lock className="h-5 w-5 text-orange-500" />
+                      </CardTitle>
+                      <CardDescription>
+                        <div className="flex flex-col gap-2 mt-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span>{t('my_courses.role')}</span>
+                            <Badge variant="outline">{course.role_required}</Badge>
+                          </div>
+                          <div className="flex items-center justify-between text-sm">
+                            <span>{t('my_courses.version')}</span>
+                            <Badge variant="secondary">{course.version}</Badge>
+                          </div>
+                          <Badge variant="destructive" className="text-xs">
+                            {t('role_test.locked').replace('{role}', course.role_required)}
+                          </Badge>
+                        </div>
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button 
+                        onClick={() => navigate(`/role-test?role=${userRole || course.role_required}`)}
+                        className="w-full"
+                        variant="outline"
+                      >
+                        <Lock className="h-4 w-4 mr-2" />
+                        {t('role_test.take_test').replace('{role}', course.role_required)}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

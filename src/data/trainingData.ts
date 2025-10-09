@@ -104,7 +104,17 @@ export const trainingData = {
       "aptitude.evaluating": "Evaluating your responses...",
       "aptitude.results": "Your Results",
       "aptitude.score": "Overall Score",
-      "aptitude.recommendation": "Recommendation"
+      "aptitude.recommendation": "Recommendation",
+      "role_test.title": "Complete Your {role} Aptitude Test",
+      "role_test.subtitle": "Pass this role-specific assessment to unlock your {role} training courses",
+      "role_test.locked": "This course requires passing the {role} aptitude test",
+      "role_test.take_test": "Take {role} Test",
+      "role_test.passed": "Test Passed - Course Unlocked",
+      "role_test.failed": "Test Failed - Retake Available",
+      "role_test.complete_message": "Congratulations! You can now access your {role} courses.",
+      "role_test.locked_courses": "Locked Courses (Test Required)",
+      "role_test.available_courses": "Available Courses",
+      "role_test.unlock": "Unlock Course"
     },
     fr: {
       "app.title": "Gateway — Intégration & Formation",
@@ -209,7 +219,17 @@ export const trainingData = {
       "aptitude.evaluating": "Évaluation de vos réponses...",
       "aptitude.results": "Vos résultats",
       "aptitude.score": "Score global",
-      "aptitude.recommendation": "Recommandation"
+      "aptitude.recommendation": "Recommandation",
+      "role_test.title": "Complétez votre test d'aptitude {role}",
+      "role_test.subtitle": "Réussissez cette évaluation spécifique au rôle pour débloquer vos cours {role}",
+      "role_test.locked": "Ce cours nécessite de réussir le test d'aptitude {role}",
+      "role_test.take_test": "Passer le test {role}",
+      "role_test.passed": "Test réussi - Cours débloqué",
+      "role_test.failed": "Test échoué - Nouvelle tentative disponible",
+      "role_test.complete_message": "Félicitations ! Vous pouvez maintenant accéder à vos cours {role}.",
+      "role_test.locked_courses": "Cours verrouillés (test requis)",
+      "role_test.available_courses": "Cours disponibles",
+      "role_test.unlock": "Débloquer le cours"
     }
   },
   settings: {

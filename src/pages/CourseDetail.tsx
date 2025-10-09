@@ -1,19 +1,76 @@
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/hooks/useAuth';
 import { trainingData } from '@/data/trainingData';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { supabase } from '@/integrations/supabase/client';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { BookOpen, FileText, ArrowLeft, AlertCircle } from 'lucide-react';
+import { AlertCircle, ArrowLeft, BookOpen, ClipboardList, Clock, Target, Lock, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 const CourseDetail = () => {
-  const { courseId } = useParams();
-  const { language, t } = useLanguage();
+  const { courseId } = useParams<{ courseId: string }>();
+  const navigate = useNavigate();
+  const { t, language } = useLanguage();
+  const { user } = useAuth();
+  const [roleTestPassed, setRoleTestPassed] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const course = trainingData.courses.find(c => c.id === courseId);
-  if (!course) return <div>{t('course.not_found')}</div>;
+
+  useEffect(() => {
+    const checkCourseAccess = async () => {
+      if (!user || !courseId) {
+        setLoading(false);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('user_courses')
+        .select('role_test_passed')
+        .eq('user_id', user.id)
+        .eq('course_id', courseId)
+        .single();
+
+      if (error) {
+        console.error('Error checking course access:', error);
+        toast.error('Failed to verify course access');
+        navigate('/my-courses');
+        return;
+      }
+
+      setRoleTestPassed(data?.role_test_passed ?? false);
+      setLoading(false);
+
+      // If course requires role test and it's not passed, redirect
+      if (!data?.role_test_passed && courseId !== 'orientation_common') {
+        toast.error(t('role_test.locked').replace('{role}', course?.role_required || ''));
+        navigate('/my-courses');
+      }
+    };
+
+    checkCourseAccess();
+  }, [user, courseId, navigate, course, t]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!course) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">{t('course.not_found')}</p>
+      </div>
+    );
+  }
 
   const title = language === 'en' ? course.title_en : course.title_fr;
   const minContentChars = trainingData.settings?.lessonMinContentChars || 40;
@@ -37,12 +94,15 @@ const CourseDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <Link to="/courses">
-          <Button variant="ghost" size="sm" className="mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            {t('course.back')}
-          </Button>
-        </Link>
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="mb-6"
+          onClick={() => navigate('/courses')}
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          {t('course.back')}
+        </Button>
 
         <div className="mb-8">
           <div className="flex items-start justify-between mb-4">
@@ -101,7 +161,7 @@ const CourseDetail = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <FileText className="h-5 w-5 text-accent" />
+                <ClipboardList className="h-5 w-5 text-accent" />
                 {t('course.assessments')}
               </CardTitle>
             </CardHeader>
@@ -120,9 +180,9 @@ const CourseDetail = () => {
                         {questionsCount} {t('course.questions')} • {Math.floor(quiz.timeLimitSec / 60)} {t('course.min')} • {t('course.pass')}: {quiz.passingScore}%
                       </p>
                     </div>
-                    <Link to={`/quiz/${quiz.id}`}>
-                      <Button>{t('quiz.start')}</Button>
-                    </Link>
+                    <Button onClick={() => navigate(`/quiz/${quiz.id}`)}>
+                      {t('quiz.start')}
+                    </Button>
                   </div>
                 );
               })}

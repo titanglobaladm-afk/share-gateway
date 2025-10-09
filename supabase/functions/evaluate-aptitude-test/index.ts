@@ -32,13 +32,13 @@ serve(async (req) => {
   try {
     console.log('Starting aptitude test evaluation...');
 
-    const { attemptId } = await req.json();
+    const { attemptId, role } = await req.json();
     
     if (!attemptId) {
       throw new Error('attemptId is required');
     }
 
-    console.log(`Evaluating attempt: ${attemptId}`);
+    console.log(`Evaluating attempt: ${attemptId}${role ? ` for role: ${role}` : ''}`);
 
     // Get Supabase client with service role for admin access
     const supabaseClient = createClient(
@@ -225,6 +225,24 @@ Recommendation:
     if (updateError) {
       console.error('Error updating attempt:', updateError);
       throw updateError;
+    }
+
+    // If role-specific test passed, unlock all courses for that role
+    if (role && passed) {
+      console.log(`Role test passed for ${role}. Unlocking courses...`);
+      
+      const { error: unlockError } = await supabaseClient
+        .from('user_courses')
+        .update({ role_test_passed: true })
+        .eq('user_id', attempt.user_id)
+        .like('course_id', `%${role}%`);
+
+      if (unlockError) {
+        console.error('Error unlocking courses:', unlockError);
+        // Don't throw - evaluation was successful, just log the error
+      } else {
+        console.log(`Courses unlocked for role: ${role}`);
+      }
     }
 
     console.log(`Evaluation complete. Score: ${evaluation.overall_score}, Passed: ${passed}`);

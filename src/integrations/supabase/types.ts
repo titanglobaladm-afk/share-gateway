@@ -114,6 +114,7 @@ export type Database = {
           created_at: string | null
           id: string
           passed: boolean | null
+          role: Database["public"]["Enums"]["app_role"] | null
           score: number | null
           started_at: string | null
           user_id: string
@@ -123,6 +124,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           passed?: boolean | null
+          role?: Database["public"]["Enums"]["app_role"] | null
           score?: number | null
           started_at?: string | null
           user_id: string
@@ -132,6 +134,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           passed?: boolean | null
+          role?: Database["public"]["Enums"]["app_role"] | null
           score?: number | null
           started_at?: string | null
           user_id?: string
@@ -273,6 +276,7 @@ export type Database = {
           lessons_completed: Json | null
           progress_percentage: number | null
           quizzes_completed: Json | null
+          role_test_passed: boolean | null
           user_id: string
         }
         Insert: {
@@ -284,6 +288,7 @@ export type Database = {
           lessons_completed?: Json | null
           progress_percentage?: number | null
           quizzes_completed?: Json | null
+          role_test_passed?: boolean | null
           user_id: string
         }
         Update: {
@@ -295,6 +300,7 @@ export type Database = {
           lessons_completed?: Json | null
           progress_percentage?: number | null
           quizzes_completed?: Json | null
+          role_test_passed?: boolean | null
           user_id?: string
         }
         Relationships: []
@@ -360,6 +366,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      has_passed_role_test: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
