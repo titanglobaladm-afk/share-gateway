@@ -38,6 +38,45 @@ const Courses = () => {
     fetchAssignedCourses();
   }, [user]);
 
+  // Realtime subscription for user_courses changes
+  useEffect(() => {
+    if (!user) return;
+
+    const channel = supabase
+      .channel('courses_user_courses_changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'user_courses',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload: any) => {
+          console.log('Course enrolled:', payload);
+          setAssignedCourseIds(prev => [...new Set([...prev, payload.new.course_id])]);
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'DELETE',
+          schema: 'public',
+          table: 'user_courses',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload: any) => {
+          console.log('Course unenrolled:', payload);
+          setAssignedCourseIds(prev => prev.filter(id => id !== payload.old.course_id));
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -50,14 +89,21 @@ const Courses = () => {
 
   const handleEnroll = async (courseId: string) => {
     if (!user) return;
+    
+    // Check if already enrolled
+    if (assignedCourseIds.includes(courseId)) {
+      toast.info('You are already enrolled in this course');
+      return;
+    }
+
     const { error } = await supabase
       .from('user_courses')
       .insert({ user_id: user.id, course_id: courseId });
+    
     if (error) {
       console.error('Enroll error:', error);
       toast.error('Failed to enroll');
     } else {
-      setAssignedCourseIds((prev) => [...new Set([...prev, courseId])]);
       toast.success('Enrolled successfully');
     }
   };

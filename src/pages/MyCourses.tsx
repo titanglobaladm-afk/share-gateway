@@ -7,12 +7,16 @@ import { Progress } from '@/components/ui/progress';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import { roleToCoursesMap } from '@/data/roleCoursesMap';
+import { Loader2 } from 'lucide-react';
 
 const MyCourses = () => {
   const { t, language } = useLanguage();
   const { user } = useAuth();
   const [assignedCourseIds, setAssignedCourseIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [enrolling, setEnrolling] = useState(false);
 
   useEffect(() => {
     const fetchAssignedCourses = async () => {
@@ -35,6 +39,96 @@ const MyCourses = () => {
 
     fetchAssignedCourses();
   }, [user]);
+
+  // Realtime subscription for user_courses changes
+  useEffect(() => {
+    if (!user) return;
+
+    const channel = supabase
+      .channel('user_courses_changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'user_courses',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload: any) => {
+          console.log('Course inserted:', payload);
+          setAssignedCourseIds(prev => [...new Set([...prev, payload.new.course_id])]);
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'DELETE',
+          schema: 'public',
+          table: 'user_courses',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload: any) => {
+          console.log('Course deleted:', payload);
+          setAssignedCourseIds(prev => prev.filter(id => id !== payload.old.course_id));
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user]);
+
+  const handleEnrollDefaultCourses = async () => {
+    if (!user) return;
+    setEnrolling(true);
+
+    try {
+      // Fetch user roles
+      const { data: rolesData, error: rolesError } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', user.id);
+
+      if (rolesError) throw rolesError;
+
+      // Default to investor if no role
+      const userRole = rolesData?.[0]?.role || 'investor';
+      const courses = roleToCoursesMap[userRole as keyof typeof roleToCoursesMap];
+
+      if (!courses) {
+        toast.error('No courses found for your role');
+        return;
+      }
+
+      // Filter out already assigned courses
+      const newCourses = courses.filter(courseId => !assignedCourseIds.includes(courseId));
+
+      if (newCourses.length === 0) {
+        toast.info('You are already enrolled in all your courses');
+        return;
+      }
+
+      // Insert new courses
+      const inserts = newCourses.map(courseId => ({
+        user_id: user.id,
+        course_id: courseId,
+      }));
+
+      const { error: insertError } = await supabase
+        .from('user_courses')
+        .insert(inserts);
+
+      if (insertError) throw insertError;
+
+      toast.success('Successfully enrolled in your courses');
+    } catch (error: any) {
+      console.error('Enroll error:', error);
+      toast.error('Failed to enroll in courses');
+    } finally {
+      setEnrolling(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -63,11 +157,27 @@ const MyCourses = () => {
                 {t('my_courses.no_courses')}
               </p>
               <p className="text-center text-sm text-muted-foreground">
-                You can browse available courses and enroll from the Courses page.
+                Get started by enrolling in your default courses or browse all available courses.
               </p>
-              <div className="flex justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button 
+                  onClick={handleEnrollDefaultCourses} 
+                  disabled={enrolling}
+                  className="min-w-[200px]"
+                >
+                  {enrolling ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Enrolling...
+                    </>
+                  ) : (
+                    'Enroll My Default Courses'
+                  )}
+                </Button>
                 <Link to="/courses">
-                  <Button variant="secondary">{t('nav.courses')}</Button>
+                  <Button variant="secondary" className="w-full sm:w-auto">
+                    {t('nav.courses')}
+                  </Button>
                 </Link>
               </div>
             </CardContent>
