@@ -49,7 +49,23 @@ export const trainingData = {
       "my_courses.subtitle": "Track your enrolled courses and progress",
       "my_courses.role": "Role",
       "my_courses.version": "Version",
-      "my_courses.progress": "Progress"
+      "my_courses.progress": "Progress",
+      "rubric.cognitive": "Cognitive Abilities",
+      "rubric.critical": "Critical Thinking",
+      "rubric.technical": "Technical Skills",
+      "rubric.communication": "Communication/Professionalism",
+      "rubric.situational": "Situational Judgment",
+      "rubric.scale.1": "1",
+      "rubric.scale.3": "3",
+      "rubric.scale.5": "5",
+      "rubric.recommendation": "Recommendation",
+      "rubric.not_recommended": "Not Recommended",
+      "rubric.recommended": "Recommended",
+      "rubric.highly_recommended": "Highly Recommended",
+      "eval.aptitude": "Aptitude Test Results",
+      "eval.interview": "Interview Performance",
+      "eval.overall": "Overall Evaluation",
+      "eval.comments": "Final Comments"
     },
     fr: {
       "app.title": "Gateway — Intégration & Formation",
@@ -99,7 +115,23 @@ export const trainingData = {
       "my_courses.subtitle": "Suivez vos cours inscrits et votre progression",
       "my_courses.role": "Rôle",
       "my_courses.version": "Version",
-      "my_courses.progress": "Progression"
+      "my_courses.progress": "Progression",
+      "rubric.cognitive": "Capacités cognitives",
+      "rubric.critical": "Esprit critique",
+      "rubric.technical": "Compétences techniques",
+      "rubric.communication": "Communication/Professionnalisme",
+      "rubric.situational": "Jugement situationnel",
+      "rubric.scale.1": "1",
+      "rubric.scale.3": "3",
+      "rubric.scale.5": "5",
+      "rubric.recommendation": "Recommandation",
+      "rubric.not_recommended": "Non recommandé",
+      "rubric.recommended": "Recommandé",
+      "rubric.highly_recommended": "Fortement recommandé",
+      "eval.aptitude": "Résultats du test d'aptitude",
+      "eval.interview": "Performance à l'entretien",
+      "eval.overall": "Évaluation globale",
+      "eval.comments": "Commentaires finaux"
     }
   },
   courses: [
@@ -634,4 +666,150 @@ export const trainingData = {
       answer: true
     }
   ]
+};
+
+export const rubrics = {
+  doctor_rubric_v1: {
+    id: "doctor_rubric_v1",
+    role: "doctor",
+    criteria: [
+      {
+        key: "cognitive",
+        label_en: "Cognitive Abilities",
+        label_fr: "Capacités cognitives",
+        scale: {
+          "1": "Limited understanding",
+          "3": "Adequate reasoning",
+          "5": "Excellent analysis"
+        }
+      },
+      {
+        key: "critical",
+        label_en: "Critical Thinking",
+        label_fr: "Esprit critique",
+        scale: {
+          "1": "Weak judgment",
+          "3": "Reasonable approach",
+          "5": "Sound, proactive decisions"
+        }
+      },
+      {
+        key: "technical",
+        label_en: "Technical Skills",
+        label_fr: "Compétences techniques",
+        scale: {
+          "1": "Needs significant training",
+          "3": "Meets baseline",
+          "5": "Operates independently"
+        }
+      },
+      {
+        key: "communication",
+        label_en: "Communication/Professionalism",
+        label_fr: "Communication/Professionnalisme",
+        scale: {
+          "1": "Unclear/inappropriate",
+          "3": "Generally professional",
+          "5": "Consistently clear & professional"
+        }
+      },
+      {
+        key: "situational",
+        label_en: "Situational Judgment",
+        label_fr: "Jugement situationnel",
+        scale: {
+          "1": "Poor prioritization",
+          "3": "Some guidance needed",
+          "5": "Effective under pressure"
+        }
+      }
+    ],
+    recommendation_scale: ["Not Recommended", "Recommended", "Highly Recommended"]
+  }
+};
+
+// Helper to get rubric with shared criteria
+export const getRubric = (rubricId: string) => {
+  const baseRubric = rubrics.doctor_rubric_v1;
+  
+  const rubricMap: Record<string, any> = {
+    doctor_rubric_v1: baseRubric,
+    nurse_rubric_v1: { id: "nurse_rubric_v1", role: "nurse", criteria: baseRubric.criteria, recommendation_scale: baseRubric.recommendation_scale },
+    driver_rubric_v1: { id: "driver_rubric_v1", role: "driver", criteria: baseRubric.criteria, recommendation_scale: baseRubric.recommendation_scale },
+    manager_rubric_v1: { id: "manager_rubric_v1", role: "manager", criteria: baseRubric.criteria, recommendation_scale: baseRubric.recommendation_scale },
+    security_rubric_v1: { id: "security_rubric_v1", role: "security", criteria: baseRubric.criteria, recommendation_scale: baseRubric.recommendation_scale }
+  };
+  
+  return rubricMap[rubricId] || baseRubric;
+};
+
+export const evaluations = {
+  doctor_final_eval_v1: {
+    id: "doctor_final_eval_v1",
+    role: "doctor",
+    sections: [
+      {
+        name_en: "Aptitude Test Results",
+        name_fr: "Résultats du test d'aptitude",
+        fields: ["Cognitive", "Critical Thinking", "Personality", "Technical", "Situational"]
+      },
+      {
+        name_en: "Interview Performance",
+        name_fr: "Performance à l'entretien",
+        fields: ["Communication", "Clinical Knowledge", "Problem-Solving", "Empathy/Patient Care", "Professionalism"]
+      },
+      {
+        name_en: "Overall Evaluation",
+        name_fr: "Évaluation globale",
+        fields: ["Test Performance", "Interview Performance", "Fit for Role", "Recommendation"]
+      },
+      {
+        name_en: "Final Comments",
+        name_fr: "Commentaires finaux",
+        fields: ["Comments"]
+      }
+    ]
+  },
+  driver_final_eval_v1: {
+    id: "driver_final_eval_v1",
+    role: "driver",
+    sections: [
+      {
+        name_en: "Aptitude Test Results",
+        name_fr: "Résultats du test d'aptitude",
+        fields: ["Cognitive", "Critical Thinking", "Personality", "Technical", "Situational"]
+      },
+      {
+        name_en: "Interview Performance",
+        name_fr: "Performance à l'entretien",
+        fields: ["Communication", "Problem-Solving", "Stress Management", "Professionalism"]
+      },
+      {
+        name_en: "Overall Evaluation",
+        name_fr: "Évaluation globale",
+        fields: ["Test Performance", "Interview Performance", "Fit for Role", "Recommendation"]
+      },
+      {
+        name_en: "Final Comments",
+        name_fr: "Commentaires finaux",
+        fields: ["Comments"]
+      }
+    ]
+  }
+};
+
+// Helper to get evaluation with shared sections
+export const getEvaluation = (evalId: string) => {
+  const doctorEval = evaluations.doctor_final_eval_v1;
+  const driverEval = evaluations.driver_final_eval_v1;
+  
+  const evalMap: Record<string, any> = {
+    doctor_final_eval_v1: doctorEval,
+    nurse_final_eval_v1: { id: "nurse_final_eval_v1", role: "nurse", sections: doctorEval.sections },
+    driver_final_eval_v1: driverEval,
+    manager_final_eval_v1: { id: "manager_final_eval_v1", role: "manager", sections: doctorEval.sections },
+    security_final_eval_v1: { id: "security_final_eval_v1", role: "security", sections: driverEval.sections }
+  };
+  
+  return evalMap[evalId] || doctorEval;
 };
