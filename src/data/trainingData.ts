@@ -421,6 +421,14 @@ export const trainingData = {
       title_fr: "Banque maîtresse — Leadership, finances, opérations (Managers)",
       timeLimitSec: 3600,
       passingScore: 70
+    },
+    {
+      id: "security_qz_bank_v2",
+      course_id: "security_track",
+      title_en: "Security Master Bank — Protocols & Situational Judgment",
+      title_fr: "Banque maîtresse — Protocoles & jugement (Sécurité)",
+      timeLimitSec: 2400,
+      passingScore: 70
     }
   ],
   questions: [
@@ -790,6 +798,90 @@ export const trainingData = {
       options_en: ["Meme campaign", "Quarterly KPIs, spend report, impact stories", "Raw staff chats", "Private HR cases"],
       options_fr: ["Mèmes", "ICP trimestriels, rapport de dépenses, récits d'impact", "Discussions brutes du personnel", "Dossiers RH privés"],
       answer_index: 1
+    },
+    {
+      id: "sec2_q01",
+      quiz_id: "security_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Top priority during a breach:",
+      prompt_fr: "Priorité absolue lors d'une brèche :",
+      options_en: ["Call police", "Protect staff & patients", "Chase intruder", "Lock all doors immediately without assessment"],
+      options_fr: ["Appeler la police", "Protéger personnel & patients", "Poursuivre l'intrus", "Tout verrouiller sans évaluer"],
+      answer_index: 1
+    },
+    {
+      id: "sec2_q02",
+      quiz_id: "security_qz_bank_v2",
+      type: "short",
+      prompt_en: "Protest approaches clinic—describe posture levels and comms.",
+      prompt_fr: "Manifestation proche — décrire niveaux de posture et communications."
+    },
+    {
+      id: "sec2_q03",
+      quiz_id: "security_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "All visitors must sign in and wear visible badges.",
+      prompt_fr: "Tous les visiteurs doivent s'enregistrer et porter des badges visibles.",
+      answer: true
+    },
+    {
+      id: "sec2_q04",
+      quiz_id: "security_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Which is part of access control?",
+      prompt_fr: "Lequel fait partie du contrôle d'accès ?",
+      options_en: ["Unlocked side gate", "Visitor log + badges + escort", "No logs", "Public social media check-ins"],
+      options_fr: ["Porte latérale déverrouillée", "Registre visiteurs + badges + escorte", "Aucun registre", "Check-ins sur réseaux sociaux"],
+      answer_index: 1
+    },
+    {
+      id: "sec2_q05",
+      quiz_id: "security_qz_bank_v2",
+      type: "short",
+      prompt_en: "Weekly incident review—what minimum data fields?",
+      prompt_fr: "Revue hebdo des incidents — champs minimaux ?"
+    },
+    {
+      id: "sec2_q06",
+      quiz_id: "security_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Radio etiquette during emergencies:",
+      prompt_fr: "Étiquette radio en urgence :",
+      options_en: ["Long narratives", "Brevity codes & confirmations", "Silence until arrival", "Music to calm"],
+      options_fr: ["Longs récits", "Codes brefs & confirmations", "Silence jusqu'à l'arrivée", "Musique pour calmer"],
+      answer_index: 1
+    },
+    {
+      id: "sec2_q07",
+      quiz_id: "security_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Security should coordinate with medical lead before evacuation.",
+      prompt_fr: "La sécurité doit coordonner avec le responsable médical avant évacuation.",
+      answer: true
+    },
+    {
+      id: "sec2_q08",
+      quiz_id: "security_qz_bank_v2",
+      type: "short",
+      prompt_en: "Design a lockdown drill outline for a mobile clinic.",
+      prompt_fr: "Concevoir un plan d'exercice de confinement pour une clinique mobile."
+    },
+    {
+      id: "sec2_q09",
+      quiz_id: "security_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "What indicates posture escalation?",
+      prompt_fr: "Qu'indique une escalade de posture ?",
+      options_en: ["Rumor only", "Credible threat indicators", "Single complaint", "Bad weather"],
+      options_fr: ["Rumeur seule", "Indicateurs de menace crédibles", "Plainte isolée", "Mauvais temps"],
+      answer_index: 1
+    },
+    {
+      id: "sec2_q10",
+      quiz_id: "security_qz_bank_v2",
+      type: "short",
+      prompt_en: "Visitor badge policy for vendors and press.",
+      prompt_fr: "Politique de badges visiteurs pour fournisseurs et presse."
     },
     {
       id: "sec_q1",
