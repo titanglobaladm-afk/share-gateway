@@ -73,8 +73,8 @@ const Quiz = () => {
         correct++;
       } else if (q.type === 'truefalse' && userAnswer === q.answer) {
         correct++;
-      } else if (q.type === 'short' && userAnswer && typeof userAnswer === 'string' && userAnswer.trim().length > 0) {
-        // For short answers, give credit if they provided any answer
+      } else if ((q.type === 'short' || q.type === 'essay') && userAnswer && typeof userAnswer === 'string' && userAnswer.trim().length > 0) {
+        // For short answers and essays, give credit if they provided any answer
         correct++;
       }
     });
@@ -121,7 +121,7 @@ const Quiz = () => {
                   const userAnswer = answers[q.id];
                   if (q.type === 'mcq') return userAnswer === q.answer_index;
                   if (q.type === 'truefalse') return userAnswer === q.answer;
-                  if (q.type === 'short') return userAnswer && typeof userAnswer === 'string' && userAnswer.trim().length > 0;
+                  if (q.type === 'short' || q.type === 'essay') return userAnswer && typeof userAnswer === 'string' && userAnswer.trim().length > 0;
                   return false;
                 }).length} / {questions.length} {t('quiz.correct')}
               </p>
@@ -210,6 +210,24 @@ const Quiz = () => {
                   onChange={(e) => handleAnswer(e.target.value)}
                   className="min-h-[120px] resize-none"
                 />
+              </div>
+            )}
+
+            {currentQuestion.type === 'essay' && (
+              <div className="space-y-3">
+                <Label htmlFor="essay-answer" className="text-sm font-medium">
+                  {t('quiz.essay_answer')}
+                </Label>
+                <Textarea
+                  id="essay-answer"
+                  placeholder={t('quiz.type_essay')}
+                  value={(answers[currentQuestion.id] as string) || ''}
+                  onChange={(e) => handleAnswer(e.target.value)}
+                  className="min-h-[300px] resize-y"
+                />
+                <p className="text-xs text-muted-foreground">
+                  {((answers[currentQuestion.id] as string) || '').split(/\s+/).filter(w => w.length > 0).length} words
+                </p>
               </div>
             )}
 

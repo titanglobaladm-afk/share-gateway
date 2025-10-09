@@ -44,6 +44,8 @@ export const trainingData = {
       "quiz.correct": "correct",
       "quiz.short_answer": "Your answer:",
       "quiz.type_answer": "Type your answer here...",
+      "quiz.essay_answer": "Your essay:",
+      "quiz.type_essay": "Write your essay here (500-700 words recommended)...",
       "my_courses.subtitle": "Track your enrolled courses and progress",
       "my_courses.role": "Role",
       "my_courses.version": "Version",
@@ -92,6 +94,8 @@ export const trainingData = {
       "quiz.correct": "correct",
       "quiz.short_answer": "Votre réponse :",
       "quiz.type_answer": "Tapez votre réponse ici...",
+      "quiz.essay_answer": "Votre essai :",
+      "quiz.type_essay": "Rédigez votre essai ici (500-700 mots recommandés)...",
       "my_courses.subtitle": "Suivez vos cours inscrits et votre progression",
       "my_courses.role": "Rôle",
       "my_courses.version": "Version",
@@ -337,6 +341,14 @@ export const trainingData = {
       title_fr: "Aptitude & scénarios — Médecins",
       timeLimitSec: 3000,
       passingScore: 70
+    },
+    {
+      id: "manager_qz_main",
+      course_id: "manager_track",
+      title_en: "Leadership, Finance & Ops",
+      title_fr: "Leadership, finances & opérations",
+      timeLimitSec: 3000,
+      passingScore: 70
     }
   ],
   questions: [
@@ -549,6 +561,37 @@ export const trainingData = {
       type: "short",
       prompt_en: "Counsel a patient refusing HIV test due to stigma.",
       prompt_fr: "Conseiller un patient refusant le test VIH (stigmatisation)."
+    },
+    {
+      id: "mgr_q1",
+      quiz_id: "manager_qz_main",
+      type: "essay",
+      prompt_en: "Plan a mobile clinic deployment in a region with limited resources (500–700 words).",
+      prompt_fr: "Planifiez un déploiement de cliniques mobiles en zone à faibles ressources (500–700 mots)."
+    },
+    {
+      id: "mgr_q2",
+      quiz_id: "manager_qz_main",
+      type: "mcq",
+      prompt_en: "Budget: $15k total; $5k supplies, $3k staffing. Remaining for ops:",
+      prompt_fr: "Budget : 15 000 $; 5 000 $ fournitures, 3 000 $ personnel. Reste opérations :",
+      options_en: ["$6,000", "$7,000", "$8,000", "$9,000"],
+      options_fr: ["6 000 $", "7 000 $", "8 000 $", "9 000 $"],
+      answer_index: 2
+    },
+    {
+      id: "mgr_q3",
+      quiz_id: "manager_qz_main",
+      type: "short",
+      prompt_en: "Clinics run out of essentials each trip — fix the supply chain.",
+      prompt_fr: "Ruptures récurrentes d'essentiels — corrigez la chaîne d'approvisionnement."
+    },
+    {
+      id: "mgr_q4",
+      quiz_id: "manager_qz_main",
+      type: "short",
+      prompt_en: "Cut ops costs by 10% from $12,000/month. New budget & where to cut.",
+      prompt_fr: "Réduire de 10 % des coûts (12 000 $/mois). Nouveau budget et postes à réduire."
     }
   ]
 };
