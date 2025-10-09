@@ -8,6 +8,7 @@ import { BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 const Courses = () => {
   const { t, language } = useLanguage();
@@ -45,9 +46,21 @@ const Courses = () => {
     );
   }
 
-  const assignedCourses = trainingData.courses.filter(course => 
-    assignedCourseIds.includes(course.id)
-  );
+  const coursesToShow = trainingData.courses;
+
+  const handleEnroll = async (courseId: string) => {
+    if (!user) return;
+    const { error } = await supabase
+      .from('user_courses')
+      .insert({ user_id: user.id, course_id: courseId });
+    if (error) {
+      console.error('Enroll error:', error);
+      toast.error('Failed to enroll');
+    } else {
+      setAssignedCourseIds((prev) => [...new Set([...prev, courseId])]);
+      toast.success('Enrolled successfully');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -57,20 +70,8 @@ const Courses = () => {
           <p className="text-muted-foreground">{t('courses.subtitle')}</p>
         </div>
 
-        {assignedCourses.length === 0 ? (
-          <Card>
-            <CardContent className="pt-6 space-y-4">
-              <p className="text-center text-muted-foreground">
-                {t('courses.no_courses')}
-              </p>
-              <p className="text-center text-sm text-muted-foreground">
-                Complete onboarding to get your courses assigned based on your role.
-              </p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {assignedCourses.map((course) => {
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {coursesToShow.map((course) => {
             const title = language === 'en' ? course.title_en : course.title_fr;
             const lessonsCount = trainingData.lessons.filter(
               l => l.course_id === course.id && l.locale === language
@@ -94,15 +95,18 @@ const Courses = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="mt-auto">
-                  <Link to={`/courses/${course.id}`}>
-                    <Button className="w-full">{t('courses.view_course')}</Button>
-                  </Link>
+                  {assignedCourseIds.includes(course.id) ? (
+                    <Link to={`/courses/${course.id}`}>
+                      <Button className="w-full">{t('courses.view_course')}</Button>
+                    </Link>
+                  ) : (
+                    <Button className="w-full" onClick={() => handleEnroll(course.id)}>Enroll</Button>
+                  )}
                 </CardContent>
               </Card>
             );
             })}
           </div>
-        )}
       </div>
     </div>
   );

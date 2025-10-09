@@ -63,8 +63,13 @@ const MyCourses = () => {
                 {t('my_courses.no_courses')}
               </p>
               <p className="text-center text-sm text-muted-foreground">
-                Complete onboarding to get your courses assigned based on your role.
+                You can browse available courses and enroll from the Courses page.
               </p>
+              <div className="flex justify-center">
+                <Link to="/courses">
+                  <Button variant="secondary">{t('nav.courses')}</Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
         ) : (
