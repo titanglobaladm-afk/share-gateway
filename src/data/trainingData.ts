@@ -321,6 +321,14 @@ export const trainingData = {
       title_fr: "Connaissances & sécurité — Chauffeurs",
       timeLimitSec: 2400,
       passingScore: 70
+    },
+    {
+      id: "doctor_qz_main",
+      course_id: "doctor_track",
+      title_en: "Physician Aptitude & Scenarios",
+      title_fr: "Aptitude & scénarios — Médecins",
+      timeLimitSec: 3000,
+      passingScore: 70
     }
   ],
   questions: [
@@ -431,6 +439,69 @@ export const trainingData = {
       options_en: ["Overfill coolant", "Check coolant level & belts", "Block radiator for speed", "Ignore temp light"],
       options_fr: ["Surremplir liquide", "Vérifier liquide et courroies", "Bloquer radiateur", "Ignorer témoin"],
       answer_index: 1
+    },
+    {
+      id: "doc_q1",
+      quiz_id: "doctor_qz_main",
+      type: "mcq",
+      prompt_en: "First-line antihypertensive in diabetic adult (no CKD/pregnancy)?",
+      prompt_fr: "Antihypertenseur de 1re intention chez un diabétique (sans MRC/grossesse) ?",
+      options_en: ["Thiazide", "ACE inhibitor", "Non-selective beta-blocker", "Alpha-agonist"],
+      options_fr: ["Thiazidique", "IECA", "Bêta-bloquant non sélectif", "Alpha-agoniste"],
+      answer_index: 1
+    },
+    {
+      id: "doc_q2",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Fever + rash in child; unknown immunization. Immediate steps?",
+      prompt_fr: "Fièvre + éruption chez enfant; vaccination inconnue. Étapes immédiates ?"
+    },
+    {
+      id: "doc_q3",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Suspected TB non-adherence. Ensure treatment completion plan.",
+      prompt_fr: "Suspicion de non-observance TB. Plan pour assurer l'achèvement."
+    },
+    {
+      id: "doc_q4",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Limited budget: prioritize dengue vs leptospirosis tests — justify.",
+      prompt_fr: "Budget limité : prioriser test dengue vs leptospirose — justifiez."
+    },
+    {
+      id: "doc_q5",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Stabilize a severely dehydrated patient before 3-hour transport.",
+      prompt_fr: "Stabiliser un patient sévèrement déshydraté avant 3 h de transport."
+    },
+    {
+      id: "doc_q6",
+      quiz_id: "doctor_qz_main",
+      type: "truefalse",
+      prompt_en: "Give antibiotics immediately for all febrile patients.",
+      prompt_fr: "Antibiotiques immédiats pour tous les fébriles.",
+      answer: false
+    },
+    {
+      id: "doc_q7",
+      quiz_id: "doctor_qz_main",
+      type: "mcq",
+      prompt_en: "Most useful initial lab in suspected DKA (field)?",
+      prompt_fr: "Examen initial utile en suspicion d'ACD (terrain) ?",
+      options_en: ["Serum lactate", "Urine ketones", "D-dimer", "Troponin"],
+      options_fr: ["Lactate", "Cétones urinaires", "D-dimères", "Troponine"],
+      answer_index: 1
+    },
+    {
+      id: "doc_q8",
+      quiz_id: "doctor_qz_main",
+      type: "short",
+      prompt_en: "Counsel a patient refusing HIV test due to stigma.",
+      prompt_fr: "Conseiller un patient refusant le test VIH (stigmatisation)."
     }
   ]
 };
