@@ -1,1 +1,4 @@
 project_id = "sgxvqbhtcoskpqeepyja"
+
+[functions.evaluate-aptitude-test]
+verify_jwt = true
