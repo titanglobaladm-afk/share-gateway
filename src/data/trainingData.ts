@@ -389,6 +389,14 @@ export const trainingData = {
       title_fr: "Protocoles de sécurité & jugement",
       timeLimitSec: 2400,
       passingScore: 70
+    },
+    {
+      id: "doctor_qz_bank_v2",
+      course_id: "doctor_track",
+      title_en: "Physician Master Bank — Clinical & Scenarios",
+      title_fr: "Banque maîtresse — Clinique & scénarios (Médecins)",
+      timeLimitSec: 3600,
+      passingScore: 70
     }
   ],
   questions: [
@@ -664,6 +672,257 @@ export const trainingData = {
       prompt_en: "Log and review access incidents weekly.",
       prompt_fr: "Consigner et revoir les incidents d'accès chaque semaine.",
       answer: true
+    },
+    {
+      id: "doc2_q01",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "First-line antihypertensive in adult with diabetes (no CKD/pregnancy)?",
+      prompt_fr: "Antihypertenseur de 1re intention chez adulte diabétique (sans MRC/grossesse) ?",
+      options_en: ["Thiazide", "ACE inhibitor", "Non-selective beta-blocker", "Alpha-agonist"],
+      options_fr: ["Thiazidique", "IECA", "Bêta-bloquant non sélectif", "Alpha-agoniste"],
+      answer_index: 1
+    },
+    {
+      id: "doc2_q02",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Most appropriate initial test for suspected DKA (field setting).",
+      prompt_fr: "Examen initial le plus approprié pour suspicion d'ACD (terrain).",
+      options_en: ["Serum lactate", "Urine/serum ketones", "D-dimer", "Troponin"],
+      options_fr: ["Lactate sérique", "Cétones urine/sérum", "D-dimères", "Troponine"],
+      answer_index: 1
+    },
+    {
+      id: "doc2_q03",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Empiric antibiotics are indicated for all febrile patients in the field.",
+      prompt_fr: "Des antibiotiques empiriques sont indiqués pour tous les patients fébriles sur le terrain.",
+      answer: false
+    },
+    {
+      id: "doc2_q04",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Stabilize a severely dehydrated patient prior to 3-hour transport—outline steps.",
+      prompt_fr: "Stabiliser un patient sévèrement déshydraté avant 3 h de transport — étapes clés."
+    },
+    {
+      id: "doc2_q05",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Child with fever + rash; unknown immunization. Immediate actions.",
+      prompt_fr: "Enfant avec fièvre + éruption; vaccination inconnue. Actions immédiates."
+    },
+    {
+      id: "doc2_q06",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "TB non-adherence suspected. Ensuring completion plan.",
+      prompt_fr: "Suspicion de non-observance TB. Plan pour assurer l'achèvement."
+    },
+    {
+      id: "doc2_q07",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Preferred oral rehydration composition for severe diarrhea (adult).",
+      prompt_fr: "Composition de réhydratation orale préférée pour diarrhée sévère (adulte).",
+      options_en: ["Water + sugar only", "ORS (WHO)", "Juice + salt", "IV fluids only"],
+      options_fr: ["Eau + sucre", "SRO (OMS)", "Jus + sel", "Perfusion uniquement"],
+      answer_index: 1
+    },
+    {
+      id: "doc2_q08",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Explain shared decision-making to a patient refusing HIV test due to stigma.",
+      prompt_fr: "Expliquer la décision partagée à un patient refusant le test VIH (stigmatisation)."
+    },
+    {
+      id: "doc2_q09",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "In trauma with compromised airway, first maneuver?",
+      prompt_fr: "Traumatisme avec voie aérienne compromise, première manœuvre ?",
+      options_en: ["Jaw-thrust", "Head-tilt chin-lift", "Oropharyngeal airway", "Bag-mask ventilation"],
+      options_fr: ["Soulèvement mandibulaire", "Basculer la tête + menton", "Canule oropharyngée", "Ventilation au masque"],
+      answer_index: 0
+    },
+    {
+      id: "doc2_q10",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Verbal consent may be acceptable if documented appropriately.",
+      prompt_fr: "Le consentement verbal peut être acceptable s'il est correctement documenté.",
+      answer: true
+    },
+    {
+      id: "doc2_q11",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Preferred malaria RDT when microscopy unavailable.",
+      prompt_fr: "TDR paludisme préféré si microscopie indisponible.",
+      options_en: ["HRP2-only", "pLDH-only", "Combo HRP2/pLDH", "No RDT"],
+      options_fr: ["HRP2 seul", "pLDH seul", "Combo HRP2/pLDH", "Pas de TDR"],
+      answer_index: 2
+    },
+    {
+      id: "doc2_q12",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Budget constraint: prioritize dengue vs leptospirosis tests—justify.",
+      prompt_fr: "Budget limité : prioriser test dengue vs leptospirose — justifiez."
+    },
+    {
+      id: "doc2_q13",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Most likely cause of wide-complex tachycardia in adult.",
+      prompt_fr: "Cause la plus probable de tachycardie à QRS larges chez l'adulte.",
+      options_en: ["SVT with aberrancy", "VT", "Atrial flutter", "Sinus tachycardia"],
+      options_fr: ["TSV avec aberration", "TV", "Flutter auriculaire", "Tachycardie sinusale"],
+      answer_index: 1
+    },
+    {
+      id: "doc2_q14",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Outline immediate management for severe asthma exacerbation (field).",
+      prompt_fr: "Conduite immédiate d'une crise d'asthme sévère (terrain)."
+    },
+    {
+      id: "doc2_q15",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "First step in anaphylaxis treatment.",
+      prompt_fr: "Première étape du traitement de l'anaphylaxie.",
+      options_en: ["IV steroids", "Antihistamines", "IM epinephrine", "Nebulized albuterol"],
+      options_fr: ["Corticoïdes IV", "Antihistaminiques", "Adrénaline IM", "Salbutamol nébulisé"],
+      answer_index: 2
+    },
+    {
+      id: "doc2_q16",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "A single negative HIV test rules out acute HIV infection.",
+      prompt_fr: "Un test VIH négatif unique exclut l'infection VIH aiguë.",
+      answer: false
+    },
+    {
+      id: "doc2_q17",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Counsel a pregnant patient on malaria prophylaxis trade-offs.",
+      prompt_fr: "Conseiller une patiente enceinte sur la prophylaxie antipaludique — compromis."
+    },
+    {
+      id: "doc2_q18",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Best initial step for suspected cholera outbreak at clinic.",
+      prompt_fr: "Meilleure première étape en cas de suspicion d'épidémie de choléra à la clinique.",
+      options_en: ["Close clinic", "Notify authorities & implement ORT/IPC", "Give antibiotics to all", "Evacuate all staff"],
+      options_fr: ["Fermer la clinique", "Avertir autorités & mettre en place SRO/PCI", "Antibiotiques pour tous", "Évacuer tout le personnel"],
+      answer_index: 1
+    },
+    {
+      id: "doc2_q19",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Design an algorithm for fever workup with limited labs.",
+      prompt_fr: "Concevoir un algorithme de fièvre avec examens limités."
+    },
+    {
+      id: "doc2_q20",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "In suspected meningitis, first antibiotic choice (adult, community).",
+      prompt_fr: "En méningite suspectée, premier antibiotique (adulte, communautaire).",
+      options_en: ["Amoxicillin", "Ceftriaxone", "Azithromycin", "Metronidazole"],
+      options_fr: ["Amoxicilline", "Ceftriaxone", "Azithromycine", "Métronidazole"],
+      answer_index: 1
+    },
+    {
+      id: "doc2_q21",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Explain confidentiality exceptions for public health reporting.",
+      prompt_fr: "Expliquer les exceptions à la confidentialité pour la déclaration de santé publique."
+    },
+    {
+      id: "doc2_q22",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "IV fluids are always preferred over ORS for moderate dehydration.",
+      prompt_fr: "Les perfusions IV sont toujours préférées à la SRO pour déshydratation modérée.",
+      answer: false
+    },
+    {
+      id: "doc2_q23",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Field triage during multi-casualty event—outline priorities (START).",
+      prompt_fr: "Triage sur le terrain lors d'un événement à victimes multiples — priorités (START)."
+    },
+    {
+      id: "doc2_q24",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Diabetic with neuropathic ulcer: first wound-care step.",
+      prompt_fr: "Diabétique avec ulcère neuropathique : première étape de prise en charge des plaies.",
+      options_en: ["Systemic antibiotics", "Debridement & off-loading", "Immediate grafting", "No treatment"],
+      options_fr: ["Antibiotiques systémiques", "Débridement & décharge", "Greffe immédiate", "Aucun traitement"],
+      answer_index: 1
+    },
+    {
+      id: "doc2_q25",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Craft a rational antibiotic policy with local resistance unknowns.",
+      prompt_fr: "Élaborer une politique antibiotique avec résistances locales inconnues."
+    },
+    {
+      id: "doc2_q26",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Most appropriate first test for suspected pregnancy complications.",
+      prompt_fr: "Premier test le plus approprié pour complications de grossesse suspectées.",
+      options_en: ["Serum hCG", "Urinalysis", "Ultrasound", "CRP"],
+      options_fr: ["hCG sérique", "ECBU", "Échographie", "CRP"],
+      answer_index: 2
+    },
+    {
+      id: "doc2_q27",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Counseling script for ART adherence with travel barriers.",
+      prompt_fr: "Script de conseil pour l'observance TAR avec contraintes de déplacement."
+    },
+    {
+      id: "doc2_q28",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "All febrile children require malaria testing in endemic regions.",
+      prompt_fr: "Tous les enfants fébriles doivent être testés pour le paludisme en zone endémique.",
+      answer: true
+    },
+    {
+      id: "doc2_q29",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "short",
+      prompt_en: "Outline safe referral criteria for suspected ectopic pregnancy.",
+      prompt_fr: "Critères d'orientation sécurisée pour suspicion de grossesse extra-utérine."
+    },
+    {
+      id: "doc2_q30",
+      quiz_id: "doctor_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Most useful first imaging for abdominal trauma (field).",
+      prompt_fr: "Imagerie de première intention pour traumatisme abdominal (terrain).",
+      options_en: ["X-ray", "FAST ultrasound", "CT", "MRI"],
+      options_fr: ["Radiographie", "Écho FAST", "TDM", "IRM"],
+      answer_index: 1
     }
   ]
 };
