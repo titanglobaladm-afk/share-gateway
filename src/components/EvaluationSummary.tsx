@@ -1,11 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Brain, CheckCircle2, AlertCircle, XCircle } from 'lucide-react';
+import { Brain, CheckCircle2, AlertCircle, XCircle, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface EvaluationSummaryProps {
   evaluation: {
+    id: string;
     cognitive_score: number;
     critical_thinking_score: number;
     technical_score: number;
@@ -101,6 +104,13 @@ export const EvaluationSummary = ({ evaluation }: EvaluationSummaryProps) => {
             <Progress value={(evaluation.communication_score / 5) * 100} className="h-1" />
           </div>
         </div>
+
+        <Link to={`/evaluation/${evaluation.id}`} className="block mt-4">
+          <Button variant="outline" className="w-full">
+            {t('eval.view_full')}
+            <ArrowRight className="h-4 w-4 ml-2" />
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );

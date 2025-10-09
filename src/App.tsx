@@ -14,6 +14,7 @@ import Quiz from "./pages/Quiz";
 import MyCourses from "./pages/MyCourses";
 import SignIn from "./pages/SignIn";
 import Onboarding from "./pages/Onboarding";
+import EvaluationDetail from "./pages/EvaluationDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,6 +68,14 @@ const App = () => (
                 element={
                   <ProtectedRoute>
                     <MyCourses />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/evaluation/:id" 
+                element={
+                  <ProtectedRoute>
+                    <EvaluationDetail />
                   </ProtectedRoute>
                 } 
               />
