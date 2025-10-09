@@ -178,7 +178,8 @@ export const trainingData = {
       locale: "en",
       order: 1,
       title: "Diagnostic Reasoning in Mobile Clinics",
-      content: "<p>Approach to diagnosis with limited tools; RDT prioritization; differential narrowing.</p>"
+      meta_source: "From: Role Pack — Training Materials for Doctors",
+      content: "<h2>Diagnosing in Low-Resource Mobile Settings</h2><p>In mobile clinics you often work with incomplete histories and limited tools. Start with a focused interview and vitals, use basic diagnostics (e.g., RDTs, glucose, urine ketones) to narrow differentials, and prioritize stabilization. Document clearly and communicate findings to the team and patient in plain language.</p><ul><li>Challenges: limited history, time pressure, fewer devices.</li><li>Approach: ABCs first, focused exam, selective tests, clear next steps.</li><li>Communication: set expectations; use teach-back for understanding.</li></ul>"
     },
     {
       id: "doc_l2_en",
@@ -186,7 +187,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Chronic Disease (HTN/DM/HIV)",
-      content: "<p>Protocols, monitoring, adherence strategies.</p>"
+      meta_source: "From: Comprehensive Guide + Role Pack — Training Materials for Doctors",
+      content: "<h2>Chronic Care in the Field</h2><p>Standardize hypertension and diabetes workflows: confirm diagnosis, assess complications, and ensure reliable follow-up. For HIV, reinforce counseling, confidentiality, and linkage to care. When first-line meds are unavailable, select rational substitutes and document reasons. Build adherence plans that account for travel and supply interruptions.</p><ul><li>HTN/DM: risk stratification, meds, self-care coaching.</li><li>HIV: consent, stigma-aware counseling, testing pathways.</li><li>Continuity: schedule, contact methods, refill plans.</li></ul>"
     },
     {
       id: "doc_l3_en",
@@ -194,7 +196,8 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "BLS & Trauma Triage",
-      content: "<p>Primary survey, stabilization, transport.</p>"
+      meta_source: "From: Comprehensive Guide",
+      content: "<h2>Immediate Stabilization & Triage</h2><p>Follow ABC priorities: open airway (jaw-thrust if trauma), support breathing, restore circulation. Use a simple triage model for multi-casualty events (e.g., START). Stabilize for transport and document vitals, interventions, time stamps, and handoffs.</p><ul><li>Airway first in trauma; consider OPA/NPA.</li><li>Use FAST ultrasound when available for abdominal trauma.</li><li>Record actions for audit and continuity.</li></ul>"
     },
     {
       id: "doc_l4_en",
@@ -202,7 +205,8 @@ export const trainingData = {
       locale: "en",
       order: 4,
       title: "Legal/Ethical Duties",
-      content: "<p>Consent, confidentiality, reporting.</p>"
+      meta_source: "From: Comprehensive Guide",
+      content: "<h2>Consent, Confidentiality, Duty of Care</h2><p>Obtain informed consent; verbal consent may be acceptable if properly documented. Protect patient data in line with policy and law. Follow reporting rules for public health conditions while minimizing identifiability.</p><ul><li>Consent types and documentation.</li><li>Privacy boundaries and exceptions (public health).</li><li>Professional conduct in resource-limited settings.</li></ul>"
     },
     {
       id: "doc_l1_fr",
@@ -218,7 +222,8 @@ export const trainingData = {
       locale: "en",
       order: 1,
       title: "Clinical Skills in Resource-Limited Settings",
-      content: "<p>Vitals, injections, wound care, triage.</p>"
+      meta_source: "From: Role Pack — Training Materials for Nurses",
+      content: "<h2>Core Nursing Skills</h2><p>Prioritize care by severity and resources. Master safe medication administration, monitoring, and documentation. Use simple tools effectively and escalate early when red flags appear.</p><ul><li>Vitals and monitoring sequences.</li><li>IV/IM basics and safety checks (e.g., allergies).</li><li>Triage logic under time/resource constraints.</li></ul>"
     },
     {
       id: "nrs_l2_en",
@@ -226,7 +231,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Infection Control & Patient Safety",
-      content: "<p>PPE, sterilization, sharps, isolation.</p>"
+      meta_source: "From: Comprehensive Guide + Role Pack — Training Materials for Nurses",
+      content: "<h2>Infection Prevention in Mobile Clinics</h2><p>Apply hand hygiene before/after each contact, use PPE in the correct donning/doffing order, and maintain clean zones. When water is limited, use alcohol rubs and targeted disinfection. Educate patients and model behaviors consistently.</p><ul><li>PPE sequence and sharps safety.</li><li>Surface disinfection in low-water settings.</li><li>Cold chain basics and documentation.</li></ul>"
     },
     {
       id: "nrs_l3_en",
@@ -250,7 +256,8 @@ export const trainingData = {
       locale: "en",
       order: 1,
       title: "Safe Navigation & Route Planning",
-      content: "<p>Pre-trip checks, route planning, comms.</p>"
+      meta_source: "From: Role Pack — Training Materials for Drivers",
+      content: "<h2>Planning & Driving for Clinical Missions</h2><p>Plan routes with terrain, weather, and alternates. Conduct thorough pre-trip checks and secure cargo to protect equipment and passengers. Maintain predictable, defensive driving—especially when escorting medical teams.</p><ul><li>Pre-trip checklist: tires, fluids, lights, comms.</li><li>Cargo securement: straps + padding; weight low/forward.</li><li>Night convoy: spacing, comms, roles.</li></ul>"
     },
     {
       id: "drv_l2_en",
@@ -258,7 +265,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Emergency Response on the Road",
-      content: "<p>Breakdowns, floods, detours, med transport.</p>"
+      meta_source: "From: Role Pack — Training Materials for Drivers",
+      content: "<h2>Handling On-Road Incidents</h2><p>If a passenger shows distress, pull over safely and assess; notify the clinic. For breakdowns, secure the scene, protect passengers, and follow comms fallback (radio/satphone). Log incidents with times and actions for review.</p><ul><li>Distress protocol: stop, assess, inform.</li><li>Breakdown response in remote areas.</li><li>Documentation: near-miss and incident logs.</li></ul>"
     },
     {
       id: "drv_l3_en",
@@ -282,7 +290,8 @@ export const trainingData = {
       locale: "en",
       order: 1,
       title: "Leadership & Team Management",
-      content: "<p>Supervision, conflict resolution, coaching.</p>"
+      meta_source: "From: Role Pack — Training Materials for Clinic Managers + Comprehensive Guide",
+      content: "<h2>Leading Field Teams</h2><p>Use clear roles, fair rotations, and routine check-ins. Track KPIs tied to donor reporting and audit trails. Maintain dual-supplier strategies for critical items and escalate when budget variance threatens delivery.</p><ul><li>Scheduling & morale (feedback + quick wins).</li><li>KPI dashboards for donors and operations.</li><li>Controls: petty cash, receipts, surprise counts.</li></ul>"
     },
     {
       id: "mgr_l2_en",
@@ -314,7 +323,8 @@ export const trainingData = {
       locale: "en",
       order: 1,
       title: "Security Protocols in Mobile Clinics",
-      content: "<p>Access control, incident reporting, posture.</p>"
+      meta_source: "From: Role Pack — Training Materials for Security Personnel + Comprehensive Guide",
+      content: "<h2>Access Control, Posture & Incident Response</h2><p>Log visitors, issue badges, and enforce access points. Use posture levels to scale response to credible indicators. In emergencies, priority is protection of staff and patients; coordinate with the medical lead and communicate via brevity codes.</p><ul><li>Risk assessment drills and lockdown basics.</li><li>Radio etiquette and confirmations.</li><li>Weekly incident review and lessons learned.</li></ul>"
     },
     {
       id: "sec_l2_en",
