@@ -13,7 +13,7 @@ const MyCourses = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">{t('nav.my_courses')}</h1>
-          <p className="text-muted-foreground">Track your enrolled courses and progress</p>
+          <p className="text-muted-foreground">{t('my_courses.subtitle')}</p>
         </div>
 
         <div className="grid gap-6">
@@ -27,29 +27,29 @@ const MyCourses = () => {
                     <div className="flex-1">
                       <CardTitle className="mb-2">{title}</CardTitle>
                       <p className="text-sm text-muted-foreground mb-4">
-                        Role: {course.role_required} • Version {course.version}
+                        {t('my_courses.role')}: {course.role_required} • {t('my_courses.version')} {course.version}
                       </p>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">Progress</span>
+                          <span className="text-muted-foreground">{t('my_courses.progress')}</span>
                           <span className="font-semibold">0%</span>
                         </div>
                         <Progress value={0} />
                       </div>
                     </div>
                     <Link to={`/courses/${course.id}`}>
-                      <Button>Continue</Button>
+                      <Button>{t('dashboard.continue')}</Button>
                     </Link>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="flex gap-4 text-sm">
                     <div>
-                      <span className="text-muted-foreground">Lessons:</span>{' '}
+                      <span className="text-muted-foreground">{t('course.lessons')}:</span>{' '}
                       <span className="font-semibold">0/1</span>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Quizzes:</span>{' '}
+                      <span className="text-muted-foreground">{t('courses.quizzes')}:</span>{' '}
                       <span className="font-semibold">0/1</span>
                     </div>
                   </div>

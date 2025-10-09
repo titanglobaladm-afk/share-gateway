@@ -42,7 +42,7 @@ const Quiz = () => {
   }, [isSubmitted, quiz]);
 
   if (!quiz || questions.length === 0) {
-    return <div>Quiz not found</div>;
+    return <div>{t('quiz.not_found')}</div>;
   }
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -117,11 +117,11 @@ const Quiz = () => {
                   const userAnswer = answers[q.id];
                   if (q.type === 'mcq') return userAnswer === q.answer_index;
                   return userAnswer === q.answer;
-                }).length} / {questions.length} correct
+                }).length} / {questions.length} {t('quiz.correct')}
               </p>
             </div>
             <Button onClick={() => navigate('/courses')} className="w-full">
-              Back to Courses
+              {t('course.back')}
             </Button>
           </CardContent>
         </Card>
@@ -140,7 +140,7 @@ const Quiz = () => {
               {language === 'en' ? quiz.title_en : quiz.title_fr}
             </h1>
             <p className="text-sm text-muted-foreground">
-              Question {currentQuestionIndex + 1} of {questions.length}
+              {t('quiz.question')} {currentQuestionIndex + 1} {t('quiz.of')} {questions.length}
             </p>
           </div>
           <Badge variant={timeRemaining < 60 ? 'destructive' : 'secondary'} className="flex items-center gap-2">
@@ -180,13 +180,13 @@ const Quiz = () => {
                 <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
                   <RadioGroupItem value="true" id="true" />
                   <Label htmlFor="true" className="flex-1 cursor-pointer">
-                    {language === 'en' ? 'True' : 'Vrai'}
+                    {t('quiz.true')}
                   </Label>
                 </div>
                 <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
                   <RadioGroupItem value="false" id="false" />
                   <Label htmlFor="false" className="flex-1 cursor-pointer">
-                    {language === 'en' ? 'False' : 'Faux'}
+                    {t('quiz.false')}
                   </Label>
                 </div>
               </RadioGroup>
@@ -199,7 +199,7 @@ const Quiz = () => {
                 disabled={currentQuestionIndex === 0}
                 className="flex-1"
               >
-                Previous
+                {t('quiz.previous')}
               </Button>
               {currentQuestionIndex === questions.length - 1 ? (
                 <Button
@@ -211,7 +211,7 @@ const Quiz = () => {
                 </Button>
               ) : (
                 <Button onClick={handleNext} className="flex-1">
-                  Next
+                  {t('quiz.next')}
                 </Button>
               )}
             </div>

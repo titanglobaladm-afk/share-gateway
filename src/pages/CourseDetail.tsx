@@ -12,7 +12,7 @@ const CourseDetail = () => {
   const { language, t } = useLanguage();
 
   const course = trainingData.courses.find(c => c.id === courseId);
-  if (!course) return <div>Course not found</div>;
+  if (!course) return <div>{t('course.not_found')}</div>;
 
   const title = language === 'en' ? course.title_en : course.title_fr;
   const lessons = trainingData.lessons.filter(
@@ -27,7 +27,7 @@ const CourseDetail = () => {
         <Link to="/courses">
           <Button variant="ghost" size="sm" className="mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Courses
+            {t('course.back')}
           </Button>
         </Link>
 
@@ -39,7 +39,7 @@ const CourseDetail = () => {
             </div>
           </div>
           <p className="text-muted-foreground">
-            Complete all lessons and pass the quiz to finish this course
+            {t('course.subtitle')}
           </p>
         </div>
 
@@ -48,7 +48,7 @@ const CourseDetail = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <BookOpen className="h-5 w-5 text-primary" />
-                Lessons
+                {t('course.lessons')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -76,7 +76,7 @@ const CourseDetail = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="h-5 w-5 text-accent" />
-                Assessments
+                {t('course.assessments')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -91,7 +91,7 @@ const CourseDetail = () => {
                     <div>
                       <h3 className="font-semibold mb-1">{quizTitle}</h3>
                       <p className="text-sm text-muted-foreground">
-                        {questionsCount} questions • {Math.floor(quiz.timeLimitSec / 60)} min • Pass: {quiz.passingScore}%
+                        {questionsCount} {t('course.questions')} • {Math.floor(quiz.timeLimitSec / 60)} {t('course.min')} • {t('course.pass')}: {quiz.passingScore}%
                       </p>
                     </div>
                     <Link to={`/quiz/${quiz.id}`}>

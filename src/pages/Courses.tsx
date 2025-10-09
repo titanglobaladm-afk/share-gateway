@@ -14,7 +14,7 @@ const Courses = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">{t('nav.courses')}</h1>
-          <p className="text-muted-foreground">Browse and enroll in training courses</p>
+          <p className="text-muted-foreground">{t('courses.subtitle')}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -38,12 +38,12 @@ const Courses = () => {
                   </div>
                   <CardTitle className="text-xl">{title}</CardTitle>
                   <CardDescription>
-                    {lessonsCount} {lessonsCount === 1 ? 'lesson' : 'lessons'} • {quizzesCount} {quizzesCount === 1 ? 'quiz' : 'quizzes'}
+                    {lessonsCount} {lessonsCount === 1 ? t('courses.lesson') : t('courses.lessons')} • {quizzesCount} {quizzesCount === 1 ? t('courses.quiz') : t('courses.quizzes')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="mt-auto">
                   <Link to={`/courses/${course.id}`}>
-                    <Button className="w-full">View Course</Button>
+                    <Button className="w-full">{t('courses.view_course')}</Button>
                   </Link>
                 </CardContent>
               </Card>
