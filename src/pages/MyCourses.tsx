@@ -1,12 +1,48 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/hooks/useAuth';
 import { trainingData } from '@/data/trainingData';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+import { useEffect, useState } from 'react';
 
 const MyCourses = () => {
   const { t, language } = useLanguage();
+  const { user } = useAuth();
+  const [assignedCourseIds, setAssignedCourseIds] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAssignedCourses = async () => {
+      if (!user) return;
+      
+      const { data } = await supabase
+        .from('user_courses')
+        .select('course_id')
+        .eq('user_id', user.id);
+
+      if (data) {
+        setAssignedCourseIds(data.map(c => c.course_id));
+      }
+      setLoading(false);
+    };
+
+    fetchAssignedCourses();
+  }, [user]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  const assignedCourses = trainingData.courses.filter(course => 
+    assignedCourseIds.includes(course.id)
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -16,8 +52,15 @@ const MyCourses = () => {
           <p className="text-muted-foreground">{t('my_courses.subtitle')}</p>
         </div>
 
-        <div className="grid gap-6">
-          {trainingData.courses.map((course) => {
+        {assignedCourses.length === 0 ? (
+          <Card>
+            <CardContent className="pt-6">
+              <p className="text-center text-muted-foreground">No courses assigned yet.</p>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="grid gap-6">
+            {assignedCourses.map((course) => {
             const title = language === 'en' ? course.title_en : course.title_fr;
             
             return (
@@ -56,8 +99,9 @@ const MyCourses = () => {
                 </CardContent>
               </Card>
             );
-          })}
-        </div>
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
