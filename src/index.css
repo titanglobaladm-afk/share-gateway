@@ -32,6 +32,9 @@ All colors MUST be HSL.
     --success: 145 65% 45%;
     --success-foreground: 0 0% 100%;
 
+    --warning: 25 90% 55%;
+    --warning-foreground: 0 0% 100%;
+
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
@@ -70,6 +73,9 @@ All colors MUST be HSL.
 
     --success: 145 65% 50%;
     --success-foreground: 215 30% 8%;
+
+    --warning: 25 90% 60%;
+    --warning-foreground: 215 30% 8%;
 
     --destructive: 0 75% 60%;
     --destructive-foreground: 0 0% 100%;

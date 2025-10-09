@@ -83,7 +83,7 @@ export const AptitudeTest = ({ onComplete }: AptitudeTestProps) => {
           <span className="text-muted-foreground">
             {t('quiz.question')} {currentQuestionIndex + 1} {t('quiz.of')} {aptitudeQuestions.length}
           </span>
-          <div className="flex items-center gap-2 text-orange-600 font-medium">
+          <div className="flex items-center gap-2 text-warning font-medium">
             <Clock className="h-4 w-4" />
             {formatTime(timeRemaining)}
           </div>
@@ -200,7 +200,7 @@ export const AptitudeTest = ({ onComplete }: AptitudeTestProps) => {
               idx === currentQuestionIndex
                 ? 'bg-primary text-primary-foreground'
                 : answers[q.id]
-                ? 'bg-green-500 text-white'
+                ? 'bg-success text-success-foreground'
                 : 'bg-muted hover:bg-muted/80'
             }`}
           >

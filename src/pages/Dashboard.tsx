@@ -3,9 +3,36 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BookOpen, Award, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
+import { useEffect, useState } from 'react';
+import { EvaluationSummary } from '@/components/EvaluationSummary';
 
 const Dashboard = () => {
   const { t } = useLanguage();
+  const { user } = useAuth();
+  const [evaluation, setEvaluation] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvaluation = async () => {
+      if (!user) return;
+
+      const { data } = await supabase
+        .from('ai_evaluations')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('evaluation_type', 'aptitude_test')
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      setEvaluation(data);
+      setLoading(false);
+    };
+
+    fetchEvaluation();
+  }, [user]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -14,6 +41,12 @@ const Dashboard = () => {
           <h1 className="text-3xl font-bold text-foreground mb-2">{t('nav.dashboard')}</h1>
           <p className="text-muted-foreground">{t('dashboard.subtitle')}</p>
         </div>
+
+        {!loading && evaluation && (
+          <div className="mb-8">
+            <EvaluationSummary evaluation={evaluation} />
+          </div>
+        )}
 
         <div className="grid gap-6 md:grid-cols-3 mb-8">
           <Card className="transition-all hover:shadow-lg">

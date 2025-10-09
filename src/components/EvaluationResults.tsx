@@ -23,11 +23,11 @@ export const EvaluationResults = ({ evaluation }: EvaluationResultsProps) => {
   const getRecommendationColor = (rec: string) => {
     switch (rec) {
       case 'highly_recommended':
-        return 'bg-green-500';
+        return 'bg-success';
       case 'recommended':
-        return 'bg-blue-500';
+        return 'bg-primary';
       default:
-        return 'bg-orange-500';
+        return 'bg-warning';
     }
   };
 
