@@ -315,6 +315,14 @@ export const trainingData = {
       passingScore: 50
     },
     {
+      id: "nurse_qz_main",
+      course_id: "nurse_track",
+      title_en: "Nursing Aptitude & Scenarios",
+      title_fr: "Aptitude & scénarios — Infirmiers/ères",
+      timeLimitSec: 2400,
+      passingScore: 70
+    },
+    {
       id: "driver_qz_main",
       course_id: "driver_track",
       title_en: "Driver Knowledge & Safety",
@@ -349,6 +357,45 @@ export const trainingData = {
       prompt_en: "Always check allergies before meds.",
       prompt_fr: "Toujours vérifier les allergies avant d'administrer des médicaments.",
       answer: true
+    },
+    {
+      id: "nrs_q1",
+      quiz_id: "nurse_qz_main",
+      type: "mcq",
+      prompt_en: "Normal adult BP is closest to:",
+      prompt_fr: "TA normale adulte :",
+      options_en: ["<90/60", "~120/80", ">160/100", "No range"],
+      options_fr: ["<90/60", "~120/80", ">160/100", "Aucune plage"],
+      answer_index: 1
+    },
+    {
+      id: "nrs_q2",
+      quiz_id: "nurse_qz_main",
+      type: "truefalse",
+      prompt_en: "Always check allergies before meds.",
+      prompt_fr: "Toujours vérifier les allergies avant médicaments.",
+      answer: true
+    },
+    {
+      id: "nrs_q3",
+      quiz_id: "nurse_qz_main",
+      type: "short",
+      prompt_en: "Steps for IM injection during mass immunization.",
+      prompt_fr: "Étapes de l'injection IM en campagne de vaccination."
+    },
+    {
+      id: "nrs_q4",
+      quiz_id: "nurse_qz_main",
+      type: "short",
+      prompt_en: "Non-responsive patient — immediate actions.",
+      prompt_fr: "Patient non réactif — actions immédiates."
+    },
+    {
+      id: "nrs_q5",
+      quiz_id: "nurse_qz_main",
+      type: "short",
+      prompt_en: "Prioritize: bleeding wound vs severe abdominal pain — justify.",
+      prompt_fr: "Prioriser : plaie hémorragique vs douleur abdominale sévère — justifiez."
     },
     {
       id: "drv_q1",
