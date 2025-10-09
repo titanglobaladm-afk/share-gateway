@@ -19,8 +19,8 @@ const CourseDetail = () => {
   const minContentChars = trainingData.settings?.lessonMinContentChars || 40;
   const hideEmptyLessons = trainingData.settings?.hideEmptyLessons || false;
 
-  const hasInsufficientContent = (content: string) => {
-    const strippedContent = content.replace(/<[^>]*>/g, '').trim();
+  const hasInsufficientContent = (htmlBody: string) => {
+    const strippedContent = htmlBody.replace(/<[^>]*>/g, '').trim();
     return !strippedContent || strippedContent.length < minContentChars;
   };
 
@@ -29,7 +29,7 @@ const CourseDetail = () => {
   ).sort((a, b) => a.order - b.order);
 
   if (hideEmptyLessons) {
-    lessons = lessons.filter(lesson => !hasInsufficientContent(lesson.content));
+    lessons = lessons.filter(lesson => !hasInsufficientContent(lesson.htmlBody));
   }
   
   const quizzes = trainingData.quizzes.filter(q => q.course_id === course.id);
@@ -66,7 +66,7 @@ const CourseDetail = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               {lessons.map((lesson, index) => {
-                const isInsufficient = hasInsufficientContent(lesson.content);
+                const isInsufficient = hasInsufficientContent(lesson.htmlBody);
                 
                 return (
                   <div key={lesson.id}>
@@ -85,8 +85,8 @@ const CourseDetail = () => {
                           </Alert>
                         ) : (
                           <div 
-                            className="text-sm text-muted-foreground"
-                            dangerouslySetInnerHTML={{ __html: lesson.content }}
+                            className="text-sm text-muted-foreground prose prose-sm max-w-none"
+                            dangerouslySetInnerHTML={{ __html: lesson.htmlBody }}
                           />
                         )}
                       </div>

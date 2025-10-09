@@ -157,8 +157,8 @@ export const trainingData = {
     }
   },
   settings: {
-    lessonMinContentChars: 40,
-    hideEmptyLessons: true,
+    lessonMinContentChars: 0,
+    hideEmptyLessons: false,
     preferLessonSuffix: "_v2"
   },
   courses: [
@@ -206,14 +206,17 @@ export const trainingData = {
     }
   ],
   lessons: [
-    // Orientation (bilingual)
+    /* ---------- ORIENTATION (3) ---------- */
     {
       id: "ori_l1_en",
       course_id: "orientation_common",
       locale: "en",
       order: 1,
       title: "Mission, Vision, Values",
-      content: "<p>SHARE's mission, vision, values, and community commitments.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Learning Objectives</h2><ul><li>State SHARE's mission and how mobile clinics extend access to care in Haiti.</li><li>Describe core values (equity, safety, dignity, accountability) and how they show up on deployments.</li></ul><h2>Context</h2><p>SHARE operates mobile clinics to reach underserved communities with primary care, diagnostics, and health education, aligned with MSPP and local partners.</p><h2>Key Points</h2><ol><li><b>Mission:</b> Sustainable, community-rooted care informed by research.</li><li><b>Model:</b> Triage → consult → pharmacy/referral, data capture in EHR.</li><li><b>Values in action:</b> Respect beliefs, maintain confidentiality, prioritize safety, document objectively.</li></ol>",
+      sourceUrlEn: "sandbox:/mnt/data/Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE) (2).docx",
+      sourceUrlFr: "sandbox:/mnt/data/Translated French copy of Copy of Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE).pdf"
     },
     {
       id: "ori_l1_fr",
@@ -221,7 +224,10 @@ export const trainingData = {
       locale: "fr",
       order: 1,
       title: "Mission, vision, valeurs",
-      content: "<p>Mission, vision, valeurs de SHARE et engagements communautaires.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectifs</h2><ul><li>Expliquer la mission de SHARE et le rôle des cliniques mobiles en Haïti.</li><li>Décrire les valeurs (équité, sécurité, dignité, responsabilité) et leur application sur le terrain.</li></ul><h2>Contexte</h2><p>SHARE déploie des cliniques mobiles pour desservir des communautés éloignées, en conformité avec le MSPP et en partenariat local.</p><h2>Points clés</h2><ol><li><b>Mission :</b> Soins durables, ancrés dans la communauté et guidés par la recherche.</li><li><b>Modèle :</b> Triage → consultation → pharmacie/orientation, saisie des données dans le DSE.</li><li><b>Valeurs appliquées :</b> Respect des croyances, confidentialité, sécurité, documentation objective.</li></ol>",
+      sourceUrlEn: "sandbox:/mnt/data/Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE) (2).docx",
+      sourceUrlFr: "sandbox:/mnt/data/Translated French copy of Copy of Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE).pdf"
     },
     {
       id: "ori_l2_en",
@@ -229,7 +235,10 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Mobile Clinic Model in Haiti",
-      content: "<p>Service model, outreach flow, care pathways, and referrals.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectives</h2><ul><li>Explain outreach flow and care pathways.</li><li>Identify referral criteria and partner roles.</li></ul><h2>Service Model</h2><p>Scheduled community days; registration & vitals; consultation; pharmacy & education; referral to fixed facilities when criteria met.</p><h2>Data</h2><p>Use EHR to record encounters, referrals, stock, and follow-up tasks; protect confidentiality.</p>",
+      sourceUrlEn: "sandbox:/mnt/data/Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE) (2).docx",
+      sourceUrlFr: "sandbox:/mnt/data/Translated French copy of Copy of Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE).pdf"
     },
     {
       id: "ori_l2_fr",
@@ -237,7 +246,10 @@ export const trainingData = {
       locale: "fr",
       order: 2,
       title: "Modèle de clinique mobile en Haïti",
-      content: "<p>Modèle de service, parcours de soins et orientations.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectifs</h2><ul><li>Expliquer le flux de prise en charge et les parcours de soins.</li><li>Identifier les critères d'orientation et le rôle des partenaires.</li></ul><h2>Modèle de service</h2><p>Journées planifiées; enregistrement & constantes; consultation; pharmacie & éducation; orientation vers les structures fixes si nécessaire.</p><h2>Données</h2><p>Utiliser le DSE pour consigner les actes, les stocks et les suivis; garantir la confidentialité.</p>",
+      sourceUrlEn: "sandbox:/mnt/data/Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE) (2).docx",
+      sourceUrlFr: "sandbox:/mnt/data/Translated French copy of Copy of Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE).pdf"
     },
     {
       id: "ori_l3_en",
@@ -245,7 +257,10 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "Governance & MSPP Alignment",
-      content: "<p>Governance, licensing, reporting to MSPP, ethics.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectives</h2><ul><li>Understand licensing and reporting to MSPP.</li><li>Apply ethical standards in field operations.</li></ul><h2>Governance</h2><p>Operate under Haitian law and MSPP guidance; maintain accurate reports; uphold consent and confidentiality; escalate incidents through defined channels.</p>",
+      sourceUrlEn: "sandbox:/mnt/data/Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE) (2).docx",
+      sourceUrlFr: "sandbox:/mnt/data/Translated French copy of Copy of Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE).pdf"
     },
     {
       id: "ori_l3_fr",
@@ -253,17 +268,21 @@ export const trainingData = {
       locale: "fr",
       order: 3,
       title: "Gouvernance & alignement MSPP",
-      content: "<p>Gouvernance, licences, rapports au MSPP, éthique.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectifs</h2><ul><li>Comprendre les licences et le reporting au MSPP.</li><li>Appliquer les normes éthiques en opérations.</li></ul><h2>Gouvernance</h2><p>Fonctionner selon la loi haïtienne et les guides du MSPP; tenir des rapports exacts; garantir consentement et confidentialité; escalader les incidents via les canaux définis.</p>",
+      sourceUrlEn: "sandbox:/mnt/data/Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE) (2).docx",
+      sourceUrlFr: "sandbox:/mnt/data/Translated French copy of Copy of Comprehensive Guide to Mobile Clinic Operations in Haiti_ Sustainable Health Acquired by Research and Education (SHARE).pdf"
     },
 
-    // Doctors (bilingual)
+    /* ---------- DOCTORS (4) ---------- */
     {
       id: "doc_l1_en",
       course_id: "doctor_track",
       locale: "en",
       order: 1,
       title: "Diagnostic Reasoning in Mobile Clinics",
-      content: "<p>Differential diagnosis with limited tools; RDT prioritization.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectives</h2><ul><li>Structure differentials with limited labs.</li><li>Use RDTs appropriately.</li><li>Escalate when red flags present.</li></ul><h2>Field Flow</h2><p>Focused history → vitals/exam → POCT → stabilize → EHR → referral if criteria met.</p><h2>Red Flags</h2><ul><li>Airway compromise, severe dehydration, AMS.</li><li>Pregnancy complications, active bleed, sepsis suspicion.</li></ul>"
     },
     {
       id: "doc_l1_fr",
@@ -271,7 +290,8 @@ export const trainingData = {
       locale: "fr",
       order: 1,
       title: "Raisonnement diagnostique en clinique mobile",
-      content: "<p>Diagnostic différentiel avec ressources limitées; priorisation des TDR.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectifs</h2><ul><li>Structurer les diagnostics avec peu d'examens.</li><li>Utiliser les TDR correctement.</li><li>Escalader en présence de signes d'alarme.</li></ul><h2>Parcours terrain</h2><p>Anamnèse ciblée → constantes/examen → tests au lit → stabiliser → DSE → orientation si critères.</p><h2>Signes d'alarme</h2><ul><li>Voies aériennes, déshydratation sévère, altération de conscience.</li><li>Grossesse compliquée, hémorragie active, sepsis suspect.</li></ul>"
     },
     {
       id: "doc_l2_en",
@@ -279,7 +299,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Chronic Disease (HTN/DM/HIV)",
-      content: "<p>Protocols, monitoring, adherence strategies, referral rules.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Protocols</h2><p>Follow HTN/DM/HIV field algorithms; titrate safely; monitor side-effects; reinforce adherence; refer per thresholds.</p><h2>Follow-up</h2><p>Schedule returns; coordinate with community health workers for adherence checks.</p>"
     },
     {
       id: "doc_l2_fr",
@@ -287,7 +308,8 @@ export const trainingData = {
       locale: "fr",
       order: 2,
       title: "Maladies chroniques (HTA/Diabète/VIH)",
-      content: "<p>Protocoles, suivi, observance, critères d'orientation.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Protocoles</h2><p>Appliquer les algorithmes HTA/Diabète/VIH; titrer prudemment; surveiller les effets; renforcer l'observance; orienter selon seuils.</p><h2>Suivi</h2><p>Planifier les retours; coordonner avec les ASCs pour l'observance.</p>"
     },
     {
       id: "doc_l3_en",
@@ -295,7 +317,8 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "BLS & Trauma Triage",
-      content: "<p>Primary survey, stabilization, transport readiness.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Primary Survey</h2><p>Airway → Breathing → Circulation → Disability → Exposure; stabilize and prep for transport.</p><h2>Documentation</h2><p>Record times, interventions, vitals; handoff clearly at referral site.</p>"
     },
     {
       id: "doc_l3_fr",
@@ -303,7 +326,8 @@ export const trainingData = {
       locale: "fr",
       order: 3,
       title: "RCR de base & triage traumatologique",
-      content: "<p>Examen primaire, stabilisation, préparation au transport.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Examen primaire</h2><p>Voies aériennes → Respiration → Circulation → Neurologique → Exposition; stabiliser et préparer le transport.</p><h2>Documentation</h2><p>Consigner heures, gestes, constantes; transmettre clairement au site d'orientation.</p>"
     },
     {
       id: "doc_l4_en",
@@ -311,7 +335,8 @@ export const trainingData = {
       locale: "en",
       order: 4,
       title: "Legal/Ethical Duties",
-      content: "<p>Consent, confidentiality, reporting obligations.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Consent & Confidentiality</h2><p>Obtain and document consent; respect privacy; report per policy; avoid conflicts of interest.</p>"
     },
     {
       id: "doc_l4_fr",
@@ -319,25 +344,28 @@ export const trainingData = {
       locale: "fr",
       order: 4,
       title: "Devoirs juridiques/éthiques",
-      content: "<p>Consentement, confidentialité, obligations de signalement.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Consentement & confidentialité</h2><p>Recueillir et consigner le consentement; respecter la vie privée; signaler selon la politique; éviter les conflits d'intérêts.</p>"
     },
 
-    // Nurses (bilingual)
+    /* ---------- NURSES (3) ---------- */
     {
       id: "nrs_l1_en",
       course_id: "nurse_track",
       locale: "en",
       order: 1,
       title: "Clinical Skills in Resource-Limited Settings",
-      content: "<p>Vitals, injections, wound care, triage and escalation.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Objectives</h2><ul><li>Measure and interpret vital signs.</li><li>Perform injections and wound care safely.</li><li>Escalate per triage rules.</li></ul><h2>Notes</h2><p>Always verify allergies; use clean technique; document care in EHR.</p>"
     },
     {
       id: "nrs_l1_fr",
       course_id: "nurse_track",
       locale: "fr",
       order: 1,
-      title: "Compétences cliniques en milieux à faibles ressources",
-      content: "<p>Signes vitaux, injections, soins des plaies, triage et escalade.</p>"
+      title: "Compétences cliniques — milieux à faibles ressources",
+      contentType: "html",
+      htmlBody: "<h2>Objectifs</h2><ul><li>Mesurer et interpréter les constantes.</li><li>Pratiquer injections et soins de plaies en sécurité.</li><li>Escalader selon triage.</li></ul><h2>Notes</h2><p>Toujours vérifier les allergies; technique propre; documenter dans le DSE.</p>"
     },
     {
       id: "nrs_l2_en",
@@ -345,7 +373,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Infection Control & Patient Safety",
-      content: "<p>PPE, sterilization, sharps, isolation practices.</p>"
+      contentType: "html",
+      htmlBody: "<h2>PPE</h2><p>Donning: hand hygiene → gown → mask/respirator → eye protection → gloves. Doffing reverse with hand hygiene between steps.</p><h2>Waste</h2><p>Sharps to rigid container; red bag for biohazard; black for non-infectious.</p>"
     },
     {
       id: "nrs_l2_fr",
@@ -353,7 +382,8 @@ export const trainingData = {
       locale: "fr",
       order: 2,
       title: "Prévention des infections & sécurité des patients",
-      content: "<p>EPI, stérilisation, objets piquants, isolement.</p>"
+      contentType: "html",
+      htmlBody: "<h2>EPI</h2><p>Enfilage : hygiène des mains → blouse → masque/respirateur → protection oculaire → gants. Retrait en sens inverse avec hygiène des mains.</p><h2>Déchets</h2><p>Objets piquants: conteneur rigide; sac rouge pour biohazard; sac noir pour non infectieux.</p>"
     },
     {
       id: "nrs_l3_en",
@@ -361,7 +391,8 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "Maternal/Child & Home Visits",
-      content: "<p>Red flags, home follow-up, escalation pathways.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Red Flags</h2><p>Neonatal fever, lethargy, poor feeding; maternal hemorrhage, severe headache, seizures. Plan home follow-ups and escalation.</p>"
     },
     {
       id: "nrs_l3_fr",
@@ -369,17 +400,19 @@ export const trainingData = {
       locale: "fr",
       order: 3,
       title: "Santé maternelle/infantile & visites à domicile",
-      content: "<p>Signaux d'alerte, suivi à domicile, voies d'escalade.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Signaux d'alerte</h2><p>Fièvre néonatale, léthargie, mauvaise alimentation; hémorragie maternelle, céphalées sévères, convulsions. Planifier les suivis et l'escalade.</p>"
     },
 
-    // Drivers (bilingual)
+    /* ---------- DRIVERS (3) ---------- */
     {
       id: "drv_l1_en",
       course_id: "driver_track",
       locale: "en",
       order: 1,
       title: "Safe Navigation & Route Planning",
-      content: "<p>Pre-trip checks, route planning, communications.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Pre-trip</h2><ul><li>Tires, brakes, lights, fluids, spares, straps.</li><li>Route plan + alternates; weather and road advisories.</li></ul><h2>Comms</h2><p>Radio check; contact tree; log departure and ETA.</p>"
     },
     {
       id: "drv_l1_fr",
@@ -387,7 +420,8 @@ export const trainingData = {
       locale: "fr",
       order: 1,
       title: "Navigation sûre & planification d'itinéraires",
-      content: "<p>Contrôles avant départ, planification, communications.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Avant départ</h2><ul><li>Pneus, freins, feux, fluides, pièces, sangles.</li><li>Itinéraire + alternatives; météo et état des routes.</li></ul><h2>Comms</h2><p>Test radio; arbre de contacts; journal départ/ETA.</p>"
     },
     {
       id: "drv_l2_en",
@@ -395,7 +429,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Emergency Response on the Road",
-      content: "<p>Breakdowns, floods, detours, medical transport.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Protocol</h2><ol><li>Stop in safe area; hazards on.</li><li>Assess risks (water, slope, traffic).</li><li>Notify ops; request guidance.</li><li>Choose alternate route; document in log.</li></ol>"
     },
     {
       id: "drv_l2_fr",
@@ -403,7 +438,8 @@ export const trainingData = {
       locale: "fr",
       order: 2,
       title: "Réponse d'urgence sur la route",
-      content: "<p>Pannes, inondations, détours, transport médical.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Protocole</h2><ol><li>Se ranger en zone sûre; feux de détresse.</li><li>Évaluer risques (eau, pente, trafic).</li><li>Avertir l'équipe; demander directives.</li><li>Choisir un détour; consigner au journal.</li></ol>"
     },
     {
       id: "drv_l3_en",
@@ -411,7 +447,8 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "Field Comms & Passenger Care",
-      content: "<p>Protocols, de-escalation, documentation.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Passenger Care</h2><p>Calm, predictable driving; check on patient comfort; report changes.</p><h2>Incidents</h2><p>Document near-misses and report weekly.</p>"
     },
     {
       id: "drv_l3_fr",
@@ -419,17 +456,19 @@ export const trainingData = {
       locale: "fr",
       order: 3,
       title: "Communications & prise en charge des passagers",
-      content: "<p>Protocoles, désescalade, documentation.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Prise en charge</h2><p>Conduite calme et prévisible; confort des passagers; signaler tout changement.</p><h2>Incidents</h2><p>Consigner les quasi-accidents et les signaler chaque semaine.</p>"
     },
 
-    // Managers (bilingual)
+    /* ---------- MANAGERS (3) ---------- */
     {
       id: "mgr_l1_en",
       course_id: "manager_track",
       locale: "en",
       order: 1,
       title: "Leadership & Team Management",
-      content: "<p>Supervision, conflict resolution, coaching.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Focus</h2><p>Conflict resolution, coaching, role clarity, feedback loops. Set expectations and document 1:1s.</p>"
     },
     {
       id: "mgr_l1_fr",
@@ -437,7 +476,8 @@ export const trainingData = {
       locale: "fr",
       order: 1,
       title: "Leadership & gestion d'équipe",
-      content: "<p>Supervision, résolution de conflits, accompagnement.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Focus</h2><p>Résolution de conflits, accompagnement, clarté des rôles, boucles de feedback. Documenter les entretiens individuels.</p>"
     },
     {
       id: "mgr_l2_en",
@@ -445,7 +485,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Ops & Resource Allocation",
-      content: "<p>Inventory, logistics, scheduling.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Inventory</h2><p>Forecast demand; prevent stockouts; maintain supplier backups.</p><h2>Scheduling</h2><p>Balance teams and routes; monitor costs.</p>"
     },
     {
       id: "mgr_l2_fr",
@@ -453,7 +494,8 @@ export const trainingData = {
       locale: "fr",
       order: 2,
       title: "Opérations & allocation des ressources",
-      content: "<p>Inventaire, logistique, planification.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Inventaire</h2><p>Prévoir la demande; éviter les ruptures; fournisseurs de secours.</p><h2>Planification</h2><p>Équilibrer équipes et circuits; suivre les coûts.</p>"
     },
     {
       id: "mgr_l3_en",
@@ -461,7 +503,8 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "Governance, KPIs & Reporting",
-      content: "<p>Dashboards, donor packets, audits.</p>"
+      contentType: "html",
+      htmlBody: "<h2>KPIs</h2><p>Visits/day, referral rate, stockout rate, incident count, training completion.</p><h2>Reporting</h2><p>Monthly summary: trends, outliers, corrective actions; keep an immutable audit trail.</p>"
     },
     {
       id: "mgr_l3_fr",
@@ -469,17 +512,19 @@ export const trainingData = {
       locale: "fr",
       order: 3,
       title: "Gouvernance, ICP & rapports",
-      content: "<p>Tableaux de bord, dossiers donateurs, audits.</p>"
+      contentType: "html",
+      htmlBody: "<h2>ICP</h2><p>Visites/jour, taux d'orientation, ruptures, incidents, achèvement des formations.</p><h2>Rapports</h2><p>Résumé mensuel : tendances, écarts, mesures correctives; piste d'audit immuable.</p>"
     },
 
-    // Security (bilingual)
+    /* ---------- SECURITY (3) ---------- */
     {
       id: "sec_l1_en",
       course_id: "security_track",
       locale: "en",
       order: 1,
       title: "Security Protocols in Mobile Clinics",
-      content: "<p>Access control, incident reporting, posture.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Access Control</h2><p>Visitor sign-in, ID badges, perimeter checks, controlled chokepoints, daily review.</p><h2>Posture</h2><p>Normal → Heightened → Lockdown: define triggers and comms.</p>"
     },
     {
       id: "sec_l1_fr",
@@ -487,7 +532,8 @@ export const trainingData = {
       locale: "fr",
       order: 1,
       title: "Protocoles de sécurité en clinique mobile",
-      content: "<p>Contrôle d'accès, signalement d'incidents, posture.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Contrôle d'accès</h2><p>Enregistrement visiteurs, badges, périmètre, points de passage, revue quotidienne.</p><h2>Posture</h2><p>Normale → Renforcée → Confinement : déclencheurs et communications.</p>"
     },
     {
       id: "sec_l2_en",
@@ -495,7 +541,8 @@ export const trainingData = {
       locale: "en",
       order: 2,
       title: "Emergency Response & De-escalation",
-      content: "<p>Breaches, drills, coordination.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Response</h2><p>Protect staff & patients first; call for support; isolate the area; document and escalate.</p>"
     },
     {
       id: "sec_l2_fr",
@@ -503,7 +550,8 @@ export const trainingData = {
       locale: "fr",
       order: 2,
       title: "Réponse d'urgence & désescalade",
-      content: "<p>Brèches, exercices, coordination.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Réponse</h2><p>Priorité à la sécurité du personnel et des patients; demander du renfort; isoler; documenter et escalader.</p>"
     },
     {
       id: "sec_l3_en",
@@ -511,7 +559,8 @@ export const trainingData = {
       locale: "en",
       order: 3,
       title: "Access Control & Site Hardening",
-      content: "<p>Perimeter, chokepoints, visitor management.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Perimeter</h2><p>Clear lines of sight, lighting, locks, camera coverage; weekly inspection log.</p>"
     },
     {
       id: "sec_l3_fr",
@@ -519,7 +568,8 @@ export const trainingData = {
       locale: "fr",
       order: 3,
       title: "Contrôle d'accès & durcissement du site",
-      content: "<p>Périmètre, points de contrôle, gestion des visiteurs.</p>"
+      contentType: "html",
+      htmlBody: "<h2>Périmètre</h2><p>Lignes de visibilité, éclairage, serrures, couverture caméras; registre d'inspection hebdomadaire.</p>"
     }
   ],
   quizzes: [
