@@ -349,6 +349,14 @@ export const trainingData = {
       title_fr: "Leadership, finances & opérations",
       timeLimitSec: 3000,
       passingScore: 70
+    },
+    {
+      id: "security_qz_main",
+      course_id: "security_track",
+      title_en: "Security Protocols & Judgment",
+      title_fr: "Protocoles de sécurité & jugement",
+      timeLimitSec: 2400,
+      passingScore: 70
     }
   ],
   questions: [
@@ -592,6 +600,38 @@ export const trainingData = {
       type: "short",
       prompt_en: "Cut ops costs by 10% from $12,000/month. New budget & where to cut.",
       prompt_fr: "Réduire de 10 % des coûts (12 000 $/mois). Nouveau budget et postes à réduire."
+    },
+    {
+      id: "sec_q1",
+      quiz_id: "security_qz_main",
+      type: "mcq",
+      prompt_en: "Top priority in a security breach?",
+      prompt_fr: "Priorité en cas de brèche de sécurité ?",
+      options_en: ["Call police", "Protect staff & patients", "Chase intruder", "Lock all doors"],
+      options_fr: ["Appeler la police", "Protéger personnel & patients", "Poursuivre l'intrus", "Tout verrouiller"],
+      answer_index: 1
+    },
+    {
+      id: "sec_q2",
+      quiz_id: "security_qz_main",
+      type: "short",
+      prompt_en: "Protest forms near clinic site. Describe lockdown posture + comms.",
+      prompt_fr: "Manifestation près du site. Décrivez posture de confinement + communications."
+    },
+    {
+      id: "sec_q3",
+      quiz_id: "security_qz_main",
+      type: "short",
+      prompt_en: "Access control standards for visitors & badges (busy clinic).",
+      prompt_fr: "Normes de contrôle d'accès pour visiteurs & badges (clinique fréquentée)."
+    },
+    {
+      id: "sec_q4",
+      quiz_id: "security_qz_main",
+      type: "truefalse",
+      prompt_en: "Log and review access incidents weekly.",
+      prompt_fr: "Consigner et revoir les incidents d'accès chaque semaine.",
+      answer: true
     }
   ]
 };
