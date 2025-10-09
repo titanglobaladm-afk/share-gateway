@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -16,10 +16,28 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [rateLimitSeconds, setRateLimitSeconds] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (rateLimitSeconds > 0) {
+      const timer = setInterval(() => {
+        setRateLimitSeconds((prev) => {
+          if (prev <= 1) {
+            setErrorMessage('');
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [rateLimitSeconds]);
 
   const handleMagicLink = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMessage('');
 
     try {
       const redirectUrl = `${window.location.origin}/onboarding`;
@@ -30,12 +48,24 @@ const SignIn = () => {
         },
       });
 
-      if (error) throw error;
+      if (error) {
+        // Check if it's a rate limit error
+        if (error.message.includes('429') || error.message.toLowerCase().includes('rate limit')) {
+          const match = error.message.match(/(\d+)\s*seconds?/i);
+          const waitTime = match ? parseInt(match[1]) : 20;
+          setRateLimitSeconds(waitTime);
+          setErrorMessage(`Too many requests. Please wait ${waitTime} seconds before trying again.`);
+        } else {
+          setErrorMessage(error.message);
+          toast.error(error.message);
+        }
+        throw error;
+      }
 
       setSent(true);
       toast.success(t('auth.sent'));
     } catch (error: any) {
-      toast.error(error.message || 'Authentication failed');
+      // Error already handled above
     } finally {
       setLoading(false);
     }
@@ -51,9 +81,24 @@ const SignIn = () => {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          {rateLimitSeconds > 0 && (
+            <Alert variant="destructive">
+              <AlertDescription>
+                Too many requests. Please wait {rateLimitSeconds} second{rateLimitSeconds !== 1 ? 's' : ''} before trying again.
+              </AlertDescription>
+            </Alert>
+          )}
+          
           {sent ? (
             <Alert>
-              <AlertDescription>{t('auth.sent')}</AlertDescription>
+              <AlertDescription>
+                <div className="space-y-2">
+                  <p className="font-medium">{t('auth.sent')}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Check your email and click the link to sign in. You can close this page.
+                  </p>
+                </div>
+              </AlertDescription>
             </Alert>
           ) : (
             <form onSubmit={handleMagicLink} className="space-y-4">
@@ -66,11 +111,15 @@ const SignIn = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  disabled={loading}
+                  disabled={loading || rateLimitSeconds > 0}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Sending...' : t('auth.continue')}
+              <Button 
+                type="submit" 
+                className="w-full" 
+                disabled={loading || rateLimitSeconds > 0}
+              >
+                {loading ? 'Sending...' : rateLimitSeconds > 0 ? `Wait ${rateLimitSeconds}s` : t('auth.continue')}
               </Button>
             </form>
           )}
