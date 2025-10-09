@@ -29,14 +29,7 @@ const App = () => (
             <Navigation />
             <Routes>
               <Route path="/signin" element={<SignIn />} />
-              <Route 
-                path="/onboarding" 
-                element={
-                  <ProtectedRoute>
-                    <Onboarding />
-                  </ProtectedRoute>
-                } 
-              />
+              <Route path="/onboarding" element={<Onboarding />} />
               <Route 
                 path="/" 
                 element={
