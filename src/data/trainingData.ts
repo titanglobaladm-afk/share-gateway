@@ -375,6 +375,14 @@ export const trainingData = {
       passingScore: 70
     },
     {
+      id: "driver_qz_bank_v2",
+      course_id: "driver_track",
+      title_en: "Driver Master Bank — Logistics & Safety",
+      title_fr: "Banque maîtresse — Logistique & sécurité (Chauffeurs)",
+      timeLimitSec: 2400,
+      passingScore: 70
+    },
+    {
       id: "doctor_qz_main",
       course_id: "doctor_track",
       title_en: "Physician Aptitude & Scenarios",
@@ -1179,6 +1187,183 @@ export const trainingData = {
       prompt_fr: "Quel est une urgence postnatale ?",
       options_en: ["Mild lochia", "Severe headache with vision changes", "Breast engorgement", "Mild perineal pain"],
       options_fr: ["Lochies légères", "Céphalée sévère avec troubles visuels", "Engorgement mammaire", "Douleur périnéale légère"],
+      answer_index: 1
+    },
+    {
+      id: "drv2_q01",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Pre-trip: which is NOT required?",
+      prompt_fr: "Avant départ : lequel n'est PAS requis ?",
+      options_en: ["Tire pressure", "Brake lights", "Clean windshield", "Engine oil change"],
+      options_fr: ["Pression pneus", "Feux stop", "Pare-brise propre", "Vidange moteur"],
+      answer_index: 3
+    },
+    {
+      id: "drv2_q02",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Flooded bridge. First action?",
+      prompt_fr: "Pont inondé. Première action ?",
+      options_en: ["Attempt crossing slowly", "Wait silently", "Find alternate route & inform ops", "Turn back without notice"],
+      options_fr: ["Traverser lentement", "Attendre en silence", "Détour & informer l'équipe", "Revenir sans prévenir"],
+      answer_index: 2
+    },
+    {
+      id: "drv2_q03",
+      quiz_id: "driver_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Always secure equipment with straps and padding.",
+      prompt_fr: "Toujours sécuriser le matériel avec sangles et rembourrage.",
+      answer: true
+    },
+    {
+      id: "drv2_q04",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Rough terrain prep includes:",
+      prompt_fr: "Préparation terrain difficile :",
+      options_en: ["Lower tire pressure moderately", "Increase speed", "Disable seatbelts", "Ignore cargo straps"],
+      options_fr: ["Baisser modérément la pression", "Augmenter la vitesse", "Désactiver ceintures", "Ignorer les sangles"],
+      answer_index: 0
+    },
+    {
+      id: "drv2_q05",
+      quiz_id: "driver_qz_bank_v2",
+      type: "short",
+      prompt_en: "List core pre-trip checks for remote travel.",
+      prompt_fr: "Vérifications clés avant trajet en zone isolée."
+    },
+    {
+      id: "drv2_q06",
+      quiz_id: "driver_qz_bank_v2",
+      type: "short",
+      prompt_en: "Radio outage in canyon: comms fallback plan.",
+      prompt_fr: "Panne radio dans un canyon : plan de repli communication."
+    },
+    {
+      id: "drv2_q07",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Priority when escorting medical staff:",
+      prompt_fr: "Priorité en escortant du personnel médical :",
+      options_en: ["Speed", "Comfort", "Safety & predictable driving", "Shortest route"],
+      options_fr: ["Vitesse", "Confort", "Sécurité & conduite prévisible", "Itinéraire le plus court"],
+      answer_index: 2
+    },
+    {
+      id: "drv2_q08",
+      quiz_id: "driver_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Log near-miss incidents in daily log.",
+      prompt_fr: "Consigner les quasi-accidents dans le journal quotidien.",
+      answer: true
+    },
+    {
+      id: "drv2_q09",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Heat management best practice:",
+      prompt_fr: "Bonne pratique de gestion de la chaleur :",
+      options_en: ["Overfill coolant", "Check coolant & belts", "Block radiator", "Ignore temp light"],
+      options_fr: ["Surremplir liquide", "Vérifier liquide & courroies", "Bloquer radiateur", "Ignorer témoin"],
+      answer_index: 1
+    },
+    {
+      id: "drv2_q10",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "When to stop and rest legally/clinically:",
+      prompt_fr: "Quand s'arrêter légalement/clinique :",
+      options_en: ["Any yawn", "At legal maximum or fatigue signs", "At passenger request only", "Never"],
+      options_fr: ["Au premier bâillement", "Au maximum légal ou signes de fatigue", "À la demande du passager seulement", "Jamais"],
+      answer_index: 1
+    },
+    {
+      id: "drv2_q11",
+      quiz_id: "driver_qz_bank_v2",
+      type: "short",
+      prompt_en: "Passenger motion sickness protocol.",
+      prompt_fr: "Protocole pour le mal des transports du passager."
+    },
+    {
+      id: "drv2_q12",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Best practice for night convoy.",
+      prompt_fr: "Bonne pratique pour convoi de nuit.",
+      options_en: ["High beams always", "Staggered spacing & radios", "Tight bumper-to-bumper", "No lights"],
+      options_fr: ["Phares forts toujours", "Espacement en quinconce & radios", "Collé-serré", "Sans éclairage"],
+      answer_index: 1
+    },
+    {
+      id: "drv2_q13",
+      quiz_id: "driver_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Document passenger transfers with time and signatures.",
+      prompt_fr: "Documenter les transferts de passagers avec heure et signatures.",
+      answer: true
+    },
+    {
+      id: "drv2_q14",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "After minor collision, first step:",
+      prompt_fr: "Après collision mineure, première étape :",
+      options_en: ["Leave area", "Check for injuries & secure scene", "Argue fault", "Continue route"],
+      options_fr: ["Quitter la zone", "Vérifier blessures & sécuriser", "Discuter de la faute", "Continuer"],
+      answer_index: 1
+    },
+    {
+      id: "drv2_q15",
+      quiz_id: "driver_qz_bank_v2",
+      type: "short",
+      prompt_en: "Checklist for securing oxygen cylinders in vehicle.",
+      prompt_fr: "Checklist pour sécuriser des bouteilles d'oxygène en véhicule."
+    },
+    {
+      id: "drv2_q16",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Tire blowout response:",
+      prompt_fr: "Réponse à l'éclatement d'un pneu :",
+      options_en: ["Brake hard immediately", "Steer straight, ease off accelerator, then brake", "Accelerate to stabilize", "Turn sharply to shoulder"],
+      options_fr: ["Freiner fort immédiatement", "Garder droit, lever l'accélérateur puis freiner", "Accélérer", "Virer brusquement"],
+      answer_index: 1
+    },
+    {
+      id: "drv2_q17",
+      quiz_id: "driver_qz_bank_v2",
+      type: "truefalse",
+      prompt_en: "Never drive through moving water if depth is unknown.",
+      prompt_fr: "Ne jamais traverser une eau en mouvement si la profondeur est inconnue.",
+      answer: true
+    },
+    {
+      id: "drv2_q18",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Satellite phone etiquette:",
+      prompt_fr: "Étiquette du téléphone satellite :",
+      options_en: ["Leave open line", "Short, essential messages only", "Chat for updates", "Avoid logs"],
+      options_fr: ["Ligne ouverte", "Messages courts et essentiels", "Bavarder", "Éviter les journaux"],
+      answer_index: 1
+    },
+    {
+      id: "drv2_q19",
+      quiz_id: "driver_qz_bank_v2",
+      type: "short",
+      prompt_en: "Daily vehicle log—minimum required fields.",
+      prompt_fr: "Journal du véhicule — champs minimaux requis."
+    },
+    {
+      id: "drv2_q20",
+      quiz_id: "driver_qz_bank_v2",
+      type: "mcq",
+      prompt_en: "Cargo placement priority:",
+      prompt_fr: "Priorité de placement du chargement :",
+      options_en: ["Heavy items high", "Heavy items low/forward", "All light items forward", "Random"],
+      options_fr: ["Objets lourds en haut", "Objets lourds bas/avant", "Objets légers à l'avant", "Aléatoire"],
       answer_index: 1
     }
   ]
