@@ -22,12 +22,14 @@ const Dashboard = () => {
     const fetchUserStatus = async () => {
       if (!user) return;
 
-      // Fetch user's role
+      // Fetch user's most recent role (ordered by created_at)
       const { data: roleData } = await supabase
         .from('user_roles')
         .select('role')
         .eq('user_id', user.id)
-        .single();
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
 
       if (roleData) {
         const role = roleData.role as AppRole;

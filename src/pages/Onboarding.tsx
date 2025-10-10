@@ -85,12 +85,11 @@ const Onboarding = () => {
     setLoading(true);
 
     try {
-      // Delete existing investor role
+      // Delete ALL existing roles for this user (clean slate)
       await supabase
         .from('user_roles')
         .delete()
-        .eq('user_id', user.id)
-        .eq('role', 'investor');
+        .eq('user_id', user.id);
 
       // Insert new role
       const { error: roleError } = await supabase
