@@ -35,6 +35,12 @@ const Onboarding = () => {
     const checkOnboarding = async () => {
       if (!user) return;
       
+      // Allow reset via URL parameter ?reset=true
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('reset') === 'true') {
+        return; // Skip the onboarding check
+      }
+      
       const { data } = await supabase
         .from('profiles')
         .select('onboarding_completed')
@@ -88,6 +94,12 @@ const Onboarding = () => {
       // Delete ALL existing roles for this user (clean slate)
       await supabase
         .from('user_roles')
+        .delete()
+        .eq('user_id', user.id);
+
+      // Delete ALL existing courses for this user (clean slate)
+      await supabase
+        .from('user_courses')
         .delete()
         .eq('user_id', user.id);
 
