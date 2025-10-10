@@ -1,37 +1,70 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Award, Clock } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { BookOpen, Award, Clock, AlertCircle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useEffect, useState } from 'react';
-import { EvaluationSummary } from '@/components/EvaluationSummary';
+import { AppRole, roleToAptitudeTestMap } from '@/data/roleCoursesMap';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const Dashboard = () => {
   const { t } = useLanguage();
   const { user } = useAuth();
-  const [evaluation, setEvaluation] = useState<any>(null);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [userRole, setUserRole] = useState<AppRole | null>(null);
+  const [hasPassedRoleTest, setHasPassedRoleTest] = useState(false);
+  const [hasLockedCourses, setHasLockedCourses] = useState(false);
 
   useEffect(() => {
-    const fetchEvaluation = async () => {
+    const fetchUserStatus = async () => {
       if (!user) return;
 
-      const { data } = await supabase
-        .from('ai_evaluations')
-        .select('*')
+      // Fetch user's role
+      const { data: roleData } = await supabase
+        .from('user_roles')
+        .select('role')
         .eq('user_id', user.id)
-        .eq('evaluation_type', 'aptitude_test')
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .maybeSingle();
+        .single();
 
-      setEvaluation(data);
+      if (roleData) {
+        const role = roleData.role as AppRole;
+        setUserRole(role);
+
+        // Check if role requires a test
+        const requiresTest = roleToAptitudeTestMap[role] !== null;
+        
+        if (requiresTest) {
+          // Check if user has passed the role test
+          const { data: testData } = await supabase
+            .from('aptitude_test_attempts')
+            .select('passed')
+            .eq('user_id', user.id)
+            .eq('role', role)
+            .eq('passed', true)
+            .maybeSingle();
+
+          setHasPassedRoleTest(!!testData);
+
+          // Check if user has locked courses
+          const { data: coursesData } = await supabase
+            .from('user_courses')
+            .select('role_test_passed')
+            .eq('user_id', user.id)
+            .eq('role_test_passed', false);
+
+          setHasLockedCourses(!!coursesData && coursesData.length > 0);
+        } else {
+          setHasPassedRoleTest(true); // No test required
+        }
+      }
+
       setLoading(false);
     };
 
-    fetchEvaluation();
+    fetchUserStatus();
   }, [user]);
 
   return (
@@ -42,10 +75,19 @@ const Dashboard = () => {
           <p className="text-muted-foreground">{t('dashboard.subtitle')}</p>
         </div>
 
-        {!loading && evaluation && (
-          <div className="mb-8">
-            <EvaluationSummary evaluation={evaluation} />
-          </div>
+        {!loading && !hasPassedRoleTest && hasLockedCourses && userRole && (
+          <Alert className="mb-8 border-primary bg-primary/5">
+            <AlertCircle className="h-5 w-5 text-primary" />
+            <AlertTitle className="text-lg font-semibold">Complete Your {userRole} Aptitude Test</AlertTitle>
+            <AlertDescription className="mt-2">
+              <p className="mb-4">
+                You have courses waiting to be unlocked. Pass the {userRole} aptitude test to begin your training.
+              </p>
+              <Button onClick={() => navigate(`/role-test?role=${userRole}`)} size="lg">
+                Take {userRole.charAt(0).toUpperCase() + userRole.slice(1)} Test
+              </Button>
+            </AlertDescription>
+          </Alert>
         )}
 
         <div className="grid gap-6 md:grid-cols-3 mb-8">
