@@ -78,13 +78,15 @@ const Dashboard = () => {
         {!loading && !hasPassedRoleTest && hasLockedCourses && userRole && (
           <Alert className="mb-8 border-primary bg-primary/5">
             <AlertCircle className="h-5 w-5 text-primary" />
-            <AlertTitle className="text-lg font-semibold">Complete Your {userRole} Aptitude Test</AlertTitle>
+            <AlertTitle className="text-lg font-semibold">
+              {t('role_test.title').replace('{role}', userRole.charAt(0).toUpperCase() + userRole.slice(1))}
+            </AlertTitle>
             <AlertDescription className="mt-2">
               <p className="mb-4">
-                You have courses waiting to be unlocked. Pass the {userRole} aptitude test to begin your training.
+                {t('role_test.alert_message').replace('{role}', userRole)}
               </p>
               <Button onClick={() => navigate(`/role-test?role=${userRole}`)} size="lg">
-                Take {userRole.charAt(0).toUpperCase() + userRole.slice(1)} Test
+                {t('role_test.take_test').replace('{role}', userRole.charAt(0).toUpperCase() + userRole.slice(1))}
               </Button>
             </AlertDescription>
           </Alert>
