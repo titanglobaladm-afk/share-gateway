@@ -186,7 +186,10 @@ const RoleTest = () => {
             {t('role_test.subtitle').replace('{role}', role || '')}
           </p>
         </div>
-        <AptitudeTest onComplete={handleTestComplete} />
+        <AptitudeTest 
+          quizId={roleToAptitudeTestMap[role] || undefined}
+          onComplete={handleTestComplete} 
+        />
       </div>
     </div>
   );

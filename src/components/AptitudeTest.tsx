@@ -11,17 +11,18 @@ import { ChevronLeft, ChevronRight, Clock } from 'lucide-react';
 
 interface AptitudeTestProps {
   onComplete: (answers: Record<string, string>) => void;
+  quizId?: string;
 }
 
-export const AptitudeTest = ({ onComplete }: AptitudeTestProps) => {
+export const AptitudeTest = ({ onComplete, quizId = 'aptitude_test_general' }: AptitudeTestProps) => {
   const { language, t } = useLanguage();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [timeRemaining, setTimeRemaining] = useState(3600); // 60 minutes in seconds
 
-  // Get aptitude test questions
+  // Get aptitude test questions for the specified quiz
   const aptitudeQuestions = trainingData.questions.filter(
-    q => q.quiz_id === 'aptitude_test_general'
+    q => q.quiz_id === quizId
   );
 
   const currentQuestion = aptitudeQuestions[currentQuestionIndex];

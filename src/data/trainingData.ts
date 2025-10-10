@@ -2462,6 +2462,905 @@ export const trainingData = {
       options_en: ["Heavy items high", "Heavy items low/forward", "All light items forward", "Random"],
       options_fr: ["Objets lourds en haut", "Objets lourds bas/avant", "Objets légers à l'avant", "Aléatoire"],
       answer_index: 1
+    },
+
+    // Doctor Aptitude Test Questions
+    {
+      id: "apt_doc_cog_01",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "A study shows a correlation between high blood pressure and increased risk of stroke. How would you explain the importance of controlling blood pressure to a patient?",
+      prompt_fr: "Une étude montre une corrélation entre l'hypertension artérielle et un risque accru d'AVC. Comment expliqueriez-vous l'importance du contrôle de la pression artérielle à un patient ?"
+    },
+    {
+      id: "apt_doc_cog_02",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "In a community with a high prevalence of malaria, a patient presents with symptoms that could indicate several different conditions. Which is the most important first step?",
+      prompt_fr: "Dans une communauté à forte prévalence de paludisme, un patient présente des symptômes pouvant indiquer plusieurs conditions différentes. Quelle est la première étape la plus importante ?"
+    },
+    {
+      id: "apt_doc_cog_03",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "You receive a report that the incidence of tuberculosis is increasing in the area. How would you prioritize screening in the mobile clinic?",
+      prompt_fr: "Vous recevez un rapport indiquant que l'incidence de la tuberculose augmente dans la région. Comment prioriseriez-vous le dépistage dans la clinique mobile ?"
+    },
+    {
+      id: "apt_doc_cog_04",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "A new health policy is introduced that affects patient care in mobile clinics. How would you communicate this change to your team?",
+      prompt_fr: "Une nouvelle politique de santé est introduite qui affecte les soins aux patients dans les cliniques mobiles. Comment communiqueriez-vous ce changement à votre équipe ?"
+    },
+    {
+      id: "apt_doc_cog_05",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "Explain how you would inform a patient about the risks and benefits of a treatment option they are hesitant to take.",
+      prompt_fr: "Expliquez comment vous informeriez un patient des risques et des avantages d'une option de traitement qu'il hésite à prendre."
+    },
+    {
+      id: "apt_doc_crit_01",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "A patient in your mobile clinic exhibits symptoms that could indicate either dengue fever or leptospirosis, but both tests are expensive. How do you determine which test to prioritize?",
+      prompt_fr: "Un patient dans votre clinique mobile présente des symptômes pouvant indiquer soit la dengue soit la leptospirose, mais les deux tests sont coûteux. Comment déterminez-vous quel test prioriser ?"
+    },
+    {
+      id: "apt_doc_crit_02",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "You suspect that a patient is not adhering to their tuberculosis treatment regimen. How would you approach this situation to ensure the patient completes the course?",
+      prompt_fr: "Vous soupçonnez qu'un patient ne suit pas son régime de traitement de la tuberculose. Comment aborderiez-vous cette situation pour vous assurer que le patient termine le traitement ?"
+    },
+    {
+      id: "apt_doc_crit_03",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "A child presents with a high fever and rash, and the parent is unsure of vaccination history. How do you proceed?",
+      prompt_fr: "Un enfant présente une forte fièvre et une éruption cutanée, et le parent n'est pas sûr de l'historique de vaccination. Comment procédez-vous ?"
+    },
+    {
+      id: "apt_doc_crit_04",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "While examining a patient, you find conflicting symptoms that could indicate multiple diagnoses. How do you decide on the next steps?",
+      prompt_fr: "En examinant un patient, vous trouvez des symptômes contradictoires qui pourraient indiquer plusieurs diagnostics. Comment décidez-vous des prochaines étapes ?"
+    },
+    {
+      id: "apt_doc_crit_05",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "A patient refuses a recommended treatment due to fear of side effects. How do you address their concerns?",
+      prompt_fr: "Un patient refuse un traitement recommandé par crainte d'effets secondaires. Comment répondez-vous à ses préoccupations ?"
+    },
+    {
+      id: "apt_doc_pers_01",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "How do you typically react under pressure when making decisions that impact patient outcomes?",
+      prompt_fr: "Comment réagissez-vous généralement sous pression lorsque vous prenez des décisions qui affectent les résultats des patients ?"
+    },
+    {
+      id: "apt_doc_pers_02",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "In a team setting, do you prefer to lead discussions or listen to others' opinions first?",
+      prompt_fr: "Dans un cadre d'équipe, préférez-vous diriger les discussions ou écouter d'abord les opinions des autres ?"
+    },
+    {
+      id: "apt_doc_pers_03",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "How do you handle situations where a patient disagrees with your treatment plan?",
+      prompt_fr: "Comment gérez-vous les situations où un patient n'est pas d'accord avec votre plan de traitement ?"
+    },
+    {
+      id: "apt_doc_pers_04",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "When faced with a difficult decision that could have negative consequences, how do you proceed?",
+      prompt_fr: "Face à une décision difficile qui pourrait avoir des conséquences négatives, comment procédez-vous ?"
+    },
+    {
+      id: "apt_doc_pers_05",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "Do you prefer to follow established protocols strictly, or do you adapt them based on the situation?",
+      prompt_fr: "Préférez-vous suivre strictement les protocoles établis ou les adapter en fonction de la situation ?"
+    },
+    {
+      id: "apt_doc_tech_01",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "Describe the steps you would take to diagnose and manage a patient with suspected malaria in a mobile clinic with limited diagnostic tools.",
+      prompt_fr: "Décrivez les étapes que vous prendriez pour diagnostiquer et gérer un patient suspecté de paludisme dans une clinique mobile avec des outils de diagnostic limités."
+    },
+    {
+      id: "apt_doc_tech_02",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "What are the key considerations when setting up a temporary treatment area in a mobile clinic for an outbreak of infectious disease?",
+      prompt_fr: "Quelles sont les considérations clés lors de la mise en place d'une zone de traitement temporaire dans une clinique mobile pour une épidémie de maladie infectieuse ?"
+    },
+    {
+      id: "apt_doc_tech_03",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "How would you manage a patient with severe dehydration and hypovolemic shock in a resource-limited environment?",
+      prompt_fr: "Comment géreriez-vous un patient souffrant de déshydratation sévère et de choc hypovolémique dans un environnement aux ressources limitées ?"
+    },
+    {
+      id: "apt_doc_tech_04",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "Explain the protocol for treating a patient with a suspected snakebite in a remote area.",
+      prompt_fr: "Expliquez le protocole de traitement d'un patient avec une morsure de serpent suspectée dans une zone reculée."
+    },
+    {
+      id: "apt_doc_tech_05",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "What steps would you take to ensure the sterility of medical equipment in a mobile clinic setting?",
+      prompt_fr: "Quelles mesures prendriez-vous pour assurer la stérilité de l'équipement médical dans un cadre de clinique mobile ?"
+    },
+    {
+      id: "apt_doc_sit_01",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "During a routine visit to a remote village, a patient presents with severe dehydration and confusion. The nearest hospital is 3 hours away. How do you stabilize the patient before transport?",
+      prompt_fr: "Lors d'une visite de routine dans un village éloigné, un patient présente une déshydratation sévère et de la confusion. L'hôpital le plus proche est à 3 heures de route. Comment stabilisez-vous le patient avant le transport ?"
+    },
+    {
+      id: "apt_doc_sit_02",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "A mother brings her child to the mobile clinic with a high fever and a rash. You suspect measles, but the child has not been vaccinated. What steps do you take to manage the case and prevent the spread of infection?",
+      prompt_fr: "Une mère amène son enfant à la clinique mobile avec une forte fièvre et une éruption cutanée. Vous suspectez la rougeole, mais l'enfant n'a pas été vacciné. Quelles mesures prenez-vous pour gérer le cas et prévenir la propagation de l'infection ?"
+    },
+    {
+      id: "apt_doc_sit_03",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "You encounter a patient who has been non-compliant with their medication. What steps do you take to ensure adherence going forward?",
+      prompt_fr: "Vous rencontrez un patient qui n'a pas respecté son traitement médicamenteux. Quelles mesures prenez-vous pour assurer l'observance à l'avenir ?"
+    },
+    {
+      id: "apt_doc_sit_04",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "A major donor is visiting the mobile clinic, and during the visit, a medical emergency occurs. How do you manage the situation to ensure both the patient's needs and the donor's experience are addressed?",
+      prompt_fr: "Un donateur majeur visite la clinique mobile et, pendant la visite, une urgence médicale se produit. Comment gérez-vous la situation pour répondre aux besoins du patient et à l'expérience du donateur ?"
+    },
+    {
+      id: "apt_doc_sit_05",
+      quiz_id: "aptitude_test_doctor",
+      type: "essay",
+      prompt_en: "You are the only doctor available, and two patients need immediate attention—one with severe chest pain and another with a traumatic injury. How do you prioritize care?",
+      prompt_fr: "Vous êtes le seul médecin disponible et deux patients ont besoin d'une attention immédiate : l'un avec une douleur thoracique sévère et l'autre avec une blessure traumatique. Comment priorisez-vous les soins ?"
+    },
+
+    // Nurse Aptitude Test Questions
+    {
+      id: "apt_nrs_cog_01",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "You are tasked with explaining a new wound care protocol to a group of community health workers. How do you ensure they understand the importance of each step?",
+      prompt_fr: "Vous êtes chargé d'expliquer un nouveau protocole de soins des plaies à un groupe d'agents de santé communautaires. Comment vous assurez-vous qu'ils comprennent l'importance de chaque étape ?"
+    },
+    {
+      id: "apt_nrs_cog_02",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "You receive a patient's history that is unclear and lacks detail. How do you proceed with gathering the necessary information?",
+      prompt_fr: "Vous recevez l'historique d'un patient qui n'est pas clair et manque de détails. Comment procédez-vous pour recueillir les informations nécessaires ?"
+    },
+    {
+      id: "apt_nrs_cog_03",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "A patient is worried about the side effects of a medication you're about to administer. How do you address their concerns?",
+      prompt_fr: "Un patient s'inquiète des effets secondaires d'un médicament que vous êtes sur le point d'administrer. Comment répondez-vous à ses préoccupations ?"
+    },
+    {
+      id: "apt_nrs_cog_04",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "The mobile clinic has received new guidelines on infection control. How do you ensure that all team members understand and implement these guidelines?",
+      prompt_fr: "La clinique mobile a reçu de nouvelles directives sur le contrôle des infections. Comment vous assurez-vous que tous les membres de l'équipe comprennent et mettent en œuvre ces directives ?"
+    },
+    {
+      id: "apt_nrs_cog_05",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "Explain how you would communicate with a non-English-speaking patient who needs to understand their treatment plan.",
+      prompt_fr: "Expliquez comment vous communiqueriez avec un patient non anglophone qui doit comprendre son plan de traitement."
+    },
+    {
+      id: "apt_nrs_crit_01",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "You notice that a patient's wound is not healing as expected. What are the possible reasons, and what steps would you take to address the issue?",
+      prompt_fr: "Vous remarquez que la plaie d'un patient ne guérit pas comme prévu. Quelles sont les raisons possibles et quelles mesures prendriez-vous pour résoudre le problème ?"
+    },
+    {
+      id: "apt_nrs_crit_02",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "A patient in the mobile clinic shows signs of an allergic reaction after receiving medication. What are your immediate actions?",
+      prompt_fr: "Un patient de la clinique mobile présente des signes de réaction allergique après avoir reçu un médicament. Quelles sont vos actions immédiates ?"
+    },
+    {
+      id: "apt_nrs_crit_03",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "A patient is in pain and requests more medication than prescribed. How do you handle this situation?",
+      prompt_fr: "Un patient souffre et demande plus de médicaments que ce qui a été prescrit. Comment gérez-vous cette situation ?"
+    },
+    {
+      id: "apt_nrs_crit_04",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "You are the only nurse available, and two patients need immediate attention—one with a bleeding wound and another with severe abdominal pain. How do you prioritize care?",
+      prompt_fr: "Vous êtes la seule infirmière disponible et deux patients ont besoin d'une attention immédiate : l'un avec une plaie qui saigne et l'autre avec une douleur abdominale sévère. Comment priorisez-vous les soins ?"
+    },
+    {
+      id: "apt_nrs_crit_05",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "A patient refuses a necessary procedure due to fear of pain. How do you manage their anxiety and ensure they receive the care they need?",
+      prompt_fr: "Un patient refuse une procédure nécessaire par peur de la douleur. Comment gérez-vous son anxiété et vous assurez-vous qu'il reçoive les soins dont il a besoin ?"
+    },
+    {
+      id: "apt_nrs_pers_01",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "How do you handle multiple urgent tasks that require your attention at the same time?",
+      prompt_fr: "Comment gérez-vous plusieurs tâches urgentes qui nécessitent votre attention en même temps ?"
+    },
+    {
+      id: "apt_nrs_pers_02",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "Do you prefer to follow established protocols strictly, or do you adapt them based on the situation?",
+      prompt_fr: "Préférez-vous suivre strictement les protocoles établis ou les adapter en fonction de la situation ?"
+    },
+    {
+      id: "apt_nrs_pers_03",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "How do you typically react to unexpected changes in patient conditions?",
+      prompt_fr: "Comment réagissez-vous généralement aux changements inattendus dans l'état des patients ?"
+    },
+    {
+      id: "apt_nrs_pers_04",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "When working under pressure, do you prefer to work independently or as part of a team?",
+      prompt_fr: "Lorsque vous travaillez sous pression, préférez-vous travailler de manière indépendante ou en équipe ?"
+    },
+    {
+      id: "apt_nrs_pers_05",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "How do you maintain a calm and reassuring demeanor when dealing with anxious patients?",
+      prompt_fr: "Comment maintenez-vous une attitude calme et rassurante face à des patients anxieux ?"
+    },
+    {
+      id: "apt_nrs_tech_01",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "What are the key signs of sepsis in a patient with an infected wound, and how would you manage the condition in a mobile clinic setting?",
+      prompt_fr: "Quels sont les signes clés de septicémie chez un patient avec une plaie infectée, et comment géreriez-vous la condition dans un cadre de clinique mobile ?"
+    },
+    {
+      id: "apt_nrs_tech_02",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "Describe how you would prepare and administer a vaccine during a mass immunization campaign in a rural area.",
+      prompt_fr: "Décrivez comment vous prépareriez et administreriez un vaccin lors d'une campagne de vaccination de masse dans une zone rurale."
+    },
+    {
+      id: "apt_nrs_tech_03",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "Explain the correct procedure for administering an intramuscular injection in a mobile clinic setting.",
+      prompt_fr: "Expliquez la procédure correcte pour administrer une injection intramusculaire dans un cadre de clinique mobile."
+    },
+    {
+      id: "apt_nrs_tech_04",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "How would you manage a patient who presents with signs of dehydration and low blood pressure in a resource-limited environment?",
+      prompt_fr: "Comment géreriez-vous un patient qui présente des signes de déshydratation et de tension artérielle basse dans un environnement aux ressources limitées ?"
+    },
+    {
+      id: "apt_nrs_tech_05",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "Describe the steps you would take to manage a patient with suspected tetanus in a remote area.",
+      prompt_fr: "Décrivez les étapes que vous prendriez pour gérer un patient avec un tétanos suspecté dans une zone reculée."
+    },
+    {
+      id: "apt_nrs_sit_01",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "A patient in the mobile clinic suddenly becomes non-responsive. You are the only healthcare provider on site. What immediate actions do you take?",
+      prompt_fr: "Un patient de la clinique mobile devient soudainement non réactif. Vous êtes le seul fournisseur de soins de santé sur place. Quelles actions immédiates prenez-vous ?"
+    },
+    {
+      id: "apt_nrs_sit_02",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "You are responsible for training new community health workers. How do you ensure they are adequately prepared to handle patient care in the field?",
+      prompt_fr: "Vous êtes responsable de la formation de nouveaux agents de santé communautaires. Comment vous assurez-vous qu'ils sont adéquatement préparés à gérer les soins aux patients sur le terrain ?"
+    },
+    {
+      id: "apt_nrs_sit_03",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "A patient expresses concern about the quality of care they received in a previous visit. How do you address their concerns and ensure their trust in the clinic?",
+      prompt_fr: "Un patient exprime des préoccupations concernant la qualité des soins qu'il a reçus lors d'une visite précédente. Comment répondez-vous à ses préoccupations et assurez-vous sa confiance dans la clinique ?"
+    },
+    {
+      id: "apt_nrs_sit_04",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "A colleague is handling a medical situation incorrectly, putting the patient at risk. How do you intervene without escalating the situation?",
+      prompt_fr: "Un collègue gère incorrectement une situation médicale, mettant le patient en danger. Comment intervenez-vous sans aggraver la situation ?"
+    },
+    {
+      id: "apt_nrs_sit_05",
+      quiz_id: "aptitude_test_nurse",
+      type: "essay",
+      prompt_en: "During a busy clinic day, a patient with a minor complaint insists on being seen immediately. How do you manage the situation?",
+      prompt_fr: "Lors d'une journée de clinique chargée, un patient avec une plainte mineure insiste pour être vu immédiatement. Comment gérez-vous la situation ?"
+    },
+
+    // Driver Aptitude Test Questions
+    {
+      id: "apt_drv_cog_01",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You are given instructions to reach a remote village with limited road access. How do you ensure that you fully understand the route before starting the journey?",
+      prompt_fr: "On vous donne des instructions pour atteindre un village éloigné avec un accès routier limité. Comment vous assurez-vous de bien comprendre l'itinéraire avant de commencer le voyage ?"
+    },
+    {
+      id: "apt_drv_cog_02",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "The clinic team gives you a list of supplies to be delivered. How do you confirm that all the necessary items are packed and ready for transport?",
+      prompt_fr: "L'équipe de la clinique vous donne une liste de fournitures à livrer. Comment confirmez-vous que tous les articles nécessaires sont emballés et prêts pour le transport ?"
+    },
+    {
+      id: "apt_drv_cog_03",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "While driving, you receive a message that the destination has changed due to an emergency. How do you adjust your route?",
+      prompt_fr: "En conduisant, vous recevez un message indiquant que la destination a changé en raison d'une urgence. Comment ajustez-vous votre itinéraire ?"
+    },
+    {
+      id: "apt_drv_cog_04",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You encounter a road sign indicating a potential hazard ahead. How do you interpret and respond to the warning?",
+      prompt_fr: "Vous rencontrez un panneau routier indiquant un danger potentiel à venir. Comment interprétez-vous et répondez-vous à l'avertissement ?"
+    },
+    {
+      id: "apt_drv_cog_05",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "Explain how you would communicate with the clinic team if you encounter unexpected delays during the journey.",
+      prompt_fr: "Expliquez comment vous communiqueriez avec l'équipe de la clinique si vous rencontrez des retards inattendus pendant le voyage."
+    },
+    {
+      id: "apt_drv_crit_01",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You encounter a bridge that is flooded and impassable. What are your immediate actions, and how do you communicate with the clinic team?",
+      prompt_fr: "Vous rencontrez un pont inondé et impraticable. Quelles sont vos actions immédiates et comment communiquez-vous avec l'équipe de la clinique ?"
+    },
+    {
+      id: "apt_drv_crit_02",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "During a long journey, the vehicle's engine starts overheating. How do you ensure the safety of the passengers and the vehicle while addressing the issue?",
+      prompt_fr: "Pendant un long voyage, le moteur du véhicule commence à surchauffer. Comment assurez-vous la sécurité des passagers et du véhicule tout en résolvant le problème ?"
+    },
+    {
+      id: "apt_drv_crit_03",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You notice that the vehicle's fuel gauge is faulty during the trip. How do you manage the situation to avoid running out of fuel?",
+      prompt_fr: "Vous remarquez que la jauge de carburant du véhicule est défectueuse pendant le voyage. Comment gérez-vous la situation pour éviter de manquer de carburant ?"
+    },
+    {
+      id: "apt_drv_crit_04",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "While transporting medical supplies, you are informed of a roadblock due to civil unrest. How do you ensure the safe delivery of the supplies?",
+      prompt_fr: "Lors du transport de fournitures médicales, vous êtes informé d'un barrage routier dû à des troubles civils. Comment assurez-vous la livraison sécurisée des fournitures ?"
+    },
+    {
+      id: "apt_drv_crit_05",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You are asked to deliver urgent medical supplies to a remote area with no clear road access. How do you plan and execute the delivery?",
+      prompt_fr: "On vous demande de livrer des fournitures médicales urgentes dans une zone reculée sans accès routier clair. Comment planifiez-vous et exécutez-vous la livraison ?"
+    },
+    {
+      id: "apt_drv_pers_01",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "How do you manage stress during long, challenging drives?",
+      prompt_fr: "Comment gérez-vous le stress lors de longs trajets difficiles ?"
+    },
+    {
+      id: "apt_drv_pers_02",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "Do you prefer to work with clear instructions, or do you like having flexibility to make decisions on your own?",
+      prompt_fr: "Préférez-vous travailler avec des instructions claires ou aimez-vous avoir la flexibilité de prendre des décisions par vous-même ?"
+    },
+    {
+      id: "apt_drv_pers_03",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "How do you handle unexpected changes in your route or schedule?",
+      prompt_fr: "Comment gérez-vous les changements inattendus dans votre itinéraire ou votre horaire ?"
+    },
+    {
+      id: "apt_drv_pers_04",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "Describe a situation where you had to make a quick decision while driving. How did you ensure safety?",
+      prompt_fr: "Décrivez une situation où vous avez dû prendre une décision rapide en conduisant. Comment avez-vous assuré la sécurité ?"
+    },
+    {
+      id: "apt_drv_pers_05",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "How do you maintain a positive attitude during long periods of driving, especially in difficult conditions?",
+      prompt_fr: "Comment maintenez-vous une attitude positive lors de longues périodes de conduite, surtout dans des conditions difficiles ?"
+    },
+    {
+      id: "apt_drv_tech_01",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "List the steps you would take to conduct a safety check on the vehicle before starting a journey to a remote clinic.",
+      prompt_fr: "Énumérez les étapes que vous prendriez pour effectuer une vérification de sécurité sur le véhicule avant de commencer un voyage vers une clinique éloignée."
+    },
+    {
+      id: "apt_drv_tech_02",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "How would you handle a situation where the vehicle's tire bursts while driving on a remote road?",
+      prompt_fr: "Comment géreriez-vous une situation où le pneu du véhicule éclate en conduisant sur une route éloignée ?"
+    },
+    {
+      id: "apt_drv_tech_03",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "Explain how you would perform basic maintenance on the vehicle, such as checking oil levels, tire pressure, and coolant.",
+      prompt_fr: "Expliquez comment vous effectueriez l'entretien de base du véhicule, comme la vérification des niveaux d'huile, de la pression des pneus et du liquide de refroidissement."
+    },
+    {
+      id: "apt_drv_tech_04",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "Describe the procedures for securing medical supplies in the vehicle to prevent damage during transport.",
+      prompt_fr: "Décrivez les procédures pour sécuriser les fournitures médicales dans le véhicule pour éviter les dommages pendant le transport."
+    },
+    {
+      id: "apt_drv_tech_05",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "What steps would you take if the vehicle breaks down in a remote area with limited access to assistance?",
+      prompt_fr: "Quelles mesures prendriez-vous si le véhicule tombe en panne dans une zone reculée avec un accès limité à l'assistance ?"
+    },
+    {
+      id: "apt_drv_sit_01",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You are transporting medical supplies to a clinic when a tire bursts. How do you ensure the safety of the passengers and the security of the supplies while resolving the issue?",
+      prompt_fr: "Vous transportez des fournitures médicales vers une clinique lorsqu'un pneu éclate. Comment assurez-vous la sécurité des passagers et la sécurité des fournitures tout en résolvant le problème ?"
+    },
+    {
+      id: "apt_drv_sit_02",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "On a narrow mountain road, you encounter another vehicle coming from the opposite direction. How do you safely navigate the situation?",
+      prompt_fr: "Sur une route de montagne étroite, vous rencontrez un autre véhicule venant dans la direction opposée. Comment gérez-vous la situation en toute sécurité ?"
+    },
+    {
+      id: "apt_drv_sit_03",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You are running late to deliver critical supplies due to heavy traffic. How do you communicate with the clinic team, and what steps do you take to ensure timely delivery?",
+      prompt_fr: "Vous êtes en retard pour livrer des fournitures critiques en raison d'un trafic dense. Comment communiquez-vous avec l'équipe de la clinique et quelles mesures prenez-vous pour assurer une livraison en temps opportun ?"
+    },
+    {
+      id: "apt_drv_sit_04",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "During the journey, a passenger becomes ill and needs immediate attention. How do you manage the situation while continuing to drive safely?",
+      prompt_fr: "Pendant le voyage, un passager tombe malade et a besoin d'une attention immédiate. Comment gérez-vous la situation tout en continuant à conduire en toute sécurité ?"
+    },
+    {
+      id: "apt_drv_sit_05",
+      quiz_id: "aptitude_test_driver",
+      type: "essay",
+      prompt_en: "You are informed of a severe weather warning while on the road. How do you decide whether to continue the journey or seek shelter?",
+      prompt_fr: "Vous êtes informé d'un avertissement météorologique sévère alors que vous êtes sur la route. Comment décidez-vous de continuer le voyage ou de chercher un abri ?"
+    },
+
+    // Manager Aptitude Test Questions
+    {
+      id: "apt_mgr_cog_01",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You receive a report showing a decline in patient satisfaction at one of the mobile clinics. What steps do you take to investigate and address the issue?",
+      prompt_fr: "Vous recevez un rapport montrant une baisse de la satisfaction des patients dans l'une des cliniques mobiles. Quelles mesures prenez-vous pour enquêter et résoudre le problème ?"
+    },
+    {
+      id: "apt_mgr_cog_02",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You are tasked with creating a plan to improve the efficiency of clinic operations. How do you gather the necessary information and develop the plan?",
+      prompt_fr: "Vous êtes chargé de créer un plan pour améliorer l'efficacité des opérations de la clinique. Comment recueillez-vous les informations nécessaires et développez-vous le plan ?"
+    },
+    {
+      id: "apt_mgr_cog_03",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "A new health regulation is introduced that affects mobile clinics. How do you ensure that all team members are aware of and comply with the new regulation?",
+      prompt_fr: "Une nouvelle réglementation sanitaire est introduite qui affecte les cliniques mobiles. Comment vous assurez-vous que tous les membres de l'équipe sont conscients de la nouvelle réglementation et la respectent ?"
+    },
+    {
+      id: "apt_mgr_cog_04",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "Explain how you would communicate a critical change in clinic procedures to a diverse team of healthcare workers.",
+      prompt_fr: "Expliquez comment vous communiqueriez un changement critique dans les procédures de la clinique à une équipe diversifiée de travailleurs de la santé."
+    },
+    {
+      id: "apt_mgr_cog_05",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "A patient files a complaint about their care experience. How do you handle the situation to resolve the issue and improve future care?",
+      prompt_fr: "Un patient dépose une plainte concernant son expérience de soins. Comment gérez-vous la situation pour résoudre le problème et améliorer les soins futurs ?"
+    },
+    {
+      id: "apt_mgr_num_01",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You are responsible for a budget of $15,000 for the month. If you allocate $5,000 for medical supplies and $3,000 for staffing, how much remains for operational costs?",
+      prompt_fr: "Vous êtes responsable d'un budget de 15 000 $ pour le mois. Si vous allouez 5 000 $ pour les fournitures médicales et 3 000 $ pour le personnel, combien reste-t-il pour les coûts opérationnels ?"
+    },
+    {
+      id: "apt_mgr_num_02",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "The clinic sees an average of 30 patients per day. If the cost per patient is $20, what is the total cost for one week?",
+      prompt_fr: "La clinique reçoit en moyenne 30 patients par jour. Si le coût par patient est de 20 $, quel est le coût total pour une semaine ?"
+    },
+    {
+      id: "apt_mgr_crit_01",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You notice that the mobile clinics are consistently running out of essential supplies before the end of each trip. How do you address this issue to ensure better resource management?",
+      prompt_fr: "Vous remarquez que les cliniques mobiles manquent constamment de fournitures essentielles avant la fin de chaque voyage. Comment résolvez-vous ce problème pour assurer une meilleure gestion des ressources ?"
+    },
+    {
+      id: "apt_mgr_crit_02",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "A new health policy requires changes in the clinic's operational procedures. How do you implement these changes effectively across all mobile clinics?",
+      prompt_fr: "Une nouvelle politique de santé nécessite des changements dans les procédures opérationnelles de la clinique. Comment mettez-vous en œuvre ces changements efficacement dans toutes les cliniques mobiles ?"
+    },
+    {
+      id: "apt_mgr_crit_03",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You are faced with a decision to allocate limited resources between two high-need areas. How do you prioritize the allocation?",
+      prompt_fr: "Vous êtes confronté à une décision d'allouer des ressources limitées entre deux zones à besoins élevés. Comment priorisez-vous l'allocation ?"
+    },
+    {
+      id: "apt_mgr_crit_04",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "A conflict arises between two staff members regarding patient care. How do you mediate the situation to ensure a positive outcome?",
+      prompt_fr: "Un conflit survient entre deux membres du personnel concernant les soins aux patients. Comment médiez-vous la situation pour assurer un résultat positif ?"
+    },
+    {
+      id: "apt_mgr_crit_05",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You receive reports of inconsistent care quality across different mobile clinics under your supervision. How do you assess the situation and ensure that care standards are uniform across all clinics?",
+      prompt_fr: "Vous recevez des rapports sur une qualité de soins incohérente dans différentes cliniques mobiles sous votre supervision. Comment évaluez-vous la situation et assurez-vous que les normes de soins sont uniformes dans toutes les cliniques ?"
+    },
+    {
+      id: "apt_mgr_pers_01",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "How do you prioritize tasks when managing multiple clinic teams?",
+      prompt_fr: "Comment priorisez-vous les tâches lors de la gestion de plusieurs équipes de clinique ?"
+    },
+    {
+      id: "apt_mgr_pers_02",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "Do you prefer to lead by example or delegate responsibilities?",
+      prompt_fr: "Préférez-vous diriger par l'exemple ou déléguer des responsabilités ?"
+    },
+    {
+      id: "apt_mgr_pers_03",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "How do you handle stress when faced with tight deadlines and high-pressure situations?",
+      prompt_fr: "Comment gérez-vous le stress face à des délais serrés et des situations de haute pression ?"
+    },
+    {
+      id: "apt_mgr_pers_04",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "Describe a time when you had to make a difficult decision that impacted your team. How did you manage the situation?",
+      prompt_fr: "Décrivez une situation où vous avez dû prendre une décision difficile qui a impacté votre équipe. Comment avez-vous géré la situation ?"
+    },
+    {
+      id: "apt_mgr_pers_05",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "How do you motivate and support your team during challenging times?",
+      prompt_fr: "Comment motivez-vous et soutenez-vous votre équipe pendant les périodes difficiles ?"
+    },
+    {
+      id: "apt_mgr_tech_01",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "Explain how you would allocate limited resources during a crisis, ensuring that all clinics have the essentials they need.",
+      prompt_fr: "Expliquez comment vous alloueriez des ressources limitées pendant une crise, en vous assurant que toutes les cliniques disposent de l'essentiel dont elles ont besoin."
+    },
+    {
+      id: "apt_mgr_tech_02",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "Describe the steps you would take to improve efficiency in clinic operations, particularly focusing on reducing downtime and improving patient flow.",
+      prompt_fr: "Décrivez les étapes que vous prendriez pour améliorer l'efficacité des opérations de la clinique, en vous concentrant particulièrement sur la réduction des temps d'arrêt et l'amélioration du flux de patients."
+    },
+    {
+      id: "apt_mgr_tech_03",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "What strategies would you implement to ensure that all mobile clinics maintain high standards of patient care?",
+      prompt_fr: "Quelles stratégies mettriez-vous en œuvre pour vous assurer que toutes les cliniques mobiles maintiennent des normes élevées de soins aux patients ?"
+    },
+    {
+      id: "apt_mgr_tech_04",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "How would you handle a situation where a key staff member is unavailable at short notice, affecting clinic operations?",
+      prompt_fr: "Comment géreriez-vous une situation où un membre clé du personnel n'est pas disponible à court préavis, affectant les opérations de la clinique ?"
+    },
+    {
+      id: "apt_mgr_tech_05",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "Describe the process of creating a budget for a mobile clinic, including how you would manage unforeseen expenses.",
+      prompt_fr: "Décrivez le processus de création d'un budget pour une clinique mobile, y compris comment vous géreriez les dépenses imprévues."
+    },
+    {
+      id: "apt_mgr_sit_01",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "A major donor is visiting one of the mobile clinics. During the visit, a conflict arises among the staff about patient management. How do you handle the situation to ensure the donor's experience is positive and the conflict is resolved?",
+      prompt_fr: "Un donateur majeur visite l'une des cliniques mobiles. Pendant la visite, un conflit survient parmi le personnel concernant la gestion des patients. Comment gérez-vous la situation pour vous assurer que l'expérience du donateur est positive et que le conflit est résolu ?"
+    },
+    {
+      id: "apt_mgr_sit_02",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "A natural disaster has affected several communities served by your mobile clinics. Resources are stretched thin, and some areas are inaccessible. How do you prioritize which areas to serve first, and what steps do you take to manage the crisis?",
+      prompt_fr: "Une catastrophe naturelle a affecté plusieurs communautés desservies par vos cliniques mobiles. Les ressources sont limitées et certaines zones sont inaccessibles. Comment priorisez-vous les zones à desservir en premier et quelles mesures prenez-vous pour gérer la crise ?"
+    },
+    {
+      id: "apt_mgr_sit_03",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You receive a request from a community that has not been previously served by the mobile clinics. How do you assess the need and decide whether to extend services to this area?",
+      prompt_fr: "Vous recevez une demande d'une communauté qui n'a pas été précédemment desservie par les cliniques mobiles. Comment évaluez-vous le besoin et décidez-vous d'étendre les services à cette zone ?"
+    },
+    {
+      id: "apt_mgr_sit_04",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "A staff member reports that a critical piece of equipment has malfunctioned, impacting clinic operations. How do you address the issue to minimize disruption?",
+      prompt_fr: "Un membre du personnel signale qu'un équipement critique a mal fonctionné, impactant les opérations de la clinique. Comment résolvez-vous le problème pour minimiser les perturbations ?"
+    },
+    {
+      id: "apt_mgr_sit_05",
+      quiz_id: "aptitude_test_manager",
+      type: "essay",
+      prompt_en: "You are tasked with expanding the mobile clinic services to a new region. What steps do you take to ensure a smooth and successful expansion?",
+      prompt_fr: "Vous êtes chargé d'étendre les services de la clinique mobile à une nouvelle région. Quelles mesures prenez-vous pour assurer une expansion fluide et réussie ?"
+    },
+
+    // Security Aptitude Test Questions
+    {
+      id: "apt_sec_cog_01",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "You receive a security briefing about potential threats in the area where the mobile clinic operates. How do you communicate these risks to the clinic team?",
+      prompt_fr: "Vous recevez un briefing de sécurité concernant des menaces potentielles dans la zone où la clinique mobile opère. Comment communiquez-vous ces risques à l'équipe de la clinique ?"
+    },
+    {
+      id: "apt_sec_cog_02",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "Explain how you would assess the security situation before the clinic team arrives at a new location.",
+      prompt_fr: "Expliquez comment vous évalueriez la situation de sécurité avant que l'équipe de la clinique n'arrive dans un nouvel emplacement."
+    },
+    {
+      id: "apt_sec_cog_03",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "A new security protocol is implemented for mobile clinics. How do you ensure all team members understand and follow these procedures?",
+      prompt_fr: "Un nouveau protocole de sécurité est mis en place pour les cliniques mobiles. Comment vous assurez-vous que tous les membres de l'équipe comprennent et suivent ces procédures ?"
+    },
+    {
+      id: "apt_sec_cog_04",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "Describe how you would document and report a security incident that occurred during a clinic visit.",
+      prompt_fr: "Décrivez comment vous documenteriez et signaleriez un incident de sécurité survenu lors d'une visite à la clinique."
+    },
+    {
+      id: "apt_sec_cog_05",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "How would you brief the clinic staff about emergency evacuation procedures for different types of threats?",
+      prompt_fr: "Comment brieferiez-vous le personnel de la clinique sur les procédures d'évacuation d'urgence pour différents types de menaces ?"
+    },
+    {
+      id: "apt_sec_crit_01",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "You notice suspicious activity near the mobile clinic site. What immediate steps do you take to assess and respond to the potential threat?",
+      prompt_fr: "Vous remarquez une activité suspecte près du site de la clinique mobile. Quelles mesures immédiates prenez-vous pour évaluer et répondre à la menace potentielle ?"
+    },
+    {
+      id: "apt_sec_crit_02",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "During a clinic operation, you receive intelligence about civil unrest in the area. How do you evaluate the situation and decide on appropriate actions?",
+      prompt_fr: "Pendant une opération de clinique, vous recevez des renseignements sur des troubles civils dans la région. Comment évaluez-vous la situation et décidez-vous des actions appropriées ?"
+    },
+    {
+      id: "apt_sec_crit_03",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "An unauthorized person attempts to enter a restricted area of the clinic. How do you handle this situation while maintaining patient safety?",
+      prompt_fr: "Une personne non autorisée tente d'entrer dans une zone restreinte de la clinique. Comment gérez-vous cette situation tout en maintenant la sécurité des patients ?"
+    },
+    {
+      id: "apt_sec_crit_04",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "You identify a vulnerability in the clinic's security setup. How do you prioritize addressing this issue while maintaining current operations?",
+      prompt_fr: "Vous identifiez une vulnérabilité dans la configuration de sécurité de la clinique. Comment priorisez-vous la résolution de ce problème tout en maintenant les opérations actuelles ?"
+    },
+    {
+      id: "apt_sec_crit_05",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "Medical supplies go missing from the secured storage area. How do you investigate and prevent future incidents?",
+      prompt_fr: "Des fournitures médicales disparaissent de la zone de stockage sécurisée. Comment enquêtez-vous et prévenez-vous de futurs incidents ?"
+    },
+    {
+      id: "apt_sec_pers_01",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "How do you maintain alertness and vigilance during long shifts at the clinic?",
+      prompt_fr: "Comment maintenez-vous la vigilance et l'attention lors de longs quarts de travail à la clinique ?"
+    },
+    {
+      id: "apt_sec_pers_02",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "Describe your approach to balancing firm security enforcement with maintaining a welcoming environment for patients.",
+      prompt_fr: "Décrivez votre approche pour équilibrer l'application ferme de la sécurité tout en maintenant un environnement accueillant pour les patients."
+    },
+    {
+      id: "apt_sec_pers_03",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "How do you handle situations where you must enforce rules that others may find inconvenient?",
+      prompt_fr: "Comment gérez-vous les situations où vous devez appliquer des règles que d'autres peuvent trouver gênantes ?"
+    },
+    {
+      id: "apt_sec_pers_04",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "When working under stress, do you prefer to make decisions independently or consult with team members?",
+      prompt_fr: "Lorsque vous travaillez sous pression, préférez-vous prendre des décisions de manière indépendante ou consulter les membres de l'équipe ?"
+    },
+    {
+      id: "apt_sec_pers_05",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "How do you maintain professionalism when dealing with difficult or confrontational individuals?",
+      prompt_fr: "Comment maintenez-vous le professionnalisme face à des personnes difficiles ou conflictuelles ?"
+    },
+    {
+      id: "apt_sec_tech_01",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "Describe the key elements of conducting a security perimeter check before the clinic opens.",
+      prompt_fr: "Décrivez les éléments clés de la réalisation d'une vérification du périmètre de sécurité avant l'ouverture de la clinique."
+    },
+    {
+      id: "apt_sec_tech_02",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "What procedures would you follow to secure and monitor access points during clinic operations?",
+      prompt_fr: "Quelles procédures suivriez-vous pour sécuriser et surveiller les points d'accès pendant les opérations de la clinique ?"
+    },
+    {
+      id: "apt_sec_tech_03",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "Explain how you would coordinate with local security forces or authorities when operating in a new area.",
+      prompt_fr: "Expliquez comment vous vous coordonneriez avec les forces de sécurité locales ou les autorités lors d'opérations dans une nouvelle zone."
+    },
+    {
+      id: "apt_sec_tech_04",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "What steps would you take to secure valuable medical equipment and supplies overnight in a mobile clinic setting?",
+      prompt_fr: "Quelles mesures prendriez-vous pour sécuriser l'équipement médical et les fournitures précieuses pendant la nuit dans un cadre de clinique mobile ?"
+    },
+    {
+      id: "apt_sec_tech_05",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "Describe your approach to conducting security briefings and debriefings with the clinic team.",
+      prompt_fr: "Décrivez votre approche pour mener des briefings et débriefings de sécurité avec l'équipe de la clinique."
+    },
+    {
+      id: "apt_sec_sit_01",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "A crowd gathers outside the mobile clinic, and tensions begin to rise. How do you manage the situation to ensure patient and staff safety?",
+      prompt_fr: "Une foule se rassemble à l'extérieur de la clinique mobile et les tensions commencent à monter. Comment gérez-vous la situation pour assurer la sécurité des patients et du personnel ?"
+    },
+    {
+      id: "apt_sec_sit_02",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "You witness a theft of medical supplies by someone claiming to be in desperate need. How do you respond while balancing security and compassion?",
+      prompt_fr: "Vous êtes témoin d'un vol de fournitures médicales par quelqu'un qui prétend être dans un besoin désespéré. Comment répondez-vous en équilibrant sécurité et compassion ?"
+    },
+    {
+      id: "apt_sec_sit_03",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "During clinic hours, you must evacuate the facility due to an imminent threat. Describe your evacuation plan and priorities.",
+      prompt_fr: "Pendant les heures de clinique, vous devez évacuer l'établissement en raison d'une menace imminente. Décrivez votre plan d'évacuation et vos priorités."
+    },
+    {
+      id: "apt_sec_sit_04",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "A staff member reports feeling threatened by an individual near the clinic. How do you investigate and address this concern?",
+      prompt_fr: "Un membre du personnel signale se sentir menacé par un individu près de la clinique. Comment enquêtez-vous et traitez-vous cette préoccupation ?"
+    },
+    {
+      id: "apt_sec_sit_05",
+      quiz_id: "aptitude_test_security",
+      type: "essay",
+      prompt_en: "You discover that security protocols were not followed during the previous shift, creating a vulnerability. How do you address this with the team?",
+      prompt_fr: "Vous découvrez que les protocoles de sécurité n'ont pas été suivis lors du quart précédent, créant une vulnérabilité. Comment abordez-vous cela avec l'équipe ?"
     }
   ]
 };
