@@ -11,11 +11,15 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Clock, CheckCircle2, XCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
+import { updateOnboardingStatus } from '@/lib/onboardingHelpers';
 
 const Quiz = () => {
   const { quizId } = useParams();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
+  const { user } = useAuth();
 
   const quiz = trainingData.quizzes.find(q => q.id === quizId);
   const questions = trainingData.questions.filter(q => q.quiz_id === quizId);
@@ -65,7 +69,7 @@ const Quiz = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let correct = 0;
     questions.forEach((q) => {
       const userAnswer = answers[q.id];
@@ -85,6 +89,28 @@ const Quiz = () => {
 
     if (finalScore >= quiz.passingScore) {
       toast.success(t('quiz.passed') + ` (${finalScore}%)`);
+      
+      // Update quiz attempt in database and check onboarding completion
+      if (user && quiz.course_id) {
+        try {
+          await supabase
+            .from('quiz_attempts')
+            .insert({
+              user_id: user.id,
+              quiz_id: quizId!,
+              course_id: quiz.course_id,
+              answers: answers,
+              score: finalScore,
+              passed: true,
+              submitted_at: new Date().toISOString()
+            });
+
+          // Check if onboarding is now complete
+          await updateOnboardingStatus(user.id);
+        } catch (error) {
+          console.error('Error saving quiz attempt:', error);
+        }
+      }
     } else {
       toast.error(t('quiz.failed') + ` (${finalScore}%)`);
     }

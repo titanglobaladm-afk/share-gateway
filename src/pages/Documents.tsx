@@ -8,6 +8,9 @@ import { FileText, CheckCircle2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import DocumentViewer from '@/components/DocumentViewer';
 import { format } from 'date-fns';
+import { updateOnboardingStatus } from '@/lib/onboardingHelpers';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 interface Document {
   id: string;
@@ -21,6 +24,7 @@ interface Document {
 const Documents = () => {
   const { user } = useAuth();
   const { t, language: locale } = useLanguage();
+  const navigate = useNavigate();
   const [documents, setDocuments] = useState<Document[]>([]);
   const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
   const [loading, setLoading] = useState(true);
@@ -56,9 +60,18 @@ const Documents = () => {
     fetchDocuments();
   }, [user, locale]);
 
-  const handleDocumentSigned = () => {
+  const handleDocumentSigned = async () => {
     setSelectedDoc(null);
-    fetchDocuments();
+    await fetchDocuments();
+    
+    // Check if all documents are now signed
+    if (user && documents.every(d => d.signed || d.id === selectedDoc?.id)) {
+      const isComplete = await updateOnboardingStatus(user.id);
+      if (isComplete) {
+        toast.success(t('documents.onboarding_complete'));
+        navigate('/dashboard');
+      }
+    }
   };
 
   if (loading) {
