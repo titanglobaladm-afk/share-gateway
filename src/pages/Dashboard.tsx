@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useEffect, useState } from 'react';
 import { AppRole, roleToAptitudeTestMap } from '@/data/roleCoursesMap';
+import JourneyProgress from '@/components/JourneyProgress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const Dashboard = () => {
@@ -17,12 +18,28 @@ const Dashboard = () => {
   const [userRole, setUserRole] = useState<AppRole | null>(null);
   const [hasPassedRoleTest, setHasPassedRoleTest] = useState(false);
   const [hasLockedCourses, setHasLockedCourses] = useState(false);
+  const [nextAction, setNextAction] = useState<{
+    titleKey: string;
+    descKey: string;
+    buttonText: string;
+    link: string;
+  } | null>(null);
+  const [profile, setProfile] = useState<any>(null);
+  const [allCoursesComplete, setAllCoursesComplete] = useState(false);
+  const [allDocsSigned, setAllDocsSigned] = useState(false);
 
   useEffect(() => {
     const fetchUserStatus = async () => {
       if (!user) return;
 
-      // Fetch user's most recent role (ordered by created_at)
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('kyc_verified, onboarding_completed')
+        .eq('user_id', user.id)
+        .single();
+      
+      setProfile(profileData);
+
       const { data: roleData } = await supabase
         .from('user_roles')
         .select('role')
@@ -34,12 +51,10 @@ const Dashboard = () => {
       if (roleData) {
         const role = roleData.role as AppRole;
         setUserRole(role);
-
-        // Check if role requires a test
+        const isInvestor = role === 'investor';
         const requiresTest = roleToAptitudeTestMap[role] !== null;
         
         if (requiresTest) {
-          // Check if user has passed the role test
           const { data: testData } = await supabase
             .from('aptitude_test_attempts')
             .select('passed')
@@ -49,17 +64,66 @@ const Dashboard = () => {
             .maybeSingle();
 
           setHasPassedRoleTest(!!testData);
-
-          // Check if user has locked courses
-          const { data: coursesData } = await supabase
-            .from('user_courses')
-            .select('role_test_passed')
-            .eq('user_id', user.id)
-            .eq('role_test_passed', false);
-
-          setHasLockedCourses(!!coursesData && coursesData.length > 0);
         } else {
-          setHasPassedRoleTest(true); // No test required
+          setHasPassedRoleTest(true);
+        }
+
+        const { data: allCoursesData } = await supabase
+          .from('user_courses')
+          .select('completed_at')
+          .eq('user_id', user.id);
+
+        const coursesComplete = allCoursesData?.every(c => c.completed_at !== null) || false;
+        setAllCoursesComplete(coursesComplete);
+
+        const { data: docsData } = await supabase
+          .from('user_document_signatures')
+          .select('id')
+          .eq('user_id', user.id);
+
+        const { data: templatesData } = await supabase
+          .from('document_templates')
+          .select('id')
+          .eq('active', true);
+
+        const docsSigned = docsData?.length === templatesData?.length;
+        setAllDocsSigned(docsSigned);
+
+        if (isInvestor && !profileData?.kyc_verified) {
+          setNextAction({
+            titleKey: 'next_action.kyc',
+            descKey: 'next_action.kyc_desc',
+            buttonText: t('next_action.kyc'),
+            link: '/kyc-verification'
+          });
+        } else if (!isInvestor && !hasPassedRoleTest && requiresTest) {
+          setNextAction({
+            titleKey: 'next_action.test',
+            descKey: 'next_action.test_desc',
+            buttonText: t('next_action.test'),
+            link: `/role-test?role=${role}`
+          });
+        } else if (!coursesComplete) {
+          setNextAction({
+            titleKey: 'next_action.training',
+            descKey: 'next_action.training_desc',
+            buttonText: t('next_action.training'),
+            link: '/my-courses'
+          });
+        } else if (!docsSigned) {
+          setNextAction({
+            titleKey: 'next_action.documents',
+            descKey: 'next_action.documents_desc',
+            buttonText: t('next_action.documents'),
+            link: '/documents'
+          });
+        } else {
+          setNextAction({
+            titleKey: 'next_action.complete',
+            descKey: 'next_action.complete_desc',
+            buttonText: t('dashboard.continue'),
+            link: '/my-courses'
+          });
         }
       }
 
@@ -67,7 +131,7 @@ const Dashboard = () => {
     };
 
     fetchUserStatus();
-  }, [user]);
+  }, [user, t]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,18 +141,18 @@ const Dashboard = () => {
           <p className="text-muted-foreground">{t('dashboard.subtitle')}</p>
         </div>
 
-        {!loading && !hasPassedRoleTest && hasLockedCourses && userRole && (
+        <JourneyProgress />
+        
+        {!loading && nextAction && (
           <Alert className="mb-8 border-primary bg-primary/5">
             <AlertCircle className="h-5 w-5 text-primary" />
             <AlertTitle className="text-lg font-semibold">
-              {t('role_test.title').replace('{role}', userRole.charAt(0).toUpperCase() + userRole.slice(1))}
+              {t(nextAction.titleKey)}
             </AlertTitle>
             <AlertDescription className="mt-2">
-              <p className="mb-4">
-                {t('role_test.alert_message').replace('{role}', userRole)}
-              </p>
-              <Button onClick={() => navigate(`/role-test?role=${userRole}`)} size="lg">
-                {t('role_test.take_test').replace('{role}', userRole.charAt(0).toUpperCase() + userRole.slice(1))}
+              <p className="mb-4">{t(nextAction.descKey)}</p>
+              <Button onClick={() => navigate(nextAction.link)} size="lg">
+                {nextAction.buttonText}
               </Button>
             </AlertDescription>
           </Alert>

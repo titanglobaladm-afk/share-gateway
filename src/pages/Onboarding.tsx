@@ -12,7 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 import { trainingData } from '@/data/trainingData';
-import { AppRole, roleToCoursesMap, roleToAptitudeTestMap } from '@/data/roleCoursesMap';
+import { AppRole, roleToCoursesMap, roleToAptitudeTestMap, roleDescriptions, courseOutlines } from '@/data/roleCoursesMap';
+import RoleExplorer from '@/components/RoleExplorer';
 
 const Onboarding = () => {
   const { t, language, setLanguage } = useLanguage();
@@ -95,8 +96,8 @@ const Onboarding = () => {
     }
   };
 
-  const handleRoleSelection = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleRoleSelection = (selectedRole: AppRole) => {
+    setRole(selectedRole);
     setStep(3); // Go to course assignment confirmation
   };
 
@@ -152,25 +153,23 @@ const Onboarding = () => {
       
       console.log('Successfully inserted courses:', insertedCourses);
 
-      // Mark onboarding as completed
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({ onboarding_completed: true })
-        .eq('user_id', user.id);
-
-      if (profileError) throw profileError;
+      // DO NOT set onboarding_completed = true yet!
+      // It will be set after user completes test + courses + documents
 
       toast.success(t('onb.done'));
       
-      // Show message about role test if needed
-      const hasRoleTest = roleToAptitudeTestMap[role] !== null;
-      if (hasRoleTest) {
-        toast.info(`Complete your ${role} aptitude test to unlock all training courses`, {
-          duration: 6000
-        });
+      // Navigate based on role
+      if (role === 'investor') {
+        navigate('/kyc-verification'); // Investors go to KYC
+      } else {
+        // Staff roles go to aptitude test
+        const testId = roleToAptitudeTestMap[role];
+        if (testId) {
+          navigate(`/role-test?role=${role}`);
+        } else {
+          navigate('/my-courses'); // Fallback (shouldn't happen)
+        }
       }
-      
-      navigate('/');
     } catch (error: any) {
       console.error('Final submit error:', error);
       toast.error(error.message || 'Onboarding failed');
@@ -244,61 +243,41 @@ const Onboarding = () => {
           </Card>
         )}
 
-        {/* Step 2: Role Selection */}
+        {/* Step 2: Role Explorer */}
         {step === 2 && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">{t('onb.select_role')}</CardTitle>
-              <CardDescription>Choose your role to get started with relevant training</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleRoleSelection} className="space-y-6">
-                <RadioGroup value={role} onValueChange={(v) => setRole(v as AppRole)}>
-                  {(['investor', 'doctor', 'nurse', 'driver', 'manager', 'security'] as AppRole[]).map((r) => (
-                    <div key={r} className="flex items-center space-x-2 p-3 rounded-lg hover:bg-accent">
-                      <RadioGroupItem value={r} id={r} />
-                      <Label htmlFor={r} className="flex-1 cursor-pointer font-normal">
-                        {t(`onb.roles.${r}`)}
-                      </Label>
-                    </div>
-                  ))}
-                </RadioGroup>
-                <div className="flex gap-2">
-                  <Button type="button" variant="outline" onClick={() => setStep(1)}>
-                    Back
-                  </Button>
-                  <Button type="submit" className="flex-1">
-                    {t('auth.continue')}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+          <RoleExplorer onSelect={handleRoleSelection} />
         )}
 
         {/* Step 3: Course Assignment Confirmation */}
         {step === 3 && (
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">Ready to Start</CardTitle>
+              <CardTitle className="text-2xl">{t('onb.confirm_role')}</CardTitle>
               <CardDescription>
-                You'll be enrolled in the following courses based on your role: {t(`onb.roles.${role}`)}
+                Review your selected role and assigned training courses
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <ul className="list-disc list-inside space-y-2">
-                {roleToCoursesMap[role].map(courseId => {
-                  const course = trainingData.courses.find(c => c.id === courseId);
-                  return (
-                    <li key={courseId}>
-                      {language === 'fr' ? course?.title_fr : course?.title_en}
-                    </li>
-                  );
-                })}
-              </ul>
+              {/* Role summary card */}
+              <Card className="p-4 bg-muted">
+                <h3 className="text-xl font-bold mb-2">{t(`onb.roles.${role}`)}</h3>
+                <p className="text-sm mb-4">
+                  {roleDescriptions[role][language]}
+                </p>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">{t('role_explorer.training')}</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    {courseOutlines[role][language].map((course, i) => (
+                      <li key={i} className="text-sm">{course}</li>
+                    ))}
+                  </ul>
+                </div>
+              </Card>
+
               <div className="flex gap-2 pt-4">
                 <Button type="button" variant="outline" onClick={() => setStep(2)} disabled={loading}>
-                  Back
+                  {t('onb.back')}
                 </Button>
                 <Button 
                   onClick={handleFinalSubmit} 
@@ -308,10 +287,10 @@ const Onboarding = () => {
                   {loading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Completing...
+                      {t('onb.submitting')}
                     </>
                   ) : (
-                    t('onb.submit')
+                    t('onb.start')
                   )}
                 </Button>
               </div>
