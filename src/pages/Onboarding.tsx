@@ -35,10 +35,24 @@ const Onboarding = () => {
     const checkOnboarding = async () => {
       if (!user) return;
       
-      // Allow reset via URL parameter ?reset=true
+      // Admin-only reset parameter
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('reset') === 'true') {
-        return; // Skip the onboarding check
+        const { data: roleData } = await supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', user.id)
+          .eq('role', 'admin')
+          .maybeSingle();
+
+        if (roleData) {
+          console.log('Admin reset triggered');
+          return; 
+        } else {
+          toast.error('Reset is restricted to admins');
+          navigate('/dashboard');
+          return;
+        }
       }
       
       const { data } = await supabase

@@ -12,7 +12,7 @@ import type { AppRole } from '@/data/roleCoursesMap';
 import { roleToAptitudeTestMap } from '@/data/roleCoursesMap';
 import { trainingData } from '@/data/trainingData';
 
-type Step = 'loading' | 'test' | 'evaluating' | 'results';
+type Step = 'loading' | 'test' | 'results';
 
 const RoleTest = () => {
   const navigate = useNavigate();
@@ -67,10 +67,7 @@ const RoleTest = () => {
   const handleTestComplete = async (answers: Record<string, string>) => {
     if (!user || !role) return;
 
-    setStep('evaluating');
-
     try {
-      // Create test attempt with role
       const { data: attempt, error: attemptError } = await supabase
         .from('aptitude_test_attempts')
         .insert({
@@ -85,22 +82,22 @@ const RoleTest = () => {
 
       setAttemptId(attempt.id);
 
-      // Get role-specific quiz questions
       const roleTestQuizId = roleToAptitudeTestMap[role];
       const testQuestions = trainingData.questions.filter(
         q => q.quiz_id === roleTestQuizId
       );
 
-      // Insert answers with correctness calculation
+      let correctCount = 0;
       const answerRecords = Object.entries(answers).map(([questionId, answer]) => {
         const question = testQuestions.find(q => q.id === questionId);
         let isCorrect = null;
 
-        // Calculate correctness for MCQ and True/False
         if (question?.type === 'mcq' && question.answer_index !== undefined) {
           isCorrect = answer === String(question.answer_index);
+          if (isCorrect) correctCount++;
         } else if (question?.type === 'truefalse' && question.answer !== undefined) {
           isCorrect = answer === String(question.answer);
+          if (isCorrect) correctCount++;
         }
 
         return {
@@ -117,20 +114,45 @@ const RoleTest = () => {
 
       if (answersError) throw answersError;
 
-      // Call evaluation function with role parameter
-      const { data: evalData, error: evalError } = await supabase.functions.invoke(
-        'evaluate-aptitude-test',
-        { body: { attemptId: attempt.id, role: role } }
-      );
+      const score = Math.round((correctCount / testQuestions.length) * 100);
+      const passed = score >= 60;
 
-      if (evalError) throw evalError;
+      const { error: updateError } = await supabase
+        .from('aptitude_test_attempts')
+        .update({ 
+          score, 
+          passed, 
+          completed_at: new Date().toISOString() 
+        })
+        .eq('id', attempt.id);
 
-      setEvaluation(evalData.evaluation);
-      setStep('results');
+      if (updateError) throw updateError;
 
-      if (evalData.passed) {
+      const { error: evalError } = await supabase
+        .from('ai_evaluations')
+        .insert({
+          user_id: user.id,
+          attempt_id: attempt.id,
+          evaluation_type: 'aptitude_test',
+          overall_score: score,
+          recommendation: passed ? 'passed' : 'failed'
+        });
+
+      if (evalError) console.error('Evaluation insert error:', evalError);
+
+      if (passed) {
+        await supabase
+          .from('user_courses')
+          .update({ role_test_passed: true })
+          .eq('user_id', user.id)
+          .eq('role_test_passed', false);
+
         toast.success(t('role_test.complete_message').replace('{role}', role));
       }
+
+      setEvaluation({ overall_score: score, passed });
+      setStep('results');
+
     } catch (error) {
       console.error('Error submitting test:', error);
       toast.error('Failed to submit test. Please try again.');
@@ -146,21 +168,6 @@ const RoleTest = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (step === 'evaluating') {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle className="text-center">{t('aptitude.evaluating')}</CardTitle>
-          </CardHeader>
-          <CardContent className="flex justify-center py-8">
-            <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          </CardContent>
-        </Card>
       </div>
     );
   }

@@ -22,6 +22,10 @@ export const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   // Don't show navigation on public pages
+  if (location.pathname === '/' && !user) {
+    return null;
+  }
+  
   if (location.pathname === '/signin' || location.pathname === '/onboarding') {
     return null;
   }
@@ -31,25 +35,17 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2 text-primary font-semibold text-lg">
+            <Link to="/dashboard" className="flex items-center gap-2 text-primary font-semibold text-lg">
               <GraduationCap className="h-6 w-6" />
               <span className="hidden sm:inline">Gateway</span>
             </Link>
             <div className="flex gap-1">
-              <Link to="/">
+              <Link to="/dashboard">
                 <Button 
-                  variant={isActive('/') ? 'default' : 'ghost'} 
+                  variant={isActive('/dashboard') ? 'default' : 'ghost'} 
                   size="sm"
                 >
                   {t('nav.dashboard')}
-                </Button>
-              </Link>
-              <Link to="/courses">
-                <Button 
-                  variant={isActive('/courses') ? 'default' : 'ghost'} 
-                  size="sm"
-                >
-                  {t('nav.courses')}
                 </Button>
               </Link>
               <Link to="/my-courses">
@@ -57,7 +53,15 @@ export const Navigation = () => {
                   variant={isActive('/my-courses') ? 'default' : 'ghost'} 
                   size="sm"
                 >
-                  {t('nav.my_courses')}
+                  {t('nav.my_training')}
+                </Button>
+              </Link>
+              <Link to="/documents">
+                <Button 
+                  variant={isActive('/documents') ? 'default' : 'ghost'} 
+                  size="sm"
+                >
+                  {t('nav.documents')}
                 </Button>
               </Link>
             </div>

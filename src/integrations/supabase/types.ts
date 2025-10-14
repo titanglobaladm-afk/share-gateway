@@ -188,6 +188,9 @@ export type Database = {
           created_at: string | null
           full_name: string | null
           id: string
+          kyc_completed_at: string | null
+          kyc_data: Json | null
+          kyc_verified: boolean | null
           locale: string | null
           onboarding_completed: boolean | null
           phone: string | null
@@ -198,6 +201,9 @@ export type Database = {
           created_at?: string | null
           full_name?: string | null
           id?: string
+          kyc_completed_at?: string | null
+          kyc_data?: Json | null
+          kyc_verified?: boolean | null
           locale?: string | null
           onboarding_completed?: boolean | null
           phone?: string | null
@@ -208,6 +214,9 @@ export type Database = {
           created_at?: string | null
           full_name?: string | null
           id?: string
+          kyc_completed_at?: string | null
+          kyc_data?: Json | null
+          kyc_verified?: boolean | null
           locale?: string | null
           onboarding_completed?: boolean | null
           phone?: string | null

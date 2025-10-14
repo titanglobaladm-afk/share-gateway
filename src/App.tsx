@@ -7,8 +7,8 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { Navigation } from "@/components/Navigation";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
-import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
 import Quiz from "./pages/Quiz";
 import MyCourses from "./pages/MyCourses";
@@ -16,6 +16,8 @@ import SignIn from "./pages/SignIn";
 import Onboarding from "./pages/Onboarding";
 import RoleTest from "./pages/RoleTest";
 import EvaluationDetail from "./pages/EvaluationDetail";
+import KycVerification from "./pages/KycVerification";
+import Documents from "./pages/Documents";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,19 +34,12 @@ const App = () => (
             <Routes>
               <Route path="/signin" element={<SignIn />} />
               <Route path="/onboarding" element={<Onboarding />} />
+              <Route path="/" element={<Index />} />
               <Route 
-                path="/" 
+                path="/dashboard" 
                 element={
                   <ProtectedRoute>
                     <Dashboard />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/courses" 
-                element={
-                  <ProtectedRoute>
-                    <Courses />
                   </ProtectedRoute>
                 } 
               />
@@ -77,6 +72,22 @@ const App = () => (
                 element={
                   <ProtectedRoute>
                     <RoleTest />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/kyc-verification" 
+                element={
+                  <ProtectedRoute>
+                    <KycVerification />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/documents" 
+                element={
+                  <ProtectedRoute>
+                    <Documents />
                   </ProtectedRoute>
                 } 
               />
