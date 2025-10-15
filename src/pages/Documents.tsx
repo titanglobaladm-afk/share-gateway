@@ -4,7 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { FileText, CheckCircle2 } from 'lucide-react';
+import { FileText, CheckCircle2, Download } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import DocumentViewer from '@/components/DocumentViewer';
 import { format } from 'date-fns';
@@ -74,6 +74,62 @@ const Documents = () => {
     }
   };
 
+  const handleDownload = (doc: Document) => {
+    // Create a new window with the document content
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      toast.error('Please allow popups to download documents');
+      return;
+    }
+
+    // Write the document HTML
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>${doc.title}</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              padding: 40px;
+              max-width: 800px;
+              margin: 0 auto;
+            }
+            h1 {
+              color: #333;
+              margin-bottom: 20px;
+            }
+            .metadata {
+              color: #666;
+              font-size: 14px;
+              margin-bottom: 30px;
+              padding-bottom: 20px;
+              border-bottom: 2px solid #eee;
+            }
+            .content {
+              white-space: pre-wrap;
+              line-height: 1.6;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>${doc.title}</h1>
+          <div class="metadata">
+            <p><strong>Document Type:</strong> ${doc.document_type}</p>
+            ${doc.signed_at ? `<p><strong>Signed Date:</strong> ${format(new Date(doc.signed_at), 'MMMM d, yyyy')}</p>` : ''}
+          </div>
+          <div class="content">${doc.content}</div>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+
+    // Wait for content to load, then print
+    printWindow.onload = () => {
+      printWindow.print();
+    };
+  };
+
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
   }
@@ -113,13 +169,25 @@ const Documents = () => {
                     {t('documents.signed_at')}: {format(new Date(doc.signed_at), 'MMM d, yyyy')}
                   </p>
                 )}
-                <Button 
-                  variant={doc.signed ? 'outline' : 'default'}
-                  onClick={() => setSelectedDoc(doc)}
-                  className="w-full"
-                >
-                  {t('documents.view_sign')}
-                </Button>
+                <div className="flex gap-2">
+                  <Button 
+                    variant={doc.signed ? 'outline' : 'default'}
+                    onClick={() => setSelectedDoc(doc)}
+                    className="flex-1"
+                  >
+                    {t('documents.view_sign')}
+                  </Button>
+                  {doc.signed && (
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleDownload(doc)}
+                      title="Download PDF"
+                    >
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
               </CardContent>
             </Card>
           ))}
