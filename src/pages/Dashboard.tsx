@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { AppRole, roleToAptitudeTestMap } from '@/data/roleCoursesMap';
 import JourneyProgress from '@/components/JourneyProgress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { trainingData } from '@/data/trainingData';
 
 const Dashboard = () => {
   const { t } = useLanguage();
@@ -27,6 +28,13 @@ const Dashboard = () => {
   const [profile, setProfile] = useState<any>(null);
   const [allCoursesComplete, setAllCoursesComplete] = useState(false);
   const [allDocsSigned, setAllDocsSigned] = useState(false);
+  const [currentCourse, setCurrentCourse] = useState<{
+    id: string;
+    title: string;
+    lessonsCompleted: number;
+    totalLessons: number;
+    quizzesCompleted: number;
+  } | null>(null);
 
   useEffect(() => {
     const fetchUserStatus = async () => {
@@ -34,7 +42,7 @@ const Dashboard = () => {
 
       const { data: profileData } = await supabase
         .from('profiles')
-        .select('kyc_verified, onboarding_completed')
+        .select('kyc_verified, onboarding_completed, locale')
         .eq('user_id', user.id)
         .single();
       
@@ -88,6 +96,33 @@ const Dashboard = () => {
 
         const docsSigned = docsData?.length === templatesData?.length;
         setAllDocsSigned(docsSigned);
+
+        // Fetch first incomplete course
+        const { data: incompleteCourses } = await supabase
+          .from('user_courses')
+          .select('course_id, lessons_completed, quizzes_completed')
+          .eq('user_id', user.id)
+          .is('completed_at', null)
+          .order('assigned_at', { ascending: true })
+          .limit(1);
+
+        if (incompleteCourses && incompleteCourses.length > 0) {
+          const courseData = incompleteCourses[0];
+          const course = trainingData.courses.find(c => c.id === courseData.course_id);
+          
+          if (course) {
+            const courseLessons = trainingData.lessons.filter(l => l.course_id === courseData.course_id);
+            const uniqueLessonIds = new Set(courseLessons.map(l => l.id.replace(/_en$|_fr$/, '')));
+            
+            setCurrentCourse({
+              id: courseData.course_id,
+              title: profileData?.locale === 'fr' ? course.title_fr : course.title_en,
+              lessonsCompleted: Array.isArray(courseData.lessons_completed) ? courseData.lessons_completed.length : 0,
+              totalLessons: uniqueLessonIds.size,
+              quizzesCompleted: Array.isArray(courseData.quizzes_completed) ? courseData.quizzes_completed.length : 0
+            });
+          }
+        }
 
         if (isInvestor && !profileData?.kyc_verified) {
           setNextAction({
@@ -193,22 +228,37 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('dashboard.continue_learning')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/30">
-              <div>
-                <h3 className="font-semibold mb-1">Essential Nursing Skills</h3>
-                <p className="text-sm text-muted-foreground">1 {t('courses.lesson')} • 1 {t('courses.quiz')}</p>
+        {currentCourse ? (
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('dashboard.continue_learning')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/30">
+                <div>
+                  <h3 className="font-semibold mb-1">{currentCourse.title}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {currentCourse.lessonsCompleted}/{currentCourse.totalLessons} {t('courses.lesson')} • {currentCourse.quizzesCompleted} {t('courses.quiz')}
+                  </p>
+                </div>
+                <Link to={`/courses/${currentCourse.id}`}>
+                  <Button>{t('dashboard.continue')}</Button>
+                </Link>
               </div>
-              <Link to="/courses/nurse_track">
-                <Button>{t('dashboard.continue')}</Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        ) : allCoursesComplete ? (
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('dashboard.continue_learning')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground text-center py-4">
+                🎉 {t('dashboard.all_complete')}
+              </p>
+            </CardContent>
+          </Card>
+        ) : null}
       </div>
     </div>
   );
