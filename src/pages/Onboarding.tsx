@@ -47,12 +47,14 @@ const Onboarding = () => {
           .maybeSingle();
 
         if (roleData) {
-          console.log('Admin reset triggered');
+          console.info('onboarding: admin reset triggered');
           return; 
         } else {
           toast.error('Reset is restricted to admins');
-          navigate('/dashboard');
-          return;
+          // strip the reset param instead of navigating away to avoid loops
+          const newUrl = window.location.pathname;
+          window.history.replaceState(null, '', newUrl);
+          // continue onboarding normally
         }
       }
       
@@ -299,7 +301,7 @@ const Onboarding = () => {
                     <SelectTrigger id="locale">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-50 bg-popover">
                       <SelectItem value="en">English</SelectItem>
                       <SelectItem value="fr">Français</SelectItem>
                     </SelectContent>
