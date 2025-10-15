@@ -1,12 +1,14 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/hooks/useAuth';
+import { useAdminCheck } from '@/hooks/useAdminCheck';
 import { Button } from '@/components/ui/button';
-import { GraduationCap, Languages, LogOut } from 'lucide-react';
+import { GraduationCap, Languages, LogOut, Shield } from 'lucide-react';
 
 export const Navigation = () => {
   const { t, language, setLanguage } = useLanguage();
   const { user, signOut } = useAuth();
+  const { isAdmin } = useAdminCheck();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -64,6 +66,18 @@ export const Navigation = () => {
                   {t('nav.documents')}
                 </Button>
               </Link>
+              {isAdmin && (
+                <Link to="/admin">
+                  <Button 
+                    variant={isActive('/admin') ? 'default' : 'ghost'} 
+                    size="sm"
+                    className="flex items-center gap-1"
+                  >
+                    <Shield className="h-4 w-4" />
+                    Admin
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-2">

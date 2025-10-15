@@ -18,6 +18,7 @@ import RoleTest from "./pages/RoleTest";
 import EvaluationDetail from "./pages/EvaluationDetail";
 import KycVerification from "./pages/KycVerification";
 import Documents from "./pages/Documents";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -96,6 +97,14 @@ const App = () => (
                 element={
                   <ProtectedRoute>
                     <EvaluationDetail />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/admin" 
+                element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
                   </ProtectedRoute>
                 } 
               />
