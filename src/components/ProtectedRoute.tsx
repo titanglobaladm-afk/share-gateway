@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -10,6 +10,7 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ children, requireAuth = true }: ProtectedRouteProps) => {
   const { user, loading: authLoading } = useAuth();
+  const location = useLocation();
   const [checkingOnboarding, setCheckingOnboarding] = useState(true);
   const [onboardingCompleted, setOnboardingCompleted] = useState(false);
 
@@ -47,7 +48,18 @@ const ProtectedRoute = ({ children, requireAuth = true }: ProtectedRouteProps) =
     return <Navigate to="/signin" replace />;
   }
 
-  if (requireAuth && user && !onboardingCompleted) {
+  // Allow certain routes during onboarding
+  const path = location.pathname;
+  const allowedDuringOnboarding =
+    path === '/onboarding' ||
+    path === '/kyc-verification' ||
+    path === '/role-test' || path.startsWith('/role-test') ||
+    path === '/my-courses' ||
+    path.startsWith('/courses') ||
+    path === '/documents' ||
+    path.startsWith('/quiz');
+
+  if (requireAuth && user && !onboardingCompleted && !allowedDuringOnboarding) {
     return <Navigate to="/onboarding" replace />;
   }
 
