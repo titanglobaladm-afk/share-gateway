@@ -4,13 +4,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { FileText, CheckCircle2, Download } from 'lucide-react';
+import { FileText, CheckCircle2, Download, Mail } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import DocumentViewer from '@/components/DocumentViewer';
 import { format } from 'date-fns';
 import { updateOnboardingStatus } from '@/lib/onboardingHelpers';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { useAdminCheck } from '@/hooks/useAdminCheck';
+import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 interface Document {
   id: string;
@@ -25,9 +28,14 @@ const Documents = () => {
   const { user } = useAuth();
   const { t, language: locale } = useLanguage();
   const navigate = useNavigate();
+  const { isAdmin } = useAdminCheck();
   const [documents, setDocuments] = useState<Document[]>([]);
   const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
   const [loading, setLoading] = useState(true);
+  const [emailDialogOpen, setEmailDialogOpen] = useState(false);
+  const [documentToSend, setDocumentToSend] = useState<Document | null>(null);
+  const [recipientEmail, setRecipientEmail] = useState('');
+  const [sending, setSending] = useState(false);
 
   const fetchDocuments = async () => {
     if (!user) return;
@@ -130,6 +138,44 @@ const Documents = () => {
     };
   };
 
+  const openEmailDialog = (doc: Document) => {
+    setDocumentToSend(doc);
+    setEmailDialogOpen(true);
+    setRecipientEmail('');
+  };
+
+  const handleSendEmail = async () => {
+    if (!documentToSend || !recipientEmail) {
+      toast.error('Please enter a recipient email address');
+      return;
+    }
+
+    setSending(true);
+    try {
+      const { error } = await supabase.functions.invoke('send-document', {
+        body: {
+          recipientEmail,
+          documentTitle: documentToSend.title,
+          documentContent: documentToSend.content,
+          documentType: documentToSend.document_type,
+          signedAt: documentToSend.signed_at,
+        },
+      });
+
+      if (error) throw error;
+
+      toast.success(`Document sent to ${recipientEmail}`);
+      setEmailDialogOpen(false);
+      setRecipientEmail('');
+      setDocumentToSend(null);
+    } catch (error: any) {
+      console.error('Error sending email:', error);
+      toast.error('Failed to send document. Please try again.');
+    } finally {
+      setSending(false);
+    }
+  };
+
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
   }
@@ -177,15 +223,25 @@ const Documents = () => {
                   >
                     {t('documents.view_sign')}
                   </Button>
-                  {doc.signed && (
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => handleDownload(doc)}
-                      title="Download PDF"
-                    >
-                      <Download className="h-4 w-4" />
-                    </Button>
+                  {isAdmin && doc.signed && (
+                    <>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => handleDownload(doc)}
+                        title="Download PDF"
+                      >
+                        <Download className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => openEmailDialog(doc)}
+                        title="Send to Employee"
+                      >
+                        <Mail className="h-4 w-4" />
+                      </Button>
+                    </>
                   )}
                 </div>
               </CardContent>
@@ -200,6 +256,44 @@ const Documents = () => {
             onSigned={handleDocumentSigned}
           />
         )}
+
+        <Dialog open={emailDialogOpen} onOpenChange={setEmailDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Send Document to Employee</DialogTitle>
+              <DialogDescription>
+                Enter the employee's email address to send them a copy of "{documentToSend?.title}"
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 mt-4">
+              <div>
+                <label className="text-sm font-medium mb-2 block">Employee Email</label>
+                <Input
+                  type="email"
+                  placeholder="employee@example.com"
+                  value={recipientEmail}
+                  onChange={(e) => setRecipientEmail(e.target.value)}
+                  disabled={sending}
+                />
+              </div>
+              <div className="flex gap-2 justify-end">
+                <Button
+                  variant="outline"
+                  onClick={() => setEmailDialogOpen(false)}
+                  disabled={sending}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSendEmail}
+                  disabled={sending || !recipientEmail}
+                >
+                  {sending ? 'Sending...' : 'Send Document'}
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
