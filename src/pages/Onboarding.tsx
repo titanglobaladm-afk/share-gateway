@@ -82,6 +82,10 @@ const Onboarding = () => {
     }
     const savedLocale = sessionStorage.getItem(`${prefix}_locale`);
     if (savedLocale === 'en' || savedLocale === 'fr') setLocale(savedLocale as any);
+    const savedFullName = sessionStorage.getItem(`${prefix}_fullName`);
+    if (savedFullName) setFullName(savedFullName);
+    const savedPhone = sessionStorage.getItem(`${prefix}_phone`);
+    if (savedPhone) setPhone(savedPhone);
   }, [user]);
 
   // Persist step as the user advances
@@ -89,7 +93,14 @@ const Onboarding = () => {
     if (!user) return;
     const prefix = `onb_${user.id}`;
     sessionStorage.setItem(`${prefix}_step`, String(step));
+    console.info('onboarding: persist step', { step, prefix });
   }, [step, user]);
+
+  // Debug mount/unmount
+  useEffect(() => {
+    console.info('onboarding: mounted');
+    return () => console.info('onboarding: unmounted');
+  }, []);
 
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -109,6 +120,13 @@ const Onboarding = () => {
       if (error) throw error;
 
       // Don't change language yet - wait until onboarding complete to avoid remount
+      if (user) {
+        const prefix = `onb_${user.id}`;
+        sessionStorage.setItem(`${prefix}_step`, '2');
+        sessionStorage.setItem(`${prefix}_locale`, locale);
+        sessionStorage.setItem(`${prefix}_fullName`, fullName);
+        sessionStorage.setItem(`${prefix}_phone`, phone);
+      }
       setStep(2);
     } catch (error: any) {
       toast.error(error.message || 'Failed to update profile');
@@ -116,6 +134,7 @@ const Onboarding = () => {
   };
 
   const handleRoleSelection = (selectedRole: AppRole) => {
+    console.info('onboarding: role selected', selectedRole);
     setRole(selectedRole);
     if (user) {
       const prefix = `onb_${user.id}`;
@@ -200,6 +219,8 @@ const Onboarding = () => {
       sessionStorage.removeItem(`${prefix}_step`);
       sessionStorage.removeItem(`${prefix}_role`);
       sessionStorage.removeItem(`${prefix}_locale`);
+      sessionStorage.removeItem(`${prefix}_fullName`);
+      sessionStorage.removeItem(`${prefix}_phone`);
 
       toast.success(t('onb.done'));
       
