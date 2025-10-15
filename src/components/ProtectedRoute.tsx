@@ -59,6 +59,7 @@ const ProtectedRoute = ({ children, requireAuth = true }: ProtectedRouteProps) =
     path === '/my-courses' ||
     path.startsWith('/courses') ||
     path === '/documents' ||
+    path === '/resources' ||
     path.startsWith('/quiz');
 
   if (requireAuth && user && !onboardingCompleted && !allowedDuringOnboarding) {
