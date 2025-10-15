@@ -107,16 +107,26 @@ const Onboarding = () => {
 
     try {
       // Delete ALL existing roles for this user (clean slate)
-      await supabase
+      const { error: deleteRolesError } = await supabase
         .from('user_roles')
         .delete()
         .eq('user_id', user.id);
 
+      if (deleteRolesError) {
+        console.error('Failed to delete existing roles:', deleteRolesError);
+        throw new Error('Failed to clear previous role assignments');
+      }
+
       // Delete ALL existing courses for this user (clean slate)
-      await supabase
+      const { error: deleteCoursesError } = await supabase
         .from('user_courses')
         .delete()
         .eq('user_id', user.id);
+
+      if (deleteCoursesError) {
+        console.error('Failed to delete existing courses:', deleteCoursesError);
+        throw new Error('Failed to clear previous course assignments');
+      }
 
       // Insert new role
       const { error: roleError } = await supabase
