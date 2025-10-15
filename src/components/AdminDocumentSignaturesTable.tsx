@@ -97,14 +97,23 @@ export const AdminDocumentSignaturesTable = () => {
       const signatureName = sig.signature_data?.name || 'N/A';
       const formattedDate = format(new Date(sig.signed_at), 'MMMM d, yyyy \'at\' HH:mm:ss');
       
-      const htmlContent = `
-<!DOCTYPE html>
+      // Escape HTML to prevent any issues
+      const escapeHtml = (text: string) => {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      };
+      
+      const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${sig.document_title}</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline';">
+  <title>${escapeHtml(sig.document_title)}</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.6;
@@ -112,6 +121,7 @@ export const AdminDocumentSignaturesTable = () => {
       margin: 0 auto;
       padding: 40px 20px;
       color: #333;
+      background: #ffffff;
     }
     .header {
       border-bottom: 3px solid #2563eb;
@@ -122,6 +132,7 @@ export const AdminDocumentSignaturesTable = () => {
       margin: 0;
       color: #1e293b;
       font-size: 28px;
+      font-weight: 600;
     }
     .document-type {
       display: inline-block;
@@ -131,10 +142,21 @@ export const AdminDocumentSignaturesTable = () => {
       border-radius: 4px;
       font-size: 14px;
       margin-top: 10px;
+      font-weight: 500;
+    }
+    .offline-notice {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      color: #166534;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+      font-size: 14px;
     }
     .content {
       margin: 30px 0;
       white-space: pre-wrap;
+      word-wrap: break-word;
     }
     .signature-section {
       background: #f8fafc;
@@ -147,6 +169,7 @@ export const AdminDocumentSignaturesTable = () => {
       margin: 0 0 16px 0;
       color: #0f172a;
       font-size: 20px;
+      font-weight: 600;
     }
     .signature-details {
       display: grid;
@@ -165,16 +188,19 @@ export const AdminDocumentSignaturesTable = () => {
       color: #1e293b;
     }
     @media print {
-      body {
-        padding: 20px;
-      }
+      body { padding: 20px; }
+      .offline-notice { display: none; }
     }
   </style>
 </head>
 <body>
+  <div class="offline-notice">
+    ✓ This is an offline document - No internet connection required
+  </div>
+  
   <div class="header">
-    <h1>${sig.document_title}</h1>
-    <span class="document-type">${sig.document_type}</span>
+    <h1>${escapeHtml(sig.document_title)}</h1>
+    <span class="document-type">${escapeHtml(sig.document_type)}</span>
   </div>
   
   <div class="content">${sig.document_content}</div>
@@ -184,41 +210,44 @@ export const AdminDocumentSignaturesTable = () => {
     <div class="signature-details">
       <div class="signature-item">
         <span class="signature-label">Signed by:</span>
-        <span class="signature-value">${sig.user_name} (${sig.user_email})</span>
+        <span class="signature-value">${escapeHtml(sig.user_name)} (${escapeHtml(sig.user_email)})</span>
       </div>
       <div class="signature-item">
         <span class="signature-label">Signature name:</span>
-        <span class="signature-value">${signatureName}</span>
+        <span class="signature-value">${escapeHtml(signatureName)}</span>
       </div>
       <div class="signature-item">
-        <span class="signature-label">Date & Time:</span>
-        <span class="signature-value">${formattedDate}</span>
+        <span class="signature-label">Date &amp; Time:</span>
+        <span class="signature-value">${escapeHtml(formattedDate)}</span>
       </div>
       <div class="signature-item">
         <span class="signature-label">IP Address:</span>
-        <span class="signature-value">${sig.ip_address}</span>
+        <span class="signature-value">${escapeHtml(sig.ip_address)}</span>
       </div>
       <div class="signature-item">
         <span class="signature-label">Document ID:</span>
-        <span class="signature-value">${sig.id}</span>
+        <span class="signature-value">${escapeHtml(sig.id)}</span>
       </div>
     </div>
   </div>
 </body>
-</html>
-      `;
+</html>`;
 
-      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      const fileName = `${sig.document_type}-${sig.user_name.replace(/\s+/g, '_')}-${format(new Date(sig.signed_at), 'yyyy-MM-dd')}.html`;
+      const fileName = `${sig.document_type.replace(/\s+/g, '_')}-${sig.user_name.replace(/\s+/g, '_')}-${format(new Date(sig.signed_at), 'yyyy-MM-dd')}.html`;
       
       link.href = url;
       link.download = fileName;
+      link.style.display = 'none';
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      
+      setTimeout(() => {
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }, 100);
       
       toast.success('Document downloaded successfully');
     } catch (error) {
