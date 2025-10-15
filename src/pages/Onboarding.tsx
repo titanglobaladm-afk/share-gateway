@@ -28,6 +28,11 @@ const Onboarding = () => {
 
   useEffect(() => {
     if (!authLoading && !user) {
+      // Clear any stale sessionStorage before redirecting
+      const keys = Object.keys(sessionStorage);
+      keys.forEach(key => {
+        if (key.startsWith('onb_')) sessionStorage.removeItem(key);
+      });
       navigate('/signin');
     }
   }, [user, authLoading, navigate]);
