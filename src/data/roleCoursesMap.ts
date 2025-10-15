@@ -1,12 +1,12 @@
 export type AppRole = 'investor' | 'doctor' | 'nurse' | 'driver' | 'manager' | 'security';
 
 export const roleToCoursesMap: Record<AppRole, string[]> = {
-  investor: ['orientation_common'],
-  doctor: ['orientation_common', 'doctor_track'],
-  nurse: ['orientation_common', 'nurse_track'],
-  driver: ['orientation_common', 'driver_track'],
-  manager: ['orientation_common', 'manager_track'],
-  security: ['orientation_common', 'security_track'],
+  investor: ['orientation_common', 'share_clinical_guide'],
+  doctor: ['orientation_common', 'doctor_track', 'share_clinical_guide'],
+  nurse: ['orientation_common', 'nurse_track', 'share_clinical_guide'],
+  driver: ['orientation_common', 'driver_track', 'share_clinical_guide'],
+  manager: ['orientation_common', 'manager_track', 'share_clinical_guide'],
+  security: ['orientation_common', 'security_track', 'share_clinical_guide'],
 };
 
 // Map roles to their specific aptitude test quiz IDs

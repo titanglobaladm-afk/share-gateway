@@ -18,6 +18,7 @@ import RoleTest from "./pages/RoleTest";
 import EvaluationDetail from "./pages/EvaluationDetail";
 import KycVerification from "./pages/KycVerification";
 import Documents from "./pages/Documents";
+import Resources from "./pages/Resources";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
@@ -84,13 +85,21 @@ const App = () => (
                   </ProtectedRoute>
                 } 
               />
-              <Route 
-                path="/documents" 
+              <Route
+                path="/documents"
                 element={
                   <ProtectedRoute>
                     <Documents />
                   </ProtectedRoute>
-                } 
+                }
+              />
+              <Route
+                path="/resources"
+                element={
+                  <ProtectedRoute>
+                    <Resources />
+                  </ProtectedRoute>
+                }
               />
               <Route 
                 path="/evaluation/:id" 

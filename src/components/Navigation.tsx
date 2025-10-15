@@ -66,6 +66,14 @@ export const Navigation = () => {
                   {t('nav.documents')}
                 </Button>
               </Link>
+              <Link to="/resources">
+                <Button 
+                  variant={isActive('/resources') ? 'default' : 'ghost'} 
+                  size="sm"
+                >
+                  {language === 'en' ? 'Resources' : 'Ressources'}
+                </Button>
+              </Link>
               {isAdmin && (
                 <Link to="/admin">
                   <Button 

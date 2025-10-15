@@ -507,6 +507,13 @@ export const trainingData = {
       title_fr: "Sécurité & Gestion des risques",
       role_required: "security",
       version: "1.0"
+    },
+    {
+      id: "share_clinical_guide",
+      title_en: "SHARE Clinical Reference Guide",
+      title_fr: "Guide de Référence Clinique SHARE",
+      role_required: "all",
+      version: "1.0"
     }
   ],
   lessons: [
@@ -874,6 +881,685 @@ export const trainingData = {
       title: "Contrôle d'accès & durcissement du site",
       contentType: "html",
       htmlBody: "<h2>Périmètre</h2><p>Lignes de visibilité, éclairage, serrures, couverture caméras; registre d'inspection hebdomadaire.</p>"
+    },
+    /* ---------- SHARE CLINICAL REFERENCE GUIDE (18) ---------- */
+    {
+      id: "share_ch1_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 1,
+      title: "Chapter 1: Introduction to SHARE and Mobile Clinic Operations",
+      contentType: "html",
+      htmlBody: `<h2>1.1 SHARE's Mission, Vision, and Values</h2>
+<h3>Mission</h3>
+<p>SHARE (Sustainable Health Acquired by Research and Education) is committed to transforming global healthcare by combining research-driven, evidence-based solutions with comprehensive education programs. We empower underserved populations, particularly in Haiti, by delivering high-quality, sustainable healthcare through mobile clinics that address both immediate medical needs and provide long-term health education.</p>
+<p>The healthcare crisis in Haiti presents unique challenges where a significant portion of the population lacks access to regular, reliable medical services. SHARE's mobile clinics bridge this gap, bringing healthcare directly to communities and offering preventive services that foster healthier populations.</p>
+<h3>Vision</h3>
+<p>Our vision is a future where every community, regardless of geography or socioeconomic status, has equitable access to healthcare that is sustainable, reliable, and driven by local research and education. In Haiti, this translates into building a robust healthcare framework that integrates local healthcare providers, international best practices, and patient education programs.</p>
+<h3>Core Values</h3>
+<ul>
+<li><strong>Sustainability:</strong> Building health systems that communities can sustain independently through local capacity building and preventive care</li>
+<li><strong>Community Empowerment:</strong> Healthcare should be participatory, promoting ownership and accountability for health outcomes</li>
+<li><strong>Equity:</strong> Healthcare services must be accessible to all, especially vulnerable or marginalized communities</li>
+<li><strong>Education:</strong> Empowering individuals with knowledge necessary to improve their long-term health</li>
+</ul>
+<h2>1.2 Mobile Clinics: A Sustainable Healthcare Model</h2>
+<p>Mobile clinics provide a flexible and scalable solution for delivering healthcare to communities with limited or no access to traditional facilities. They are especially critical in Haiti, where healthcare infrastructure is weak and rural populations may be hours away from the nearest hospital.</p>
+<h3>Services Provided</h3>
+<ul>
+<li><strong>Preventive services:</strong> Vaccinations, maternal health services, education on nutrition and hygiene</li>
+<li><strong>Emergency services:</strong> Immediate care for injuries, illness outbreaks, and post-disaster trauma</li>
+<li><strong>Chronic disease management:</strong> Care for diabetes, hypertension, and HIV/AIDS</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch1_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 1,
+      title: "Chapitre 1 : Introduction à SHARE et aux opérations de clinique mobile",
+      contentType: "html",
+      htmlBody: `<h2>1.1 Mission, vision et valeurs de SHARE</h2>
+<h3>Mission</h3>
+<p>SHARE (Santé durable acquise par la recherche et l'éducation) s'engage à transformer les soins de santé mondiaux en combinant des solutions fondées sur la recherche avec des programmes d'éducation complets. Nous responsabilisons les populations mal desservies, en particulier en Haïti, en offrant des soins de santé durables et de qualité via des cliniques mobiles.</p>
+<h3>Vision</h3>
+<p>Notre vision est un avenir où chaque communauté, indépendamment de la géographie ou du statut socioéconomique, a un accès équitable à des soins de santé durables, fiables et guidés par la recherche locale et l'éducation.</p>
+<h3>Valeurs fondamentales</h3>
+<ul>
+<li><strong>Durabilité:</strong> Construire des systèmes de santé que les communautés peuvent maintenir de manière indépendante</li>
+<li><strong>Autonomisation communautaire:</strong> Les soins de santé doivent être participatifs</li>
+<li><strong>Équité:</strong> Accessibilité pour tous, en particulier les communautés vulnérables</li>
+<li><strong>Éducation:</strong> Autonomiser les individus avec les connaissances nécessaires</li>
+</ul>
+<h2>1.2 Cliniques mobiles : Un modèle de soins de santé durable</h2>
+<p>Les cliniques mobiles fournissent une solution flexible et évolutive pour offrir des soins de santé aux communautés ayant un accès limité ou inexistant aux établissements traditionnels.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch2_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 2,
+      title: "Chapter 2: Ensuring Safety and Compliance in Mobile Clinics",
+      contentType: "html",
+      htmlBody: `<h2>2.1 Workplace Safety Protocols</h2>
+<p>Safety protocols are essential in mobile clinics, where risks are often higher due to working in non-standard environments. Ensuring the safety of healthcare workers and patients is paramount in Haiti, where health threats such as cholera, dengue fever, and malaria are common.</p>
+<h3>Infection Control</h3>
+<ul>
+<li><strong>Hand Hygiene:</strong> Frequent handwashing or sanitizing for all staff, especially before and after patient contact</li>
+<li><strong>PPE (Personal Protective Equipment):</strong> Proper use of gloves, masks, and gowns</li>
+<li><strong>Sterilization of Equipment:</strong> All medical tools must be sterilized after each use using portable autoclaves</li>
+<li><strong>Waste Management:</strong> Medical waste must be handled according to CDC guidelines</li>
+</ul>
+<h3>Emergency Preparedness</h3>
+<p>Haiti is prone to natural disasters. Each clinic must have:</p>
+<ul>
+<li>Evacuation plans with clear routes and procedures</li>
+<li>Supply backups including emergency medical supplies, water, and food</li>
+<li>Communication plans with satellite phones for emergencies</li>
+</ul>
+<h3>Staff Training</h3>
+<p>All staff undergo comprehensive training including:</p>
+<ul>
+<li>Initial training in infection control, waste management, and emergency procedures</li>
+<li>Ongoing refresher courses</li>
+<li>Monthly safety drills</li>
+</ul>
+<h2>2.2 Compliance with Health Regulations</h2>
+<h3>Key Legal Frameworks in Haiti</h3>
+<ul>
+<li><strong>Medical Licensure:</strong> All healthcare providers must be licensed by the MSPP</li>
+<li><strong>Patient Confidentiality:</strong> Strict data protection protocols similar to HIPAA standards</li>
+<li><strong>Public Health Reporting:</strong> Timely reporting of disease outbreaks to local authorities</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch2_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 2,
+      title: "Chapitre 2 : Assurer la sécurité et la conformité dans les cliniques mobiles",
+      contentType: "html",
+      htmlBody: `<h2>2.1 Protocoles de sécurité au travail</h2>
+<p>Les protocoles de sécurité sont essentiels dans les cliniques mobiles, où les risques sont souvent plus élevés en raison du travail dans des environnements non standard.</p>
+<h3>Contrôle des infections</h3>
+<ul>
+<li><strong>Hygiène des mains:</strong> Lavage fréquent des mains ou désinfection</li>
+<li><strong>EPI (Équipement de protection individuelle):</strong> Utilisation appropriée des gants, masques et blouses</li>
+<li><strong>Stérilisation de l'équipement:</strong> Tous les outils médicaux doivent être stérilisés</li>
+<li><strong>Gestion des déchets:</strong> Manipulation selon les directives du CDC</li>
+</ul>
+<h2>2.2 Conformité aux réglementations sanitaires</h2>
+<h3>Cadres juridiques clés en Haïti</h3>
+<ul>
+<li><strong>Licence médicale:</strong> Tous les prestataires doivent être autorisés par le MSPP</li>
+<li><strong>Confidentialité des patients:</strong> Protocoles stricts de protection des données</li>
+<li><strong>Rapport de santé publique:</strong> Déclaration rapide des épidémies</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch3_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 3,
+      title: "Chapter 3: Role-Specific Training in Mobile Clinics",
+      contentType: "html",
+      htmlBody: `<h2>3.1 Healthcare Professionals: Physicians</h2>
+<h3>Diagnostics in Resource-Limited Settings</h3>
+<p>Physicians working in mobile clinics face unique challenges. In resource-limited environments, reliance on basic clinical skills is paramount.</p>
+<h4>Critical Clinical Skills</h4>
+<ol>
+<li><strong>Physical Examination Skills:</strong> Thorough physical exams including palpation, percussion, auscultation, and observation are critical when advanced diagnostic tools are unavailable</li>
+<li><strong>History-Taking Skills:</strong> Detailed patient histories are essential when medical records are unavailable</li>
+<li><strong>Use of Basic Diagnostic Tools:</strong> Stethoscopes, blood pressure monitors, thermometers, and rapid diagnostic tests (RDTs) become key assets</li>
+</ol>
+<h3>Managing Chronic Diseases</h3>
+<p>Chronic diseases such as hypertension, diabetes, and HIV/AIDS require long-term management strategies adapted to mobile clinic settings.</p>
+<h3>Emergency and Trauma Care</h3>
+<p>Mobile clinics often serve as the first point of contact for emergency care. Physicians must be prepared to:</p>
+<ul>
+<li>Stabilize trauma patients</li>
+<li>Manage acute conditions</li>
+<li>Make rapid referral decisions</li>
+</ul>
+<h2>3.2 Nurses and Community Health Workers</h2>
+<h3>Clinical Skills for Nurses</h3>
+<ul>
+<li>Wound care and infection prevention</li>
+<li>Vaccination and cold-chain management</li>
+<li>Maternal and child health services</li>
+<li>Patient education and follow-up</li>
+</ul>
+<h3>Role of Community Health Workers (CHWs)</h3>
+<p>CHWs serve as vital links between communities and the healthcare system:</p>
+<ul>
+<li>First point of contact for many rural communities</li>
+<li>Health education and disease prevention</li>
+<li>Basic diagnostics and referrals</li>
+<li>Follow-up care and patient tracking</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch3_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 3,
+      title: "Chapitre 3 : Formation spécifique au rôle dans les cliniques mobiles",
+      contentType: "html",
+      htmlBody: `<h2>3.1 Professionnels de la santé : Médecins</h2>
+<h3>Diagnostics dans des contextes à ressources limitées</h3>
+<p>Les médecins travaillant dans les cliniques mobiles font face à des défis uniques. La dépendance aux compétences cliniques de base est primordiale.</p>
+<h2>3.2 Infirmières et agents de santé communautaire</h2>
+<h3>Compétences cliniques pour les infirmières</h3>
+<ul>
+<li>Soins des plaies et prévention des infections</li>
+<li>Vaccination et gestion de la chaîne du froid</li>
+<li>Services de santé maternelle et infantile</li>
+</ul>
+<h3>Rôle des agents de santé communautaire (ASC)</h3>
+<p>Les ASC servent de liens vitaux entre les communautés et le système de santé.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch4_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 4,
+      title: "Chapter 4: Patient Interaction and Cultural Competency",
+      contentType: "html",
+      htmlBody: `<h2>4.1 Culturally Sensitive Care in Haiti</h2>
+<h3>Respect for Traditional Healing Methods</h3>
+<p>Many Haitians rely on traditional healers and herbal remedies alongside modern medicine. Healthcare providers must:</p>
+<ul>
+<li>Acknowledge and respect traditional practices</li>
+<li>Build bridges between traditional and modern medicine</li>
+<li>Avoid dismissing cultural beliefs</li>
+</ul>
+<h3>Religious Beliefs and Cultural Practices</h3>
+<p>Vodou and Christianity play significant roles in Haitian culture. Healthcare providers should:</p>
+<ul>
+<li>Understand religious and cultural contexts</li>
+<li>Respect spiritual beliefs in healthcare decisions</li>
+<li>Integrate cultural sensitivity into care delivery</li>
+</ul>
+<h3>Building Trust and Rapport</h3>
+<p>Trust is essential for effective healthcare delivery. Strategies include:</p>
+<ul>
+<li>Consistent presence in communities</li>
+<li>Employing local healthcare workers</li>
+<li>Transparent communication</li>
+<li>Community engagement and participation</li>
+</ul>
+<h2>4.2 Effective Communication with Patients</h2>
+<h3>Language Barriers and Clear Explanations</h3>
+<p>Haiti is a bilingual nation (French and Haitian Creole). Healthcare providers must:</p>
+<ul>
+<li>Use interpreters when necessary</li>
+<li>Communicate in simple, clear language</li>
+<li>Verify patient understanding</li>
+</ul>
+<h3>Addressing Health Literacy</h3>
+<p>Many patients may have limited health literacy. Effective strategies include:</p>
+<ul>
+<li>Visual aids and demonstrations</li>
+<li>Simplified explanations</li>
+<li>Teach-back methods to confirm understanding</li>
+<li>Written materials in appropriate languages</li>
+</ul>
+<h3>Family Involvement and Gender Sensitivity</h3>
+<ul>
+<li>Recognize the importance of family in healthcare decisions</li>
+<li>Respect gender dynamics and cultural norms</li>
+<li>Provide appropriate privacy and same-gender providers when requested</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch4_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 4,
+      title: "Chapitre 4 : Interaction avec les patients et compétence culturelle",
+      contentType: "html",
+      htmlBody: `<h2>4.1 Soins culturellement sensibles en Haïti</h2>
+<h3>Respect des méthodes de guérison traditionnelles</h3>
+<p>De nombreux Haïtiens s'appuient sur des guérisseurs traditionnels et des remèdes à base de plantes parallèlement à la médecine moderne.</p>
+<h3>Croyances religieuses et pratiques culturelles</h3>
+<p>Le Vodou et le christianisme jouent des rôles importants dans la culture haïtienne.</p>
+<h2>4.2 Communication efficace avec les patients</h2>
+<h3>Barrières linguistiques</h3>
+<p>Haïti est une nation bilingue (français et créole haïtien). Les prestataires doivent utiliser des interprètes si nécessaire.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch5_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 5,
+      title: "Chapter 5: Technology and Tools in Mobile Clinics",
+      contentType: "html",
+      htmlBody: `<h2>5.1 Integrating Telemedicine in Haiti</h2>
+<h3>Remote Consultations and Access to Specialists</h3>
+<p>Telemedicine allows mobile clinics to connect with specialists in urban centers or internationally, providing:</p>
+<ul>
+<li>Expert consultations for complex cases</li>
+<li>Second opinions and diagnostic support</li>
+<li>Continuing education for local providers</li>
+</ul>
+<h3>Telemedicine in Disaster Response</h3>
+<p>During natural disasters, telemedicine becomes critical for:</p>
+<ul>
+<li>Rapid assessment of medical needs</li>
+<li>Coordination of emergency response</li>
+<li>Mental health support</li>
+</ul>
+<h3>Overcoming Telemedicine Challenges</h3>
+<p>Challenges in Haiti include:</p>
+<ul>
+<li>Limited internet connectivity</li>
+<li>Power supply issues</li>
+<li>Equipment maintenance</li>
+</ul>
+<p>Solutions: Satellite internet, solar power, robust equipment selection</p>
+<h2>5.2 Electronic Health Records (EHR) and Data Management</h2>
+<h3>Mobile-Friendly EHR Platforms</h3>
+<p>EHR systems for mobile clinics must be:</p>
+<ul>
+<li>Accessible on tablets and smartphones</li>
+<li>Functional offline with synchronization capabilities</li>
+<li>User-friendly for staff with varying technical skills</li>
+<li>Compliant with data protection standards</li>
+</ul>
+<h3>Data Security and Confidentiality</h3>
+<p>Critical considerations:</p>
+<ul>
+<li>Encryption of patient data</li>
+<li>Access controls and authentication</li>
+<li>Regular backups</li>
+<li>Compliance with local and international privacy laws</li>
+</ul>
+<h2>5.3 Diagnostic Tools in Mobile Clinics</h2>
+<h3>Portable Diagnostic Equipment</h3>
+<ul>
+<li>Portable ultrasound machines</li>
+<li>Point-of-care testing devices</li>
+<li>Rapid diagnostic tests (RDTs)</li>
+<li>Portable X-ray equipment</li>
+</ul>
+<h3>Maintenance and Power Solutions</h3>
+<p>Ensuring equipment reliability through:</p>
+<ul>
+<li>Regular preventive maintenance</li>
+<li>Solar power systems</li>
+<li>Battery backup solutions</li>
+<li>Training staff in basic troubleshooting</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch5_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 5,
+      title: "Chapitre 5 : Technologie et outils dans les cliniques mobiles",
+      contentType: "html",
+      htmlBody: `<h2>5.1 Intégration de la télémédecine en Haïti</h2>
+<p>La télémédecine permet aux cliniques mobiles de se connecter avec des spécialistes dans les centres urbains ou à l'international.</p>
+<h2>5.2 Dossiers de santé électroniques (DSE) et gestion des données</h2>
+<p>Les systèmes DSE pour les cliniques mobiles doivent être accessibles sur tablettes et smartphones, fonctionnels hors ligne.</p>
+<h2>5.3 Outils de diagnostic dans les cliniques mobiles</h2>
+<ul>
+<li>Machines à ultrasons portables</li>
+<li>Dispositifs de test au point de service</li>
+<li>Tests de diagnostic rapide (TDR)</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch6_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 6,
+      title: "Chapter 6: Sustainable Health Practices in Mobile Clinics",
+      contentType: "html",
+      htmlBody: `<h2>6.1 Implementing Sustainable Healthcare Solutions</h2>
+<h3>Long-Term Health Education</h3>
+<p>Sustainable healthcare requires empowering communities with knowledge:</p>
+<ul>
+<li>Preventive health education programs</li>
+<li>Nutrition and hygiene training</li>
+<li>Disease prevention strategies</li>
+<li>Family planning and reproductive health</li>
+</ul>
+<h3>Preventive Care</h3>
+<p>Focus on prevention rather than just treatment:</p>
+<ul>
+<li>Vaccination programs</li>
+<li>Maternal and child health services</li>
+<li>Screening for chronic diseases</li>
+<li>Health promotion campaigns</li>
+</ul>
+<h2>6.2 Sustainable Practices in Resource Management</h2>
+<h3>Local Sourcing of Supplies</h3>
+<p>Benefits of local sourcing:</p>
+<ul>
+<li>Reduced transportation costs and carbon footprint</li>
+<li>Support for local economy</li>
+<li>Better supply chain reliability</li>
+<li>Cultural appropriateness of materials</li>
+</ul>
+<h3>Reducing Waste and Energy Use</h3>
+<ul>
+<li>Proper waste segregation and disposal</li>
+<li>Reusable medical equipment when appropriate</li>
+<li>Solar power and renewable energy</li>
+<li>Water conservation and purification</li>
+</ul>
+<h2>6.3 Building Local Capacity for Long-Term Health Management</h2>
+<h3>Training Healthcare Workers</h3>
+<p>Key components:</p>
+<ul>
+<li>On-the-job training for medical professionals</li>
+<li>Specialized training for Community Health Workers</li>
+<li>Leadership and management training</li>
+<li>Continuous professional development</li>
+</ul>
+<h2>6.4 Sustainability and Health Outcomes</h2>
+<h3>Key Health Outcome Indicators</h3>
+<ol>
+<li><strong>Reduction in Infectious Diseases:</strong> Tracking cholera, tuberculosis, malaria, HIV/AIDS</li>
+<li><strong>Improved Maternal and Child Health:</strong> Reduced mortality rates, better nutrition</li>
+<li><strong>Increased Vaccination Coverage:</strong> Meeting WHO targets</li>
+<li><strong>Chronic Disease Management:</strong> Better control of hypertension, diabetes</li>
+</ol>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch6_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 6,
+      title: "Chapitre 6 : Pratiques de santé durable dans les cliniques mobiles",
+      contentType: "html",
+      htmlBody: `<h2>6.1 Mise en œuvre de solutions de soins de santé durables</h2>
+<h3>Éducation sanitaire à long terme</h3>
+<p>Des soins de santé durables nécessitent l'autonomisation des communautés par le savoir.</p>
+<h2>6.2 Pratiques durables dans la gestion des ressources</h2>
+<ul>
+<li>Approvisionnement local des fournitures</li>
+<li>Réduction des déchets et de la consommation d'énergie</li>
+</ul>
+<h2>6.3 Renforcement des capacités locales</h2>
+<p>Formation des agents de santé et développement du leadership.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch7_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 7,
+      title: "Chapter 7: Governance and Legal Framework",
+      contentType: "html",
+      htmlBody: `<h2>7.1 Legal Compliance in Healthcare Delivery</h2>
+<p>Healthcare delivery in mobile settings must comply with local and international laws and standards. SHARE operates within Haiti's legal framework, adhering to MSPP regulations and international guidelines from WHO and CDC.</p>
+<h3>Key Legal Considerations</h3>
+<h4>Informed Consent</h4>
+<ul>
+<li>Patients must understand treatments and procedures</li>
+<li>Consent must be voluntary and documented</li>
+<li>Special considerations for minors and vulnerable populations</li>
+<li>Cultural sensitivity in consent processes</li>
+</ul>
+<h4>Medical Licensing</h4>
+<ul>
+<li>All providers must be properly licensed by MSPP</li>
+<li>International volunteers require appropriate authorization</li>
+<li>Maintenance of professional credentials</li>
+</ul>
+<h4>Patient Confidentiality</h4>
+<ul>
+<li>Strict data protection protocols</li>
+<li>Secure storage of medical records</li>
+<li>Limited access to patient information</li>
+<li>Compliance with privacy laws</li>
+</ul>
+<h2>7.2 Governance and Accountability in Mobile Clinics</h2>
+<h3>Financial Accountability</h3>
+<ul>
+<li>Transparent budgeting and reporting</li>
+<li>Regular financial audits</li>
+<li>Efficient resource allocation</li>
+<li>Donor accountability</li>
+</ul>
+<h3>Monitoring and Evaluation (M&E) Framework</h3>
+<p>Essential components:</p>
+<ul>
+<li>Regular data collection and analysis</li>
+<li>Performance indicators tracking</li>
+<li>Quality improvement initiatives</li>
+<li>Impact assessments</li>
+</ul>
+<h2>7.3 Risk Management and Emergency Preparedness</h2>
+<h3>Natural Disasters</h3>
+<p>Haiti faces hurricanes, earthquakes, and floods. Preparedness includes:</p>
+<ul>
+<li>Emergency response plans</li>
+<li>Supply stockpiles</li>
+<li>Evacuation procedures</li>
+<li>Communication protocols</li>
+</ul>
+<h3>Contingency Planning for Disease Outbreaks</h3>
+<ul>
+<li>Surveillance systems</li>
+<li>Rapid response capabilities</li>
+<li>Infection control protocols</li>
+<li>Coordination with health authorities</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch7_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 7,
+      title: "Chapitre 7 : Gouvernance et cadre juridique",
+      contentType: "html",
+      htmlBody: `<h2>7.1 Conformité juridique dans la prestation de soins de santé</h2>
+<p>SHARE opère dans le cadre juridique haïtien, en respectant les réglementations du MSPP et les directives internationales.</p>
+<h3>Considérations juridiques clés</h3>
+<ul>
+<li>Consentement éclairé</li>
+<li>Licence médicale</li>
+<li>Confidentialité des patients</li>
+</ul>
+<h2>7.2 Gouvernance et responsabilité</h2>
+<ul>
+<li>Responsabilité financière</li>
+<li>Cadre de suivi et évaluation</li>
+</ul>
+<h2>7.3 Gestion des risques et préparation aux urgences</h2>
+<p>Haïti fait face aux ouragans, tremblements de terre et inondations.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch8_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 8,
+      title: "Chapter 8: Training and Capacity Building",
+      contentType: "html",
+      htmlBody: `<h2>8.1 Developing Healthcare Workforce through Training</h2>
+<h3>Clinical Skills Development</h3>
+<p>Comprehensive training programs covering:</p>
+<ul>
+<li>Basic and advanced clinical procedures</li>
+<li>Emergency and trauma care</li>
+<li>Maternal and child health</li>
+<li>Chronic disease management</li>
+<li>Infection prevention and control</li>
+</ul>
+<h3>Leadership and Management Training</h3>
+<p>Preparing local leaders to manage healthcare operations:</p>
+<ul>
+<li>Team management and supervision</li>
+<li>Resource allocation and budgeting</li>
+<li>Quality assurance and improvement</li>
+<li>Strategic planning</li>
+<li>Community engagement</li>
+</ul>
+<h2>8.2 Continuous Professional Development (CPD)</h2>
+<h3>Workshops, Seminars, and E-learning</h3>
+<ul>
+<li>Regular training sessions on new techniques and protocols</li>
+<li>Online learning platforms for flexible education</li>
+<li>Certification programs</li>
+<li>Specialty training opportunities</li>
+</ul>
+<h3>Peer Learning and Mentorship</h3>
+<p>Building a culture of continuous learning:</p>
+<ul>
+<li>Experienced practitioners mentoring newer staff</li>
+<li>Case study discussions</li>
+<li>Inter-professional learning</li>
+<li>Knowledge sharing forums</li>
+</ul>
+<h2>8.3 Building Local Leadership for Sustainable Healthcare Delivery</h2>
+<h3>Identifying and Nurturing Leaders</h3>
+<ul>
+<li>Leadership assessment and development programs</li>
+<li>Succession planning</li>
+<li>Empowering local decision-making</li>
+<li>Creating pathways for advancement</li>
+</ul>
+<h3>Community Health Worker Programs</h3>
+<p>CHWs are essential for sustainable healthcare:</p>
+<ul>
+<li>Recruitment from local communities</li>
+<li>Comprehensive training programs</li>
+<li>Ongoing support and supervision</li>
+<li>Integration with formal healthcare system</li>
+</ul>
+<h3>Building Institutional Capacity</h3>
+<ul>
+<li>Strengthening local health institutions</li>
+<li>Developing training facilities</li>
+<li>Creating sustainable funding mechanisms</li>
+<li>Establishing quality standards and protocols</li>
+</ul>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch8_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 8,
+      title: "Chapitre 8 : Formation et renforcement des capacités",
+      contentType: "html",
+      htmlBody: `<h2>8.1 Développement du personnel de santé par la formation</h2>
+<h3>Développement des compétences cliniques</h3>
+<p>Programmes de formation complets couvrant les procédures cliniques de base et avancées.</p>
+<h3>Formation en leadership et gestion</h3>
+<p>Préparation des leaders locaux à gérer les opérations de soins de santé.</p>
+<h2>8.2 Développement professionnel continu (DPC)</h2>
+<ul>
+<li>Ateliers, séminaires et apprentissage en ligne</li>
+<li>Apprentissage par les pairs et mentorat</li>
+</ul>
+<h2>8.3 Renforcement du leadership local</h2>
+<p>Programmes de développement du leadership et des agents de santé communautaire.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
+    },
+    {
+      id: "share_ch9_en",
+      course_id: "share_clinical_guide",
+      locale: "en",
+      order: 9,
+      title: "Chapter 9: Conclusion and Future Directions",
+      contentType: "html",
+      htmlBody: `<h2>9.1 Conclusion: Achieving Sustainable Healthcare in Haiti</h2>
+<p>SHARE's approach to mobile clinic operations represents a comprehensive model for delivering sustainable healthcare in resource-limited settings. Through a combination of direct service delivery, education, capacity building, and community engagement, SHARE is working to create lasting improvements in health outcomes across Haiti.</p>
+<h3>Key Achievements</h3>
+<ul>
+<li>Expanded access to healthcare in underserved communities</li>
+<li>Strengthened local healthcare workforce capacity</li>
+<li>Improved health indicators in target populations</li>
+<li>Built sustainable healthcare infrastructure</li>
+<li>Fostered community ownership of health programs</li>
+</ul>
+<h2>9.2 Future Directions: Expanding the Impact of Mobile Clinics</h2>
+<h3>Expanding Geographic Reach</h3>
+<p>Plans for growth include:</p>
+<ul>
+<li>Increasing number of mobile clinic units</li>
+<li>Reaching more remote and isolated communities</li>
+<li>Establishing permanent satellite health posts</li>
+<li>Creating regional hubs for specialized services</li>
+</ul>
+<h3>Telemedicine and Diagnostic Innovations</h3>
+<p>Leveraging technology for greater impact:</p>
+<ul>
+<li>Advanced telemedicine platforms</li>
+<li>Artificial intelligence for diagnostics</li>
+<li>Mobile health (mHealth) applications</li>
+<li>Improved data analytics for program planning</li>
+</ul>
+<h3>Global Partnerships</h3>
+<p>Strengthening international collaboration:</p>
+<ul>
+<li>Academic partnerships for research and training</li>
+<li>Technology transfer from global health leaders</li>
+<li>Sustainable funding mechanisms</li>
+<li>Knowledge exchange with other mobile clinic programs</li>
+</ul>
+<h2>9.3 Ensuring the Future of Sustainable Healthcare Delivery</h2>
+<h3>Long-Term Sustainability Strategies</h3>
+<ul>
+<li>Transitioning leadership to local professionals</li>
+<li>Developing local funding sources</li>
+<li>Integrating with national health systems</li>
+<li>Building resilient supply chains</li>
+<li>Creating measurable impact frameworks</li>
+</ul>
+<h3>Call to Action</h3>
+<p>Achieving sustainable healthcare in Haiti requires continued commitment from all stakeholders:</p>
+<ul>
+<li>Healthcare professionals: Continue your dedication to excellence and compassion</li>
+<li>Community members: Take ownership of your health and support local health initiatives</li>
+<li>Partners and donors: Maintain long-term commitments to sustainable development</li>
+<li>Policy makers: Create enabling environments for mobile health programs</li>
+</ul>
+<p>Together, we can transform healthcare delivery in Haiti and create a model for sustainable health systems worldwide.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-en.pdf" download class="underline">Download full guide (PDF)</a></p>`
+    },
+    {
+      id: "share_ch9_fr",
+      course_id: "share_clinical_guide",
+      locale: "fr",
+      order: 9,
+      title: "Chapitre 9 : Conclusion et directions futures",
+      contentType: "html",
+      htmlBody: `<h2>9.1 Conclusion : Atteindre des soins de santé durables en Haïti</h2>
+<p>L'approche de SHARE en matière d'opérations de clinique mobile représente un modèle complet pour offrir des soins de santé durables dans des contextes à ressources limitées.</p>
+<h3>Réalisations clés</h3>
+<ul>
+<li>Accès élargi aux soins de santé dans les communautés mal desservies</li>
+<li>Renforcement des capacités du personnel de santé local</li>
+<li>Amélioration des indicateurs de santé</li>
+</ul>
+<h2>9.2 Directions futures : Élargir l'impact des cliniques mobiles</h2>
+<h3>Élargissement de la portée géographique</h3>
+<p>Plans de croissance incluant l'augmentation du nombre d'unités de clinique mobile.</p>
+<h3>Innovations en télémédecine et diagnostic</h3>
+<p>Exploitation de la technologie pour un impact plus grand.</p>
+<h3>Partenariats mondiaux</h3>
+<p>Renforcement de la collaboration internationale.</p>
+<h2>9.3 Assurer l'avenir de la prestation de soins de santé durables</h2>
+<p>Ensemble, nous pouvons transformer la prestation de soins de santé en Haïti et créer un modèle pour des systèmes de santé durables dans le monde entier.</p>
+<p class="text-sm text-muted-foreground mt-6"><a href="/documents/share-guide-fr.pdf" download class="underline">Télécharger le guide complet (PDF)</a></p>`
     }
   ],
   quizzes: [
