@@ -87,9 +87,7 @@ const Onboarding = () => {
 
       if (error) throw error;
 
-      if (locale === 'en' || locale === 'fr') {
-        setLanguage(locale);
-      }
+      // Don't change language yet - wait until onboarding complete to avoid remount
       setStep(2);
     } catch (error: any) {
       toast.error(error.message || 'Failed to update profile');
@@ -165,6 +163,11 @@ const Onboarding = () => {
 
       // DO NOT set onboarding_completed = true yet!
       // It will be set after user completes test + courses + documents
+
+      // Apply language preference now that onboarding setup is complete
+      if (locale === 'en' || locale === 'fr') {
+        setLanguage(locale);
+      }
 
       toast.success(t('onb.done'));
       
