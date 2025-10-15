@@ -70,6 +70,27 @@ const Onboarding = () => {
     checkOnboarding();
   }, [user, navigate]);
 
+  // Restore persisted onboarding progress per-user
+  useEffect(() => {
+    if (!user) return;
+    const prefix = `onb_${user.id}`;
+    const savedStep = sessionStorage.getItem(`${prefix}_step`);
+    if (savedStep) setStep(Number(savedStep));
+    const savedRole = sessionStorage.getItem(`${prefix}_role`);
+    if (savedRole === 'investor' || savedRole === 'doctor' || savedRole === 'nurse' || savedRole === 'driver' || savedRole === 'manager' || savedRole === 'security') {
+      setRole(savedRole as AppRole);
+    }
+    const savedLocale = sessionStorage.getItem(`${prefix}_locale`);
+    if (savedLocale === 'en' || savedLocale === 'fr') setLocale(savedLocale as any);
+  }, [user]);
+
+  // Persist step as the user advances
+  useEffect(() => {
+    if (!user) return;
+    const prefix = `onb_${user.id}`;
+    sessionStorage.setItem(`${prefix}_step`, String(step));
+  }, [step, user]);
+
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
@@ -96,6 +117,11 @@ const Onboarding = () => {
 
   const handleRoleSelection = (selectedRole: AppRole) => {
     setRole(selectedRole);
+    if (user) {
+      const prefix = `onb_${user.id}`;
+      sessionStorage.setItem(`${prefix}_role`, selectedRole);
+      sessionStorage.setItem(`${prefix}_step`, '3');
+    }
     setStep(3); // Go to course assignment confirmation
   };
 
@@ -169,6 +195,12 @@ const Onboarding = () => {
         setLanguage(locale);
       }
 
+      // Clear persisted onboarding progress
+      const prefix = `onb_${user.id}`;
+      sessionStorage.removeItem(`${prefix}_step`);
+      sessionStorage.removeItem(`${prefix}_role`);
+      sessionStorage.removeItem(`${prefix}_locale`);
+
       toast.success(t('onb.done'));
       
       // Navigate based on role
@@ -236,6 +268,10 @@ const Onboarding = () => {
                     onValueChange={(val) => {
                       if (val === 'en' || val === 'fr') {
                         setLocale(val);
+                        if (user) {
+                          const prefix = `onb_${user.id}`;
+                          sessionStorage.setItem(`${prefix}_locale`, val);
+                        }
                       }
                     }}
                   >
