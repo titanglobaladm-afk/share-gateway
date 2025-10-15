@@ -183,6 +183,41 @@ export type Database = {
         }
         Relationships: []
       }
+      manual_answer_scores: {
+        Row: {
+          answer_id: string
+          feedback: string | null
+          graded_at: string | null
+          grader_user_id: string
+          id: string
+          score: number
+        }
+        Insert: {
+          answer_id: string
+          feedback?: string | null
+          graded_at?: string | null
+          grader_user_id: string
+          id?: string
+          score: number
+        }
+        Update: {
+          answer_id?: string
+          feedback?: string | null
+          graded_at?: string | null
+          grader_user_id?: string
+          id?: string
+          score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "manual_answer_scores_answer_id_fkey"
+            columns: ["answer_id"]
+            isOneToOne: true
+            referencedRelation: "aptitude_test_answers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string | null
