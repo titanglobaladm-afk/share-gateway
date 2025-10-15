@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { AdminUserTable } from '@/components/AdminUserTable';
 import { AdminTestAttemptsTable } from '@/components/AdminTestAttemptsTable';
 import { AdminQuizAttemptsTable } from '@/components/AdminQuizAttemptsTable';
+import { AdminDocumentSignaturesTable } from '@/components/AdminDocumentSignaturesTable';
 import { Loader2, Shield } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -38,10 +39,11 @@ const AdminDashboard = () => {
         </div>
 
         <Tabs defaultValue="users" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 lg:w-[600px]">
+          <TabsList className="grid w-full grid-cols-4 lg:w-[800px]">
             <TabsTrigger value="users">Users</TabsTrigger>
             <TabsTrigger value="tests">Test Attempts</TabsTrigger>
             <TabsTrigger value="quizzes">Quiz Attempts</TabsTrigger>
+            <TabsTrigger value="documents">Documents</TabsTrigger>
           </TabsList>
 
           <TabsContent value="users" className="space-y-4">
@@ -82,6 +84,20 @@ const AdminDashboard = () => {
               </CardHeader>
               <CardContent>
                 <AdminQuizAttemptsTable />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="documents" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle>Signed Documents</CardTitle>
+                <CardDescription>
+                  View all user document signatures and verification details
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <AdminDocumentSignaturesTable />
               </CardContent>
             </Card>
           </TabsContent>
