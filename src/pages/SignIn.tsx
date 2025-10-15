@@ -32,7 +32,7 @@ const SignIn = () => {
       }
 
       toast.success('Signed in successfully!');
-      navigate('/onboarding');
+      navigate('/dashboard');
     } catch (error: any) {
       console.error('Sign in error:', error);
     } finally {
@@ -49,7 +49,7 @@ const SignIn = () => {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/onboarding`,
+          emailRedirectTo: `${window.location.origin}/`,
         },
       });
 
@@ -59,7 +59,7 @@ const SignIn = () => {
       }
 
       toast.success('Account created successfully!');
-      navigate('/onboarding');
+      navigate('/dashboard');
     } catch (error: any) {
       console.error('Sign up error:', error);
     } finally {
