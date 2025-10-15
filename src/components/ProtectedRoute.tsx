@@ -52,6 +52,8 @@ const ProtectedRoute = ({ children, requireAuth = true }: ProtectedRouteProps) =
   const path = location.pathname;
   const allowedDuringOnboarding =
     path === '/onboarding' ||
+    path === '/dashboard' ||
+    path === '/admin' ||
     path === '/kyc-verification' ||
     path === '/role-test' || path.startsWith('/role-test') ||
     path === '/my-courses' ||
