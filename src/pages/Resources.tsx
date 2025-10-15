@@ -30,8 +30,8 @@ const Resources = () => {
         "Conclusion and Future Directions"
       ],
       downloads: [
-        { lang: "en", file: "/documents/share-guide-en.pdf", label: "English Version" },
-        { lang: "fr", file: "/documents/share-guide-fr.pdf", label: "Version française" }
+        { lang: "en", file: "/documents/share-guide-en.docx", label: "English Version (DOCX)" },
+        { lang: "fr", file: "/documents/share-guide-fr.pdf", label: "Version française (PDF)" }
       ]
     }
   ];
@@ -92,14 +92,20 @@ const Resources = () => {
                 {resource.downloads.map((download) => (
                   <Button
                     key={download.lang}
-                    asChild
                     variant="default"
                     className="gap-2"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const link = document.createElement('a');
+                      link.href = download.file;
+                      link.download = download.file.split('/').pop() || 'share-guide';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
                   >
-                    <a href={download.file} download target="_blank" rel="noopener noreferrer">
-                      <Download className="h-4 w-4" />
-                      {download.label}
-                    </a>
+                    <Download className="h-4 w-4" />
+                    {download.label}
                   </Button>
                 ))}
               </div>
