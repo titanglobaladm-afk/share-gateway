@@ -152,7 +152,7 @@ const Quiz = () => {
                 }).length} / {questions.length} {t('quiz.correct')}
               </p>
             </div>
-            <Button onClick={() => navigate('/courses')} className="w-full">
+            <Button onClick={() => navigate('/my-courses')} className="w-full">
               {t('course.back')}
             </Button>
           </CardContent>
