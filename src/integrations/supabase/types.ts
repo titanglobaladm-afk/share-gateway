@@ -410,6 +410,48 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      append_lesson_completion: {
+        Args: { p_course_id: string; p_lesson_id: string; p_user_id: string }
+        Returns: {
+          assigned_at: string | null
+          completed_at: string | null
+          course_id: string
+          id: string
+          last_accessed_at: string | null
+          lessons_completed: Json | null
+          progress_percentage: number | null
+          quizzes_completed: Json | null
+          role_test_passed: boolean | null
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "user_courses"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      append_quiz_completion: {
+        Args: { p_course_id: string; p_quiz_id: string; p_user_id: string }
+        Returns: {
+          assigned_at: string | null
+          completed_at: string | null
+          course_id: string
+          id: string
+          last_accessed_at: string | null
+          lessons_completed: Json | null
+          progress_percentage: number | null
+          quizzes_completed: Json | null
+          role_test_passed: boolean | null
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "user_courses"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       has_passed_role_test: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

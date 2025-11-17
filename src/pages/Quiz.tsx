@@ -105,6 +105,13 @@ const Quiz = () => {
               submitted_at: new Date().toISOString()
             });
 
+          // Update user_courses to mark quiz as completed
+          await supabase.rpc('append_quiz_completion', {
+            p_user_id: user.id,
+            p_course_id: quiz.course_id,
+            p_quiz_id: quizId!
+          });
+
           // Check if onboarding is now complete
           await updateOnboardingStatus(user.id);
         } catch (error) {

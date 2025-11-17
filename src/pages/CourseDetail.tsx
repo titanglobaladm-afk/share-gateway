@@ -56,6 +56,29 @@ const CourseDetail = () => {
     checkCourseAccess();
   }, [user, courseId, navigate, course, t]);
 
+  // Mark lessons as completed when viewing the course
+  useEffect(() => {
+    const markLessonsCompleted = async () => {
+      if (!user || !courseId || !course) return;
+
+      const lessons = trainingData.lessons.filter(
+        l => l.course_id === course.id && l.locale === language
+      );
+
+      for (const lesson of lessons) {
+        await supabase.rpc('append_lesson_completion', {
+          p_user_id: user.id,
+          p_course_id: courseId,
+          p_lesson_id: lesson.id
+        });
+      }
+    };
+
+    if (!loading && roleTestPassed !== null) {
+      markLessonsCompleted();
+    }
+  }, [user, courseId, course, language, loading, roleTestPassed]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
